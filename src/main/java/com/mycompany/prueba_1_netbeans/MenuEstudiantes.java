@@ -100,6 +100,11 @@ public class MenuEstudiantes extends javax.swing.JFrame {
         jButtonModificar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButtonModificar.setText("Modificar estudiante");
         jButtonModificar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -184,7 +189,8 @@ public class MenuEstudiantes extends javax.swing.JFrame {
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         if (evt.getSource()==jButtonBuscar){
-            Buscar vv = new Buscar(colegio,curso);
+            //true para buscar y false para modificar
+            Buscar vv = new Buscar(colegio,curso,true);
             vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
             vv.setVisible(true);
@@ -207,6 +213,19 @@ public class MenuEstudiantes extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButtonMostrarActionPerformed
+
+    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
+        //modificar estudiante
+        if (evt.getSource()==jButtonModificar){
+            //ventana de modificar que primero pasa por la de buscar
+            JOptionPane.showMessageDialog(this, "Necesitas primero buscar al estudiante para modificar", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            Buscar vv = new Buscar(colegio,curso,false);
+            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            vv.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_jButtonModificarActionPerformed
 
 
 

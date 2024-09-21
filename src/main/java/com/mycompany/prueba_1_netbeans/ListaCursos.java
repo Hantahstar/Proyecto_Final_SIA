@@ -100,6 +100,11 @@ public class ListaCursos extends javax.swing.JFrame {
         jTableLista.setShowGrid(false);
         jTableLista.setShowHorizontalLines(true);
         jTableLista.setShowVerticalLines(true);
+        jTableLista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableListaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableLista);
         jTableLista.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -159,24 +164,22 @@ public class ListaCursos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
-                        .addGap(6, 6, 6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabelGrado)
-                            .addComponent(jLabelLetra))
-                        .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldLetra)
-                            .addComponent(jTextFieldGrado))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonCerrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonAceptar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabelGrado)
+                                    .addComponent(jLabelLetra))
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldLetra, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldGrado))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButtonCerrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonAceptar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap())))
         );
 
@@ -228,7 +231,7 @@ public class ListaCursos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonCerrarActionPerformed
     private void opcionAceptar(){
-        if (jTextFieldGrado.getText().isBlank()||jTextFieldLetra.getText().isBlank()){
+        if (jTextFieldGrado.getText().trim().isEmpty() || jTextFieldLetra.getText().trim().isEmpty()){
                 JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
             else{
@@ -265,7 +268,6 @@ public class ListaCursos extends javax.swing.JFrame {
                     }
                 }
             }
-        
     }
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
         if(evt.getSource()==jButtonAceptar){
@@ -286,6 +288,18 @@ public class ListaCursos extends javax.swing.JFrame {
             opcionAceptar();
         }
     }//GEN-LAST:event_jTextFieldLetraKeyPressed
+
+    private void jTableListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListaMouseClicked
+        String grado,letra;
+        int fila = jTableLista.getSelectedRow();
+        if (fila!=-1){
+            grado = (String) jTableLista.getValueAt(fila,0);
+            letra = (String)jTableLista.getValueAt(fila,1);
+            jTextFieldGrado.setText(grado);
+            jTextFieldLetra.setText(letra);
+            opcionAceptar();
+        }
+    }//GEN-LAST:event_jTableListaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

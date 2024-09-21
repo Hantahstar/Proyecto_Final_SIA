@@ -85,14 +85,18 @@ public class ListaAsistencia extends javax.swing.JFrame {
         });
         jTableLista.setAutoscrolls(false);
         jTableLista.setColumnSelectionAllowed(true);
-        jTableLista.setShowHorizontalLines(true);
-        jTableLista.setShowVerticalLines(true);
+        jTableLista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableListaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableLista);
         jTableLista.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Elegir Asistencia");
 
+        jButtonCerrar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButtonCerrar.setText("Cancelar");
         jButtonCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,6 +124,7 @@ public class ListaAsistencia extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Hora:");
 
+        jButtonAceptar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButtonAceptar.setText("Aceptar");
         jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,7 +142,7 @@ public class ListaAsistencia extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
                         .addGap(254, 254, 254))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -159,7 +164,7 @@ public class ListaAsistencia extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -187,7 +192,7 @@ public class ListaAsistencia extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCerrarActionPerformed
     
     private void opcionAceptar(){
-        if (jTextFieldFecha.getText().isBlank()||jTextFieldHora.getText().isBlank()){
+        if (jTextFieldFecha.getText().trim().isEmpty() || jTextFieldHora.getText().trim().isEmpty()){
                 JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
             else if ((jTextFieldFecha.getText().length() != 10) && ((jTextFieldFecha.getText().charAt(2))!='/'&&(jTextFieldFecha.getText().charAt(5))!='/')){
@@ -213,9 +218,9 @@ public class ListaAsistencia extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Asistencia no está registrada en el sistema", "No existe", JOptionPane.WARNING_MESSAGE);
                     }
                 }
+                
                 //eliminar asistencia
                 else{
-                //copiar el curso para esto
                     Asistencia asist = new Asistencia(jTextFieldFecha.getText(),jTextFieldHora.getText(),curso);
                     asist = colegio.verificarAsistencia(asist);
                     if(asist!=null){
@@ -254,6 +259,18 @@ public class ListaAsistencia extends javax.swing.JFrame {
             opcionAceptar();
         }
     }//GEN-LAST:event_jTextFieldHoraKeyPressed
+
+    private void jTableListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListaMouseClicked
+       String fecha,hora;
+        int fila = jTableLista.getSelectedRow();
+        if (fila!=-1){
+            fecha = (String) jTableLista.getValueAt(fila,0);
+            hora = (String)jTableLista.getValueAt(fila,1);
+            jTextFieldFecha.setText(fecha);
+            jTextFieldHora.setText(hora);
+            opcionAceptar();
+        }
+    }//GEN-LAST:event_jTableListaMouseClicked
 
   
     // Variables declaration - do not modify//GEN-BEGIN:variables

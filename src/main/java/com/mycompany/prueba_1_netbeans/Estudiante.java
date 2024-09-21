@@ -67,7 +67,16 @@ public class Estudiante {
         setAsistencia(true);
         setInasistenciaJust(true);
     }
-    
+     public void toUpperCase(){
+        String despues;
+        despues = nombre.substring(1);
+        char letra = Character.toUpperCase(nombre.charAt(0));
+        setNombre(letra+despues); 
+        despues = apellido.substring(1);
+        letra = Character.toUpperCase(apellido.charAt(0));
+        setApellido(letra+despues);
+    }
+
     @Override
     public String toString() {
         return (rut+","+nombre+","+apellido+"\n");

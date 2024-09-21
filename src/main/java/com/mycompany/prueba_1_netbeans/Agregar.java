@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 public class Agregar extends javax.swing.JFrame {
-
+    
     private Colegio colegio;
     private Curso curso;
     private String titulo,text1,text2;
@@ -228,34 +228,43 @@ public class Agregar extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldC3KeyPressed
 
     private void opcionAceptar(){
-        if(curso==null){
-            if (jTextFieldA1.getText().isBlank()||jTextFieldB2.getText().isBlank()){
-                JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
-            }
-            else{
+         if (jTextFieldA1.getText().trim().isEmpty() || jTextFieldB2.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
+         }
+         else{
+             //agregar curso, si no se pasa la instancia de un curso entonces se pasa a la versión de agregar del curso
+             if(curso==null){
                 Curso c = new Curso(jTextFieldA1.getText(),jTextFieldB2.getText());
+                c.toUpperCase();
                 if (colegio.verificarCurso(c)==null){
-                    colegio.agregarCurso(c);
-                    JOptionPane.showMessageDialog(this, "Curso agregado", "Exito!", JOptionPane.INFORMATION_MESSAGE);
-                    MenuCursos vv = new MenuCursos(colegio);
-                    vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                    vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                    vv.setVisible(true);
-                    this.dispose();
+                    if (((Character.isDigit(c.getGrado().charAt(0))) && (Character.isAlphabetic(c.getLetra().charAt(0)))) && c.getLetra().length() == 1){
+                        //metodo para colocar en mayus
+                        c.toUpperCase();
+                        colegio.agregarCurso(c);
+                        JOptionPane.showMessageDialog(this, "Curso agregado", "Exito!", JOptionPane.INFORMATION_MESSAGE);
+                        MenuCursos vv = new MenuCursos(colegio);
+                        vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                        vv.setVisible(true);
+                        this.dispose();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "Formato no valido", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                    }
+                    
                 }
                 else{
                     JOptionPane.showMessageDialog(this, "Curso ya está en el sistema", "Existe", JOptionPane.INFORMATION_MESSAGE);
                 }
+            
             }
-        }
-            //agregar estudiantes 
-        else{
-            if (jTextFieldA1.getText().isBlank()||jTextFieldB2.getText().isBlank()){
-                JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
-            }
+             
+             //agregar estudiantes 
             else{
                 Estudiante e = new Estudiante(jTextFieldB2.getText(),jTextFieldC3.getText(),jTextFieldA1.getText());
-                if(colegio.verificarEstudiante(jTextFieldA1.getText())){
+                e.toUpperCase();
+                e.setRut(curso.verificarRut(e.getRut()));
+                if(colegio.verificarEstudiante(e.getRut())){
                     JOptionPane.showMessageDialog(this, "Estudiante ya registrado en el sistema", "Existe", JOptionPane.INFORMATION_MESSAGE);
                 }
                 else{
@@ -268,9 +277,9 @@ public class Agregar extends javax.swing.JFrame {
                     vv.setVisible(true);
                     this.dispose();  
                 }
-            }
-        }        
-    }
+            }          
+        }    
+    }     
     
     
 

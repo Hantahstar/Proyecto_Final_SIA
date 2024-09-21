@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class Colegio{
-    private  ArrayList<Curso> cursos;
+    private ArrayList<Curso> cursos;
     private ArrayList <Asistencia> asistencias;
 
     public Colegio() {
@@ -354,7 +354,7 @@ public class Colegio{
         cursos.get(35).agregarEstudiante("209876450", eCuartoMC2);
         cursos.get(35).agregarEstudiante(eCuartoMC2);
     }
-
+    
     public boolean cursoEstaVacio(){
         return cursos.isEmpty();
     }
@@ -377,7 +377,7 @@ public class Colegio{
         }
         for (i=0;cursos.size()>i;i++){
             if (c.getGrado()!=null && c.getLetra()!=null){
-                if(cursos.get(i).getGrado().equals(c.getGrado()) && cursos.get(i).getLetra().equals(c.getLetra())){
+                if(cursos.get(i).getGrado().equalsIgnoreCase(c.getGrado()) && cursos.get(i).getLetra().equalsIgnoreCase(c.getLetra())){
                     return cursos.get(i);
                 }
             }
@@ -461,7 +461,7 @@ public class Colegio{
                     else if(e.isAsistencia() && e.isInasistenciaJust()){
                         estado = "Sale antes del horario";
                     }
-                    selectionOpcion = JOptionPane.showOptionDialog(panel,e.toString()+"\n"+estado,"Asistencia Fecha :"+asist.getFecha()+" Hora :"+asist.getHora(),JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE,null,opcionesVista,opcionesVista[0]);
+                    selectionOpcion = JOptionPane.showOptionDialog(panel,"Nombre: "+e.getNombre()+"\nApellido: "+e.getApellido()+"\nRUT: "+e.getRut()+"\n"+estado,"Asistencia Fecha :"+asist.getFecha()+" Hora :"+asist.getHora(),JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE,null,opcionesVista,opcionesVista[0]);
                     switch(selectionOpcion+1){
                         case 0:
                             return;

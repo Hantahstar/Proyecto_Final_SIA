@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Proyecto_Final_SIA:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Proyecto_Final_SIA_jar</output-path>
+    <root id="archive" name="Proyecto_Final_SIA.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="Proyecto_Final_SIA" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/netbeans/external/AbsoluteLayout/RELEASE220/AbsoluteLayout-RELEASE220.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

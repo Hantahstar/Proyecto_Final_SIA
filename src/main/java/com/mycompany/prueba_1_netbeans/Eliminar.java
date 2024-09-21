@@ -155,37 +155,31 @@ public class Eliminar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     
-    
-    
     private void opcionEliminar(){
-        if(curso==null){
-                if (jTextFieldPalabraPrin.getText().isBlank()||jTextFieldLetra.getText().isBlank()){
-                    JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        if (jTextFieldPalabraPrin.getText().trim().isEmpty()||jTextFieldLetra.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
+         }
+        else{
+            if(curso==null){
+                Curso c = new Curso(jTextFieldPalabraPrin.getText(),jTextFieldLetra.getText());
+                if (colegio.verificarCurso(c)==null){
+                    JOptionPane.showMessageDialog(this, "Curso no se encuentra en el sistema", "No existe", JOptionPane.INFORMATION_MESSAGE);
                 }
                 else{
-                    Curso c = new Curso(jTextFieldPalabraPrin.getText(),jTextFieldLetra.getText());
-                    if (colegio.verificarCurso(c)==null){
-                        JOptionPane.showMessageDialog(this, "Curso no se encuentra en el sistema", "No existe", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                    else{
-                        //Eliminar Curso
-                        JOptionPane.showMessageDialog(this,colegio.mostrarCurso(c)+"\nCurso Eliminado","Eliminado", JOptionPane.INFORMATION_MESSAGE);
-                        colegio.removerCurso(colegio.verificarCurso(c));
-                        MenuCursos vv = new MenuCursos(colegio);
-                        vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                        vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                        vv.setVisible(true);
-                        this.dispose();
-                    }
+                    //Eliminar Curso
+                    JOptionPane.showMessageDialog(this,colegio.mostrarCurso(c)+"\nCurso Eliminado","Eliminado", JOptionPane.INFORMATION_MESSAGE);
+                    colegio.removerCurso(colegio.verificarCurso(c));
+                    MenuCursos vv = new MenuCursos(colegio);
+                    vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                    vv.setVisible(true);
+                    this.dispose();
                 }
             }
+            //expulsar estudiante
             else{
-                if (jTextFieldPalabraPrin.getText().isBlank()){
-                    JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
-                }
-                else{
-                    Estudiante e;
-                    if(curso.contieneEstudiante(jTextFieldPalabraPrin.getText())){
+                Estudiante e;
+                if(curso.contieneEstudiante(jTextFieldPalabraPrin.getText())){
                         e = curso.getEstudiante(jTextFieldPalabraPrin.getText());
                         JOptionPane.showMessageDialog(this,e.toString()+"\nEstudiante Expulsado","Expulsado", JOptionPane.INFORMATION_MESSAGE);
                         curso.removerEstudiante(e);
@@ -195,14 +189,15 @@ public class Eliminar extends javax.swing.JFrame {
                         vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
                         vv.setVisible(true);
                         this.dispose();                       
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(this, "Estudiante no se encuentra\nEn el sistema", "No existe", JOptionPane.INFORMATION_MESSAGE);
-                    }
                 }
+                else{
+                    JOptionPane.showMessageDialog(this, "Estudiante no se encuentra\nEn el sistema", "No existe", JOptionPane.INFORMATION_MESSAGE);
+                }        
             }
-        
+        }        
     }
+    
+    
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         if (evt.getSource()==jButtonEliminar){
             opcionEliminar();

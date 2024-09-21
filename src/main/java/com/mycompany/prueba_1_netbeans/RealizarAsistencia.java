@@ -156,7 +156,7 @@ public class RealizarAsistencia extends javax.swing.JFrame {
     
     private void opcionAceptar(){
         //realizar asistencia
-            if (jTextFieldA1.getText().isBlank()||jTextFieldB2.getText().isBlank()){
+            if (jTextFieldA1.getText().trim().isEmpty() || jTextFieldB2.getText().trim().isEmpty()){
                 JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
             if ((jTextFieldA1.getText().length() != 10) && ((jTextFieldA1.getText().charAt(2))!='/'&&(jTextFieldA1.getText().charAt(5))!='/')){
