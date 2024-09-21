@@ -12,15 +12,17 @@ public class Buscar extends javax.swing.JFrame {
     private Curso curso;
     private String titulo;
     private String label;
+    private boolean opcion;
     //buscar curso
     public Buscar(Colegio colegio) {
         this.colegio = colegio;
         initComponents();
     }
     //buscar estudiantes
-    public Buscar(Colegio colegio,Curso curso){
+    public Buscar(Colegio colegio,Curso curso,boolean opcion){
         this.colegio = colegio;
         this.curso = curso;
+        this.opcion = opcion;
         initComponents();
         this.remove(jTextFieldLetra);
         this.remove(jLabel3);
@@ -189,12 +191,24 @@ public class Buscar extends javax.swing.JFrame {
                     if(curso.contieneEstudiante(jTextFieldPrin.getText())){
                         Estudiante e;
                         e = curso.getEstudiante(jTextFieldPrin.getText());
-                        JOptionPane.showMessageDialog(this,e.toString()+"\nEstudiante Encontrado","Encontrado", JOptionPane.INFORMATION_MESSAGE);
-                        MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
-                        vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                        vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                        vv.setVisible(true);
-                        this.dispose();
+                        JOptionPane.showMessageDialog(this,"RUT: "+e.getRut()+"\nNombre: "+e.getNombre()+"\nApellido: "+e.getApellido()+"\nEstudiante Encontrado","Encontrado", JOptionPane.INFORMATION_MESSAGE);
+                        
+                        if(opcion){
+                            MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
+                            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                            vv.setVisible(true);
+                            this.dispose();
+                        }
+                        else{
+                            //modificar
+                            Modificar vv = new  Modificar(colegio,curso,e);
+                            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                            vv.setVisible(true);
+                            this.dispose();
+                        }
+                        
                     }
                     else{
                         JOptionPane.showMessageDialog(this, "Estudiante no se encuentra en el sistema", "No existe", JOptionPane.INFORMATION_MESSAGE);

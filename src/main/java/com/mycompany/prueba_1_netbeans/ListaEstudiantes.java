@@ -79,8 +79,6 @@ public class ListaEstudiantes extends javax.swing.JFrame {
         });
         jTableLista.setAutoscrolls(false);
         jTableLista.setColumnSelectionAllowed(true);
-        jTableLista.setShowHorizontalLines(true);
-        jTableLista.setShowVerticalLines(true);
         jScrollPane2.setViewportView(jTableLista);
         jTableLista.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 

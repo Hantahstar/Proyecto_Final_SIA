@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class Colegio{
-    private  ArrayList<Curso> cursos;
+    private ArrayList<Curso> cursos;
     private ArrayList <Asistencia> asistencias;
 
     public Colegio() {
