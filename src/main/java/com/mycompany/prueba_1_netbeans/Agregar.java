@@ -235,11 +235,8 @@ public class Agregar extends javax.swing.JFrame {
              //agregar curso, si no se pasa la instancia de un curso entonces se pasa a la versión de agregar del curso
              if(curso==null){
                 Curso c = new Curso(jTextFieldA1.getText(),jTextFieldB2.getText());
-                c.toUpperCase();
                 if (colegio.verificarCurso(c)==null){
-                    if (((Character.isDigit(c.getGrado().charAt(0))) && (Character.isAlphabetic(c.getLetra().charAt(0)))) && c.getLetra().length() == 1){
-                        //metodo para colocar en mayus
-                        c.toUpperCase();
+                    if (c.formatoCorrecto()){
                         colegio.agregarCurso(c);
                         JOptionPane.showMessageDialog(this, "Curso agregado", "Exito!", JOptionPane.INFORMATION_MESSAGE);
                         MenuCursos vv = new MenuCursos(colegio);
@@ -249,7 +246,7 @@ public class Agregar extends javax.swing.JFrame {
                         this.dispose();
                     }
                     else{
-                        JOptionPane.showMessageDialog(this, "Formato no valido", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Formato no valido\nEjemplo de formato valido:\nGrado: 1ro medio\nLetra: a", "Advertencia", JOptionPane.WARNING_MESSAGE);
                     }
                     
                 }

@@ -156,11 +156,12 @@ public class Eliminar extends javax.swing.JFrame {
     
     
     private void opcionEliminar(){
-        if (jTextFieldPalabraPrin.getText().trim().isEmpty()||jTextFieldLetra.getText().trim().isEmpty()){
+        if (jTextFieldPalabraPrin.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
          }
         else{
-            if(curso==null){
+            if(jTextFieldPalabraPrin.getText().trim().isEmpty()||jTextFieldLetra.getText().trim().isEmpty()){
+                if(curso==null){
                 Curso c = new Curso(jTextFieldPalabraPrin.getText(),jTextFieldLetra.getText());
                 if (colegio.verificarCurso(c)==null){
                     JOptionPane.showMessageDialog(this, "Curso no se encuentra en el sistema", "No existe", JOptionPane.INFORMATION_MESSAGE);
@@ -175,7 +176,9 @@ public class Eliminar extends javax.swing.JFrame {
                     vv.setVisible(true);
                     this.dispose();
                 }
+              }
             }
+            
             //expulsar estudiante
             else{
                 Estudiante e;

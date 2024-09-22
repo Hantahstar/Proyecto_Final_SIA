@@ -103,14 +103,46 @@ public class Curso{
         return mapaEstudiante.containsKey(rut);
     }
     
+    public boolean isAlphabetic(String cadena){
+        int i;
+        for(i=0;cadena.length()>i;i++){
+            if(Character.isDigit(cadena.charAt(i))){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public boolean formatoCorrecto(){
+        String nivel;
+        if (((Character.isDigit(grado.charAt(0))) && (Character.isAlphabetic(letra.charAt(0)))) && letra.length() == 1){
+            if( ((Character.isAlphabetic(grado.charAt(1))) && (Character.isAlphabetic(grado.charAt(2)))) && (grado.charAt(3) == ' ')){
+                nivel = grado.substring(4);
+                if((isAlphabetic(nivel)) && (nivel.length() == 6 || nivel.length() == 5)){
+                    toUpperCase();
+                    return true;  
+                }
+                else{
+                    return false;
+                }
+            }
+            else{
+                return false;
+            }   
+        }
+        else{
+            return false;
+        }
+    }
+    
     public void toUpperCase(){
         String antes,despues;
         setLetra(letra.toUpperCase());
         antes = grado.substring(0,4);
-        
         char letra = Character.toUpperCase(grado.charAt(4));
         despues = grado.substring(4+1);
-        setGrado(antes+letra+despues);   
+        setGrado(antes+letra+despues); 
+           
     }
     
       public String verificarRut(String rut){
