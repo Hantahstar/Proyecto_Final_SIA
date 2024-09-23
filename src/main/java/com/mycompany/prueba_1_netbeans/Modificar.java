@@ -171,6 +171,7 @@ public class Modificar extends javax.swing.JFrame {
         else{
             estudiante.setNombre(jTextFieldNombre.getText());
             estudiante.setApellido(jTextFieldApellido.getText());
+            estudiante.toUpperCase();
             colegio.actualizar(path,1);
             JOptionPane.showMessageDialog(this, "Estudiante modificado\nDatos cambiados:\nNombre: "+estudiante.getNombre()+"\nApellido: "+estudiante.getApellido(), "Modificado", JOptionPane.INFORMATION_MESSAGE);
             MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);

@@ -161,22 +161,51 @@ public class Curso{
         setLetra(letra.toUpperCase());
         antes = grado.substring(0,4);
         char letra = Character.toUpperCase(grado.charAt(4));
-        despues = grado.substring(4+1);
+        despues = grado.substring(5);
         setGrado(antes+letra+despues); 
            
     }
-    
-      public String verificarRut(String rut){
-         char caracter;
-         String antes,despues;
-         caracter = rut.charAt(rut.length()-2);
-         if (caracter == '-'){
-             antes = rut.substring(0,rut.length()-2);
-             despues = rut.substring(rut.length()-1);
-             return (antes+despues);
-         }
-         return rut;
-     }
+
+    public boolean isPoint(String cadena){
+        int i;
+        for (i=0;cadena.length()>i;i++){
+            if(cadena.charAt(i) == '.'){
+                return true;
+            }
+        }
+        return false;
+    }
+    public String verificarRut(String rut){
+        int i;
+        char caracter;
+        String antes,despues;
+        if(isPoint(rut)){
+            for(i = 0;rut.length()>i;i++){
+                if(rut.charAt(i) == '.'){
+                    antes = rut.substring(0,i);
+                    despues = rut.substring(i+1);
+                    rut = antes+despues;
+                }
+            }
+            caracter = rut.charAt(rut.length()-2);
+            if(caracter == '-'){
+                antes = rut.substring(0,rut.length()-2);
+                despues = rut.substring(rut.length()-1);
+                rut = antes+despues;
+            }
+            return rut;
+        }
+        else{
+            caracter = rut.charAt(rut.length()-2);
+            if(caracter == '-'){
+                antes = rut.substring(0,rut.length()-2);
+                despues = rut.substring(rut.length()-1);
+                return (antes+despues);
+            }
+        }
+        return rut;
+    }
+
     
     @Override
     public String toString(){
