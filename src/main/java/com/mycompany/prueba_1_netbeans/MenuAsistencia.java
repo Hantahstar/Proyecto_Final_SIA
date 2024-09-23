@@ -145,7 +145,6 @@ public class MenuAsistencia extends javax.swing.JFrame {
                 vv.setVisible(true);
                 this.dispose();
             }
-            
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 

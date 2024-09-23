@@ -180,11 +180,17 @@ public class MenuCursos extends javax.swing.JFrame {
 
     private void jButtonMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarActionPerformed
         if(evt.getSource()==jButtonMostrar){
-            ListaCursos vv = new ListaCursos(colegio);
-            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            vv.setVisible(true);
-            this.dispose();
+            if (colegio.cursoEstaVacio()){
+                JOptionPane.showMessageDialog(this, "No hay ningún curso registrado en el sistema", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
+            else{
+                ListaCursos vv = new ListaCursos(colegio);
+                vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                vv.setVisible(true);
+                this.dispose();
+            }
+
         }
     }//GEN-LAST:event_jButtonMostrarActionPerformed
 

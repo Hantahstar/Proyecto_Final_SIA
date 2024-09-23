@@ -4,6 +4,10 @@
  */
 package com.mycompany.prueba_1_netbeans;
 
+import au.com.bytecode.opencsv.CSVWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 public class Curso{
@@ -88,8 +92,25 @@ public class Curso{
         }
 
     }
-    public void agregarEstudiante(Estudiante estudianteAgregar){
+    public void agregarEstudiante(Estudiante estudianteAgregar,String path){
+        File file = new File(path);
         listCurso.add(estudianteAgregar);
+
+        
+        List<String[]> datos = new ArrayList<>();
+
+        String[] fila = new String[5];
+        fila[0] = estudianteAgregar.getRut(); 
+        fila[1] = estudianteAgregar.getNombre();
+        fila[2] = estudianteAgregar.getApellido(); 
+        fila[3] = this.getGrado();
+        fila[4] = this.getLetra();
+
+        // Añadir la fila a los datos
+        datos.add(fila);
+
+        LeerYEscribirCSV csv = new LeerYEscribirCSV();
+        csv.escribirCSV(file, datos);
     }
     public String mostrarEstudiante(){
         String ret = "";
@@ -160,5 +181,54 @@ public class Curso{
     @Override
     public String toString(){
         return (grado+","+letra+","+Long.toString(sizeCurso())+"\n");
+    }
+    
+    public void cargarEstudiantes() {
+        
+        File file = new File("src/main/java/Estudiantes.csv");
+        
+        LeerYEscribirCSV lectorCSV = new LeerYEscribirCSV();
+        List<String[]> datosCSV = lectorCSV.leerCSV(file);
+        
+
+        for (String[] fila : datosCSV) {
+            if (fila.length >= 5) { 
+                String rut = fila[0];
+                String nombre = fila[1];
+                String apellido = fila[2];
+                String gradoM = fila[3]; 
+                String letraM = fila[4]; 
+
+                
+                if (this.grado.equals(gradoM) && this.letra.equals(letraM)) {
+                    Estudiante estudiante = new Estudiante(nombre, apellido, rut);
+                    listCurso.add(estudiante);
+                    mapaEstudiante.put(rut,estudiante);
+                }
+            } else {
+                System.out.println("Error: fila con formato incorrecto en el CSV.");
+            }
+        }
+    }  
+    
+    
+    
+    public void actualizarCSV() {
+        File file = new File("src/main/java/Estudiantes.csv");
+        try (CSVWriter csvWriter = new CSVWriter(new FileWriter(file,true))) { 
+            for (Estudiante estudiante : listCurso) {
+                String[] fila = new String[5];
+                fila[0] = estudiante.getRut(); 
+                fila[1] = estudiante.getNombre(); 
+                fila[2] = estudiante.getApellido(); 
+                fila[3] = this.getGrado(); 
+                fila[4] = this.getLetra();
+                csvWriter.writeNext(fila); 
+            }
+            
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

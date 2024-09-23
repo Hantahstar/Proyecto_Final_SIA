@@ -16,6 +16,7 @@ public class Modificar extends javax.swing.JFrame {
     private Colegio colegio;
     private Curso curso;
     private Estudiante estudiante;
+    private final String path = "src/main/java/Estudiantes.csv";
     public Modificar(Colegio colegio,Curso curso,Estudiante estudiante) {
         this.colegio = colegio;
         this.curso = curso;
@@ -170,6 +171,7 @@ public class Modificar extends javax.swing.JFrame {
         else{
             estudiante.setNombre(jTextFieldNombre.getText());
             estudiante.setApellido(jTextFieldApellido.getText());
+            colegio.actualizar(path,1);
             JOptionPane.showMessageDialog(this, "Estudiante modificado\nDatos cambiados:\nNombre: "+estudiante.getNombre()+"\nApellido: "+estudiante.getApellido(), "Modificado", JOptionPane.INFORMATION_MESSAGE);
             MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
             vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

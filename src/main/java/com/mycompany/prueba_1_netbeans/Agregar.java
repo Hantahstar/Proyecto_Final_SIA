@@ -17,6 +17,8 @@ public class Agregar extends javax.swing.JFrame {
     private Curso curso;
     private String titulo,text1,text2;
     private boolean opcion;
+    private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
+    private final String pathCursos = "src/main/java/Cursos.csv";
     //agregar curso
     public Agregar(Colegio colegio) {
         this.colegio = colegio;
@@ -237,7 +239,8 @@ public class Agregar extends javax.swing.JFrame {
                 Curso c = new Curso(jTextFieldA1.getText(),jTextFieldB2.getText());
                 if (colegio.verificarCurso(c)==null){
                     if (c.formatoCorrecto()){
-                        colegio.agregarCurso(c);
+                        colegio.agregarCurso(c,pathCursos);
+                        colegio.actualizar(pathCursos,2);
                         JOptionPane.showMessageDialog(this, "Curso agregado", "Exito!", JOptionPane.INFORMATION_MESSAGE);
                         MenuCursos vv = new MenuCursos(colegio);
                         vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -266,7 +269,8 @@ public class Agregar extends javax.swing.JFrame {
                 }
                 else{
                     curso.agregarEstudiante(jTextFieldA1.getText(),e);
-                    curso.agregarEstudiante(e);
+                    curso.agregarEstudiante(e,pathEstudiantes);
+                    colegio.actualizar(pathEstudiantes,1);
                     JOptionPane.showMessageDialog(this, "Estudiante agregado", "Exito!", JOptionPane.INFORMATION_MESSAGE);
                     MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
                     vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

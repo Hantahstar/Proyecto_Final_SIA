@@ -290,14 +290,16 @@ public class ListaCursos extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldLetraKeyPressed
 
     private void jTableListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListaMouseClicked
-        String grado,letra;
-        int fila = jTableLista.getSelectedRow();
-        if (fila!=-1){
-            grado = (String) jTableLista.getValueAt(fila,0);
-            letra = (String)jTableLista.getValueAt(fila,1);
-            jTextFieldGrado.setText(grado);
-            jTextFieldLetra.setText(letra);
-            opcionAceptar();
+        if(opcion!=1){
+            String grado,letra;
+            int fila = jTableLista.getSelectedRow();
+            if (fila!=-1){
+                grado = (String) jTableLista.getValueAt(fila,0);
+                letra = (String)jTableLista.getValueAt(fila,1);
+                jTextFieldGrado.setText(grado);
+                jTextFieldLetra.setText(letra);
+                opcionAceptar();
+            }
         }
     }//GEN-LAST:event_jTableListaMouseClicked
 
