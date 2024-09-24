@@ -4,6 +4,7 @@
  */
 package com.mycompany.prueba_1_netbeans;
 
+import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -16,6 +17,8 @@ public class ListaAsistencia extends javax.swing.JFrame {
     private Colegio colegio;
     private Curso curso;
     private boolean opcion;
+    private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
+    private final String pathCursos = "src/main/java/Cursos.csv";
     //booleano true es para buscar y false para eliminar
     public ListaAsistencia(Colegio colegio,Curso curso,boolean opcion) {
         this.colegio = colegio;
@@ -30,6 +33,24 @@ public class ListaAsistencia extends javax.swing.JFrame {
             String[] c = arr[i].split(",");
             model.addRow(c);
         }
+        jTableLista.getTableHeader().setReorderingAllowed(false);
+        visual();
+    }
+    
+    private void visual(){
+        this.getContentPane().setBackground(Color.gray);
+        jButtonAceptar.setBackground(Color.lightGray);
+        jButtonCerrar.setBackground(Color.lightGray);
+        jLabelHora.setBackground(Color.black);
+        jLabelFecha.setBackground(Color.black);
+        jLabelTitulo.setBackground(Color.black);
+        jScrollPaneBarra.getVerticalScrollBar().setBackground(Color.black);
+        jTableLista.setBackground(Color.black);
+        jTableLista.setForeground(Color.darkGray);
+        jTableLista.getTableHeader().setBackground(Color.darkGray);
+        jTableLista.getTableHeader().setForeground(Color.white);
+        jTextFieldHora.setBackground(Color.lightGray);
+        jTextFieldFecha.setBackground(Color.lightGray);
     }
 
     /**
@@ -41,20 +62,24 @@ public class ListaAsistencia extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPaneBarra = new javax.swing.JScrollPane();
         jTableLista = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelTitulo = new javax.swing.JLabel();
         jButtonCerrar = new javax.swing.JButton();
         jTextFieldFecha = new javax.swing.JTextField();
         jTextFieldHora = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabelFecha = new javax.swing.JLabel();
+        jLabelHora = new javax.swing.JLabel();
         jButtonAceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Colegio");
-        setAlwaysOnTop(true);
         setPreferredSize(new java.awt.Dimension(840, 460));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jTableLista.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jTableLista.setModel(new javax.swing.table.DefaultTableModel(
@@ -90,11 +115,11 @@ public class ListaAsistencia extends javax.swing.JFrame {
                 jTableListaMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(jTableLista);
+        jScrollPaneBarra.setViewportView(jTableLista);
         jTableLista.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Elegir Asistencia");
+        jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelTitulo.setText("Elegir Asistencia");
 
         jButtonCerrar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButtonCerrar.setText("Cancelar");
@@ -118,11 +143,11 @@ public class ListaAsistencia extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setText("Fecha:");
+        jLabelFecha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelFecha.setText("Fecha:");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setText("Hora:");
+        jLabelHora.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelHora.setText("Hora:");
 
         jButtonAceptar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButtonAceptar.setText("Aceptar");
@@ -139,15 +164,15 @@ public class ListaAsistencia extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPaneBarra, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                        .addComponent(jLabelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
                         .addGap(254, 254, 254))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabelFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldFecha)
@@ -162,18 +187,18 @@ public class ListaAsistencia extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addComponent(jLabel1)
+                .addComponent(jLabelTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                .addComponent(jScrollPaneBarra, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
+                    .addComponent(jLabelFecha)
                     .addComponent(jButtonAceptar))
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
+                    .addComponent(jLabelHora)
                     .addComponent(jButtonCerrar))
                 .addGap(52, 52, 52))
         );
@@ -185,9 +210,10 @@ public class ListaAsistencia extends javax.swing.JFrame {
         if (evt.getSource()==jButtonCerrar){
             MenuAsistencia vv = new MenuAsistencia(colegio,curso);
             vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            vv.setSize(this.getSize());
+            vv.setLocation(this.getLocation());
             vv.setVisible(true);
-            this.dispose();
+            this.dispose(); 
         }
     }//GEN-LAST:event_jButtonCerrarActionPerformed
     
@@ -210,9 +236,10 @@ public class ListaAsistencia extends javax.swing.JFrame {
                         colegio.mostrarAsistencia(asist,this);
                         MenuAsistencia vv = new MenuAsistencia(colegio,curso);
                         vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                        vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                        vv.setSize(this.getSize());
+                        vv.setLocation(this.getLocation());
                         vv.setVisible(true);
-                        this.dispose();
+                        this.dispose(); 
                     }
                     else{
                         JOptionPane.showMessageDialog(this, "Asistencia no está registrada en el sistema", "No existe", JOptionPane.WARNING_MESSAGE);
@@ -228,9 +255,10 @@ public class ListaAsistencia extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Asistencia de fecha: "+asist.getFecha()+"\nhora: "+asist.getHora(), "Eliminado", JOptionPane.INFORMATION_MESSAGE);
                         MenuAsistencia vv = new MenuAsistencia(colegio,curso);
                         vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                        vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                        vv.setSize(this.getSize());
+                        vv.setLocation(this.getLocation());
                         vv.setVisible(true);
-                        this.dispose();                        
+                        this.dispose();                         
                     }
                     else{
                         JOptionPane.showMessageDialog(this, "Asistencia no está registrada en el sistema", "No existe", JOptionPane.WARNING_MESSAGE);
@@ -272,14 +300,20 @@ public class ListaAsistencia extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTableListaMouseClicked
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        colegio.actualizar(pathEstudiantes,1);
+        colegio.actualizar(pathCursos,2);
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosing
+
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceptar;
     private javax.swing.JButton jButtonCerrar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel jLabelFecha;
+    private javax.swing.JLabel jLabelHora;
+    private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JScrollPane jScrollPaneBarra;
     private javax.swing.JTable jTableLista;
     private javax.swing.JTextField jTextFieldFecha;
     private javax.swing.JTextField jTextFieldHora;

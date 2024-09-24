@@ -4,6 +4,7 @@
  */
 package com.mycompany.prueba_1_netbeans;
 
+import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -13,6 +14,8 @@ public class ListaCursos extends javax.swing.JFrame {
     private Colegio colegio;
     private int opcion;
     private String titulo;
+    private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
+    private final String pathCursos = "src/main/java/Cursos.csv";
     public ListaCursos(Colegio colegio,int opcion) {
         this.colegio = colegio;
         this.opcion = opcion;
@@ -25,6 +28,8 @@ public class ListaCursos extends javax.swing.JFrame {
             String[] c = arr[i].split(",");
             model.addRow(c);
         }
+        jTableLista.getTableHeader().setReorderingAllowed(false);
+        visual();
         
     }
     public ListaCursos(Colegio colegio){
@@ -39,12 +44,29 @@ public class ListaCursos extends javax.swing.JFrame {
             String[] c = arr[i].split(",");
             model.addRow(c);
         }
+        jTableLista.getTableHeader().setReorderingAllowed(false);
+        visual();
         this.remove(jTextFieldLetra);
         this.remove(jTextFieldGrado);
         this.remove(jLabelGrado);
         this.remove(jLabelLetra);
         this.remove(jButtonAceptar);
         
+    }
+    private void visual(){
+        this.getContentPane().setBackground(Color.gray);
+        jButtonAceptar.setBackground(Color.lightGray);
+        jButtonCerrar.setBackground(Color.lightGray);
+        jLabelLetra.setBackground(Color.black);
+        jLabelGrado.setBackground(Color.black);
+        jLabelTitulo.setBackground(Color.black);
+        jScrollPaneBarra.getVerticalScrollBar().setBackground(Color.black);
+        jTableLista.setBackground(Color.black);
+        jTableLista.setForeground(Color.darkGray);
+        jTableLista.getTableHeader().setBackground(Color.darkGray);
+        jTableLista.getTableHeader().setForeground(Color.white);
+        jTextFieldGrado.setBackground(Color.lightGray);
+        jTextFieldLetra.setBackground(Color.lightGray);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,9 +77,9 @@ public class ListaCursos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPaneBarra = new javax.swing.JScrollPane();
         jTableLista = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelTitulo = new javax.swing.JLabel();
         jButtonCerrar = new javax.swing.JButton();
         jTextFieldGrado = new javax.swing.JTextField();
         jTextFieldLetra = new javax.swing.JTextField();
@@ -67,9 +89,13 @@ public class ListaCursos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Colegio");
-        setAlwaysOnTop(true);
         setName("Colegio"); // NOI18N
         setPreferredSize(new java.awt.Dimension(840, 460));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jTableLista.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jTableLista.setModel(new javax.swing.table.DefaultTableModel(
@@ -97,6 +123,8 @@ public class ListaCursos extends javax.swing.JFrame {
         });
         jTableLista.setAutoscrolls(false);
         jTableLista.setColumnSelectionAllowed(true);
+        jTableLista.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTableLista.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTableLista.setShowGrid(false);
         jTableLista.setShowHorizontalLines(true);
         jTableLista.setShowVerticalLines(true);
@@ -105,21 +133,21 @@ public class ListaCursos extends javax.swing.JFrame {
                 jTableListaMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(jTableLista);
+        jScrollPaneBarra.setViewportView(jTableLista);
         jTableLista.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         if(opcion==1){
             titulo = "Lista Cursos";
         }
         else{
             titulo = "Elegir Curso";
         }
-        jLabel1.setText(titulo);
-        jLabel1.setToolTipText("");
-        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jLabelTitulo.setText(titulo);
+        jLabelTitulo.setToolTipText("");
+        jLabelTitulo.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jLabelTitulo.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         jButtonCerrar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButtonCerrar.setText("Volver");
@@ -164,10 +192,10 @@ public class ListaCursos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+                    .addComponent(jScrollPaneBarra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabelGrado)
@@ -189,9 +217,9 @@ public class ListaCursos extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                .addComponent(jScrollPaneBarra, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldGrado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -215,17 +243,19 @@ public class ListaCursos extends javax.swing.JFrame {
             if(opcion==1){
                 MenuCursos vv = new MenuCursos(colegio);
                 vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                vv.setSize(this.getSize());
+                vv.setLocation(this.getLocation());
                 vv.setVisible(true);
-                this.dispose();
+                this.dispose(); 
                 
             }
             else{
                 MenuPrincipal vv = new MenuPrincipal(colegio);
                 vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                vv.setSize(this.getSize());
+                vv.setLocation(this.getLocation());
                 vv.setVisible(true);
-                this.dispose();
+                this.dispose(); 
             }
             
         }
@@ -243,17 +273,19 @@ public class ListaCursos extends javax.swing.JFrame {
                     if(opcion==2){
                         MenuEstudiantes vv = new MenuEstudiantes(colegio,colegio.verificarCurso(c));
                         vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                        vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                        vv.setSize(this.getSize());
+                        vv.setLocation(this.getLocation());
                         vv.setVisible(true);
-                        this.dispose();
+                        this.dispose(); 
                     }
                     else if(opcion==3){
                         if(colegio.verificarCurso(c).sizeCurso()!=0){
                             MenuAsistencia vv = new MenuAsistencia(colegio,colegio.verificarCurso(c));
                             vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                            vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                            vv.setSize(this.getSize());
+                            vv.setLocation(this.getLocation());
                             vv.setVisible(true);
-                            this.dispose();
+                            this.dispose(); 
                         }
                         else{
                             JOptionPane.showMessageDialog(this, "El curso que eligió no tiene estudiantes", "No se puede", JOptionPane.WARNING_MESSAGE);
@@ -262,9 +294,10 @@ public class ListaCursos extends javax.swing.JFrame {
                     else{
                         MenuCursos vv = new MenuCursos(colegio);
                         vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                        vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                        vv.setSize(this.getSize());
+                        vv.setLocation(this.getLocation());
                         vv.setVisible(true);
-                        this.dispose();
+                        this.dispose(); 
                     }
                 }
             }
@@ -303,14 +336,20 @@ public class ListaCursos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTableListaMouseClicked
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        colegio.actualizar(pathEstudiantes,1);
+        colegio.actualizar(pathCursos,2);
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosing
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceptar;
     private javax.swing.JButton jButtonCerrar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelGrado;
     private javax.swing.JLabel jLabelLetra;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JScrollPane jScrollPaneBarra;
     private javax.swing.JTable jTableLista;
     private javax.swing.JTextField jTextFieldGrado;
     private javax.swing.JTextField jTextFieldLetra;

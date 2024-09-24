@@ -21,7 +21,6 @@ public class Proyecto_Final_SIA {
             public void run() {
                 MenuPrincipal vv = new MenuPrincipal(colegio);
                 vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 vv.setVisible(true);
             }
            

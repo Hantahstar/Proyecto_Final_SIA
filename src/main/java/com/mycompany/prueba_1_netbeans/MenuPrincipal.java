@@ -4,6 +4,7 @@
  */
 package com.mycompany.prueba_1_netbeans;
 
+import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 /**
@@ -13,10 +14,25 @@ import javax.swing.JOptionPane;
 public class MenuPrincipal extends javax.swing.JFrame {
     private Colegio colegio;
     
+    private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
+    private final String pathCursos = "src/main/java/Cursos.csv";
+    
     public MenuPrincipal(Colegio colegio) {
         this.colegio = colegio;
         initComponents();
+        visual();
     }
+    
+    private void visual(){
+        this.getContentPane().setBackground(Color.gray);
+        jButtonAsistencias.setBackground(Color.lightGray);
+        jButtonCursos.setBackground(Color.lightGray);
+        jButtonEstudiantes.setBackground(Color.lightGray);
+        jButtonSalir.setBackground(Color.lightGray);
+        jLabelTitulo.setBackground(Color.black);
+    }
+    
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,56 +43,60 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jLabelTitulo = new javax.swing.JLabel();
+        jButtonCursos = new javax.swing.JButton();
+        jButtonEstudiantes = new javax.swing.JButton();
+        jButtonAsistencias = new javax.swing.JButton();
+        jButtonSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Colegio");
-        setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setPreferredSize(new java.awt.Dimension(840, 460));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Menú principal");
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton1.setText("Menú Cursos");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton2.setText("Menú Estudiantes");
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelTitulo.setText("Menú principal");
+        jLabelTitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jButtonCursos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButtonCursos.setText("Menú Cursos");
+        jButtonCursos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonCursos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonCursosActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton3.setText("Realizar asistencia");
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonEstudiantes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButtonEstudiantes.setText("Menú Estudiantes");
+        jButtonEstudiantes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonEstudiantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonEstudiantesActionPerformed(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton4.setText("Salir");
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAsistencias.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButtonAsistencias.setText("Realizar asistencia");
+        jButtonAsistencias.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonAsistencias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButtonAsistenciasActionPerformed(evt);
+            }
+        });
+
+        jButtonSalir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButtonSalir.setText("Salir");
+        jButtonSalir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
             }
         });
 
@@ -89,28 +109,28 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(113, 113, 113)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jButtonCursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonEstudiantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonAsistencias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(116, 116, 116)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(104, 104, 104))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(47, 47, 47)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(37, 37, 37)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonCursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonEstudiantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonAsistencias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(60, 60, 60))
         );
 
@@ -120,43 +140,43 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (evt.getSource()==jButton1){
+    private void jButtonCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCursosActionPerformed
+        if (evt.getSource()==jButtonCursos){
             MenuCursos vv = new MenuCursos(this.colegio);
             vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            vv.setAlwaysOnTop(true);
-            vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            vv.setSize(this.getSize());
+            vv.setLocation(this.getLocation());
             vv.setVisible(true);
-            this.dispose();
+            this.dispose(); 
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonCursosActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if (evt.getSource()==jButton3){
+    private void jButtonAsistenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAsistenciasActionPerformed
+        if (evt.getSource()==jButtonAsistencias){
             if(colegio.cursoEstaVacio()){
                 JOptionPane.showMessageDialog(this, "No hay cursos disponibles", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
             else{
                 ListaCursos vv = new ListaCursos(colegio,3);
                 vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                vv.setAlwaysOnTop(true);
-                vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                vv.setSize(this.getSize());
+                vv.setLocation(this.getLocation());
                 vv.setVisible(true);
-                this.dispose();
+                this.dispose(); 
             }
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jButtonAsistenciasActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (evt.getSource()==jButton2){
+    private void jButtonEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEstudiantesActionPerformed
+        if (evt.getSource()==jButtonEstudiantes){
             if(!colegio.cursoEstaVacio()){
                 //se pone 2 como parametro para que vaya al menu de estudiantes
                 ListaCursos vv = new ListaCursos(colegio,2);
                 vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                vv.setAlwaysOnTop(true);
-                vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                vv.setSize(this.getSize());
+                vv.setLocation(this.getLocation());
                 vv.setVisible(true);
-                this.dispose();
+                this.dispose(); 
                 //ventana de estudiantes
             }
             else{
@@ -165,20 +185,28 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 
             }
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonEstudiantesActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if(evt.getSource()==jButton4){
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+        if(evt.getSource()==jButtonSalir){
+            colegio.actualizar(pathEstudiantes,1);
+            colegio.actualizar(pathCursos,2);
             this.dispose();
         }
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jButtonSalirActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        colegio.actualizar(pathEstudiantes,1);
+        colegio.actualizar(pathCursos,2);
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosing
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButtonAsistencias;
+    private javax.swing.JButton jButtonCursos;
+    private javax.swing.JButton jButtonEstudiantes;
+    private javax.swing.JButton jButtonSalir;
+    private javax.swing.JLabel jLabelTitulo;
     // End of variables declaration//GEN-END:variables
 }

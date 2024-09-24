@@ -4,6 +4,7 @@
  */
 package com.mycompany.prueba_1_netbeans;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 public class Buscar extends javax.swing.JFrame {
@@ -13,10 +14,13 @@ public class Buscar extends javax.swing.JFrame {
     private String titulo;
     private String label;
     private boolean opcion;
+    private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
+    private final String pathCursos = "src/main/java/Cursos.csv";
     //buscar curso
     public Buscar(Colegio colegio) {
         this.colegio = colegio;
         initComponents();
+        visual();
     }
     //buscar estudiantes
     public Buscar(Colegio colegio,Curso curso,boolean opcion){
@@ -24,10 +28,21 @@ public class Buscar extends javax.swing.JFrame {
         this.curso = curso;
         this.opcion = opcion;
         initComponents();
+        visual();
         this.remove(jTextFieldLetra);
-        this.remove(jLabel3);
+        this.remove(jLabelLetra);
     }
 
+    private void visual(){
+        this.getContentPane().setBackground(Color.gray);
+        jButtonBuscar.setBackground(Color.lightGray);
+        jButtonCancelar.setBackground(Color.lightGray);
+        jLabelGradoOrRUT.setBackground(Color.black);
+        jLabelLetra.setBackground(Color.black);
+        jLabelTitulo.setBackground(Color.black);
+        jTextFieldGradoOrRUT.setBackground(Color.lightGray);
+        jTextFieldLetra.setBackground(Color.lightGray);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,17 +54,21 @@ public class Buscar extends javax.swing.JFrame {
 
         jButtonBuscar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextFieldPrin = new javax.swing.JTextField();
+        jLabelGradoOrRUT = new javax.swing.JLabel();
+        jLabelLetra = new javax.swing.JLabel();
+        jTextFieldGradoOrRUT = new javax.swing.JTextField();
         jTextFieldLetra = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        jLabelTitulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Colegio");
-        setAlwaysOnTop(true);
         setPreferredSize(new java.awt.Dimension(840, 460));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jButtonBuscar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButtonBuscar.setText("Buscar");
@@ -67,24 +86,24 @@ public class Buscar extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelGradoOrRUT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         if(curso==null){
             label = "Grado de curso:";
         }
         else{
             label = "Rut de estudiante";
         }
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText(label);
+        jLabelGradoOrRUT.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelGradoOrRUT.setText(label);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("Paralelo/letra:");
+        jLabelLetra.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelLetra.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLetra.setText("Paralelo/letra:");
 
-        jTextFieldPrin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTextFieldPrin.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTextFieldGradoOrRUT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTextFieldGradoOrRUT.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextFieldPrinKeyPressed(evt);
+                jTextFieldGradoOrRUTKeyPressed(evt);
             }
         });
 
@@ -95,14 +114,14 @@ public class Buscar extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         if(curso==null){
             titulo = "Curso";
         }
         else{
             titulo = "Estudiante";
         }
-        jLabel4.setText("Buscar "+titulo);
+        jLabelTitulo.setText("Buscar "+titulo);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,7 +131,7 @@ public class Buscar extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.CENTER, layout.createSequentialGroup()
                         .addGap(188, 188, 188)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(92, 92, 92)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,30 +141,30 @@ public class Buscar extends javax.swing.JFrame {
                                 .addComponent(jButtonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabelGradoOrRUT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabelLetra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
                                         .addComponent(jTextFieldLetra))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(5, 5, 5)
-                                        .addComponent(jTextFieldPrin)))))))
+                                        .addComponent(jTextFieldGradoOrRUT)))))))
                 .addGap(78, 78, 78))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextFieldPrin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelGradoOrRUT)
+                    .addComponent(jTextFieldGradoOrRUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldLetra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabelLetra))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -153,7 +172,7 @@ public class Buscar extends javax.swing.JFrame {
                 .addGap(45, 45, 45))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTextFieldLetra, jTextFieldPrin});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTextFieldGradoOrRUT, jTextFieldLetra});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -161,17 +180,17 @@ public class Buscar extends javax.swing.JFrame {
     
     
     private void opcionBuscar(){
-        if (jTextFieldPrin.getText().trim().isEmpty()){
+        if (jTextFieldGradoOrRUT.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
          }
         else{
             if(curso==null){
                 //las dos casillas de buscar curso deben de estar con texto
-                if (jTextFieldPrin.getText().trim().isEmpty() || jTextFieldLetra.getText().trim().isEmpty()){
+                if (jTextFieldGradoOrRUT.getText().trim().isEmpty() || jTextFieldLetra.getText().trim().isEmpty()){
                     JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
                 }
                 else{
-                    Curso c = new Curso(jTextFieldPrin.getText(),jTextFieldLetra.getText());
+                    Curso c = new Curso(jTextFieldGradoOrRUT.getText(),jTextFieldLetra.getText());
                     c = colegio.verificarCurso(c);
                     if (c==null){
                         JOptionPane.showMessageDialog(this, "Curso no se encuentra en el sistema", "No existe", JOptionPane.INFORMATION_MESSAGE);
@@ -181,32 +200,35 @@ public class Buscar extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this,(colegio.mostrarCurso(c)),"Encontrado", JOptionPane.INFORMATION_MESSAGE);
                         MenuCursos vv = new MenuCursos(colegio);
                         vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                        vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                        vv.setSize(this.getSize());
+                        vv.setLocation(this.getLocation());
                         vv.setVisible(true);
-                        this.dispose();        
+                        this.dispose();         
                     }
                 }    
             }
             else{
                 Estudiante e;
-                jTextFieldPrin.setText(curso.verificarRut(jTextFieldPrin.getText()));
-                if(curso.contieneEstudiante(jTextFieldPrin.getText())){
-                    e = curso.getEstudiante(jTextFieldPrin.getText());
+                jTextFieldGradoOrRUT.setText(curso.verificarRut(jTextFieldGradoOrRUT.getText()));
+                if(curso.contieneEstudiante(jTextFieldGradoOrRUT.getText())){
+                    e = curso.getEstudiante(jTextFieldGradoOrRUT.getText());
                     JOptionPane.showMessageDialog(this,"RUT: "+e.getRut()+"\nNombre: "+e.getNombre()+"\nApellido: "+e.getApellido()+"\nEstudiante Encontrado","Encontrado", JOptionPane.INFORMATION_MESSAGE);
                     if(opcion){
                         MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
                         vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                        vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                        vv.setSize(this.getSize());
+                        vv.setLocation(this.getLocation());
                         vv.setVisible(true);
-                        this.dispose();
+                        this.dispose(); 
                     }
                     else{
                         //modificar
                         Modificar vv = new  Modificar(colegio,curso,e);
                         vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                        vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                        vv.setSize(this.getSize());
+                        vv.setLocation(this.getLocation());
                         vv.setVisible(true);
-                        this.dispose();
+                        this.dispose(); 
                     }
                         
                }
@@ -228,27 +250,29 @@ public class Buscar extends javax.swing.JFrame {
             if(curso==null){
                 MenuCursos vv = new MenuCursos(colegio);
                 vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                vv.setSize(this.getSize());
+                vv.setLocation(this.getLocation());
                 vv.setVisible(true);
-                this.dispose();
+                this.dispose(); 
             }
             else{
                 MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
                 vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                vv.setSize(this.getSize());
+                vv.setLocation(this.getLocation());
                 vv.setVisible(true);
-                this.dispose();
+                this.dispose(); 
             }
 
         }
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
-    private void jTextFieldPrinKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPrinKeyPressed
+    private void jTextFieldGradoOrRUTKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldGradoOrRUTKeyPressed
         int keycode = evt.getKeyCode();
         if (keycode==10){
             opcionBuscar();
         }
-    }//GEN-LAST:event_jTextFieldPrinKeyPressed
+    }//GEN-LAST:event_jTextFieldGradoOrRUTKeyPressed
 
     private void jTextFieldLetraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLetraKeyPressed
         int keycode = evt.getKeyCode();
@@ -257,14 +281,20 @@ public class Buscar extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextFieldLetraKeyPressed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        colegio.actualizar(pathEstudiantes,1);
+        colegio.actualizar(pathCursos,2);
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosing
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonCancelar;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabelGradoOrRUT;
+    private javax.swing.JLabel jLabelLetra;
+    private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JTextField jTextFieldGradoOrRUT;
     private javax.swing.JTextField jTextFieldLetra;
-    private javax.swing.JTextField jTextFieldPrin;
     // End of variables declaration//GEN-END:variables
 }

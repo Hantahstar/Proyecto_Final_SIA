@@ -58,8 +58,8 @@ public class Curso{
         return listCurso.isEmpty();
     }
     
-    public Estudiante removerEstudiante(String key){
-        return mapaEstudiante.remove(key);
+    public void removerEstudiante(String key){
+        mapaEstudiante.remove(key);
     }
     
     public void removerEstudiante(Estudiante estudiante){
@@ -72,24 +72,9 @@ public class Curso{
     public Estudiante getEstudiante(String key){
         return mapaEstudiante.get(key);
     }
-    public boolean agregarEstudiante(String rut,Estudiante estudianteAgregar)
-    {
-        String rutCpy = rut,rutP1,rutP2;
-        String[] rutTotal; 
-        if(rutCpy.charAt(rutCpy.length()-2) == '-'){
-            rutTotal = rutCpy.split("-");
-            rutP1 = rutTotal[0];
-            rutP2 = rutTotal[1];
-            rut = rutP1.concat(rutP2);
-        }
-        if (mapaEstudiante.containsKey(rut)){
-            return false;
-        }
-        else{
+    public void agregarEstudiante(String rut,Estudiante estudianteAgregar) {
+        mapaEstudiante.put(rut,estudianteAgregar);
 
-            mapaEstudiante.put(rut,estudianteAgregar);
-            return true;
-        }
 
     }
     public void agregarEstudiante(Estudiante estudianteAgregar,String path){
@@ -124,16 +109,6 @@ public class Curso{
         return mapaEstudiante.containsKey(rut);
     }
     
-    public boolean isAlphabetic(String cadena){
-        int i;
-        for(i=0;cadena.length()>i;i++){
-            if(Character.isDigit(cadena.charAt(i))){
-                return false;
-            }
-        }
-        return true;
-    }
-    
     public boolean formatoCorrecto(){
         String nivel;
         if (((Character.isDigit(grado.charAt(0))) && (Character.isAlphabetic(letra.charAt(0)))) && letra.length() == 1){
@@ -156,6 +131,7 @@ public class Curso{
         }
     }
     
+    
     public void toUpperCase(){
         String antes,despues;
         setLetra(letra.toUpperCase());
@@ -164,6 +140,16 @@ public class Curso{
         despues = grado.substring(5);
         setGrado(antes+letra+despues); 
            
+    }
+    
+    public boolean isAlphabetic(String cadena){
+        int i;
+        for(i=0;cadena.length()>i;i++){
+            if(Character.isDigit(cadena.charAt(i))){
+                return false;
+            }
+        }
+        return true;
     }
 
     public boolean isPoint(String cadena){
@@ -254,7 +240,6 @@ public class Curso{
                 fila[4] = this.getLetra();
                 csvWriter.writeNext(fila); 
             }
-            
             
         } catch (IOException e) {
             e.printStackTrace();

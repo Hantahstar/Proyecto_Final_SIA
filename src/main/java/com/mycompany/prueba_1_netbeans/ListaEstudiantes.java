@@ -4,6 +4,7 @@
  */
 package com.mycompany.prueba_1_netbeans;
 
+import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,6 +16,8 @@ public class ListaEstudiantes extends javax.swing.JFrame {
 
     private Colegio colegio;
     private Curso curso;
+    private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
+    private final String pathCursos = "src/main/java/Cursos.csv";
     public ListaEstudiantes(Colegio colegio,Curso curso) {
         this.colegio = colegio;
         this.curso = curso;
@@ -28,6 +31,20 @@ public class ListaEstudiantes extends javax.swing.JFrame {
             String[] c = arr[i].split(",");
             model.addRow(c);
         }
+        jTableLista.getTableHeader().setReorderingAllowed(false);
+        visual();
+    }
+    
+    private void visual(){
+        this.getContentPane().setBackground(Color.gray);
+        jButtonCerrar.setBackground(Color.lightGray);
+        jLabelCurso.setBackground(Color.black);
+        jLabelTitulo.setBackground(Color.black);
+        jScrollPaneBarra.getVerticalScrollBar().setBackground(Color.black);
+        jTableLista.setBackground(Color.black);
+        jTableLista.setForeground(Color.darkGray);
+        jTableLista.getTableHeader().setBackground(Color.darkGray);
+        jTableLista.getTableHeader().setForeground(Color.white);
     }
 
     /**
@@ -39,7 +56,7 @@ public class ListaEstudiantes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPaneBarra = new javax.swing.JScrollPane();
         jTableLista = new javax.swing.JTable();
         jButtonCerrar = new javax.swing.JButton();
         jLabelTitulo = new javax.swing.JLabel();
@@ -47,8 +64,12 @@ public class ListaEstudiantes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Colegio");
-        setAlwaysOnTop(true);
         setPreferredSize(new java.awt.Dimension(840, 460));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jTableLista.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jTableLista.setModel(new javax.swing.table.DefaultTableModel(
@@ -79,7 +100,7 @@ public class ListaEstudiantes extends javax.swing.JFrame {
         });
         jTableLista.setAutoscrolls(false);
         jTableLista.setColumnSelectionAllowed(true);
-        jScrollPane2.setViewportView(jTableLista);
+        jScrollPaneBarra.setViewportView(jTableLista);
         jTableLista.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         jButtonCerrar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -103,7 +124,7 @@ public class ListaEstudiantes extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPaneBarra, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelTitulo)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -120,7 +141,7 @@ public class ListaEstudiantes extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(jLabelTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                .addComponent(jScrollPaneBarra, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCerrar)
@@ -135,18 +156,25 @@ public class ListaEstudiantes extends javax.swing.JFrame {
         if (evt.getSource()==jButtonCerrar){
             MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
             vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            vv.setSize(this.getSize());
+            vv.setLocation(this.getLocation());
             vv.setVisible(true);
-            this.dispose();
+            this.dispose(); 
         }
     }//GEN-LAST:event_jButtonCerrarActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        colegio.actualizar(pathEstudiantes,1);
+        colegio.actualizar(pathCursos,2);
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosing
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCerrar;
     private javax.swing.JLabel jLabelCurso;
     private javax.swing.JLabel jLabelTitulo;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPaneBarra;
     private javax.swing.JTable jTableLista;
     // End of variables declaration//GEN-END:variables
 }

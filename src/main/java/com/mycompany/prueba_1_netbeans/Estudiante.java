@@ -10,7 +10,6 @@ public class Estudiante {
     private String rut;
     private boolean asistencia;
     private boolean inasistenciaJust;
-
     public Estudiante(String nombre,String apellido,String rut){
         this.nombre = nombre;
         this.apellido = apellido;
@@ -67,7 +66,7 @@ public class Estudiante {
         setAsistencia(true);
         setInasistenciaJust(true);
     }
-     public void toUpperCase(){
+    public void toUpperCase(){
         String despues;
         despues = nombre.substring(1);
         char letra = Character.toUpperCase(nombre.charAt(0));

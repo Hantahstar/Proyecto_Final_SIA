@@ -4,6 +4,7 @@
  */
 package com.mycompany.prueba_1_netbeans;
 
+import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -16,14 +17,31 @@ public class Modificar extends javax.swing.JFrame {
     private Colegio colegio;
     private Curso curso;
     private Estudiante estudiante;
-    private final String path = "src/main/java/Estudiantes.csv";
+    private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
+    private final String pathCursos = "src/main/java/Cursos.csv";
+    
     public Modificar(Colegio colegio,Curso curso,Estudiante estudiante) {
         this.colegio = colegio;
         this.curso = curso;
         this.estudiante = estudiante;
         initComponents();
+        visual();
     }
 
+    private void visual(){
+        this.getContentPane().setBackground(Color.gray);
+        jButtonCancelar.setBackground(Color.lightGray);
+        jButtonModificar.setBackground(Color.lightGray);
+        jLabelApellido.setBackground(Color.black);
+        jLabelApellidoOG.setBackground(Color.black);
+        jLabelNombre.setBackground(Color.black);
+        jLabelNombreOG.setBackground(Color.black);
+        jLabelRUT.setBackground(Color.black);
+        jLabelTitulo.setBackground(Color.black);
+        jTextFieldApellido.setBackground(Color.lightGray);
+        jTextFieldNombre.setBackground(Color.lightGray);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,16 +53,21 @@ public class Modificar extends javax.swing.JFrame {
 
         jButtonModificar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabelNombre = new javax.swing.JLabel();
+        jLabelApellido = new javax.swing.JLabel();
         jTextFieldNombre = new javax.swing.JTextField();
         jTextFieldApellido = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jLabelTitulo = new javax.swing.JLabel();
+        jLabelRUT = new javax.swing.JLabel();
+        jLabelNombreOG = new javax.swing.JLabel();
+        jLabelApellidoOG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jButtonModificar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButtonModificar.setText("Modificar");
@@ -62,13 +85,13 @@ public class Modificar extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("Nombre:");
+        jLabelNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelNombre.setText("Nombre:");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("Apellido");
+        jLabelApellido.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelApellido.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelApellido.setText("Apellido");
 
         jTextFieldNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jTextFieldNombre.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -84,15 +107,15 @@ public class Modificar extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel4.setText("Modificar Estudiante");
+        jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabelTitulo.setText("Modificar Estudiante");
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel1.setText("RUT Estudiante: "+estudiante.getRut());
+        jLabelRUT.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabelRUT.setText("RUT Estudiante: "+estudiante.getRut());
 
-        jLabel5.setText("Nombre original: "+estudiante.getNombre());
+        jLabelNombreOG.setText("Nombre original: "+estudiante.getNombre());
 
-        jLabel6.setText("Apellido original: "+estudiante.getApellido());
+        jLabelApellidoOG.setText("Apellido original: "+estudiante.getApellido());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,10 +125,10 @@ public class Modificar extends javax.swing.JFrame {
                 .addGap(92, 92, 92)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(jLabelRUT)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,21 +138,21 @@ public class Modificar extends javax.swing.JFrame {
                                 .addComponent(jButtonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabelNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabelApellido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(5, 5, 5)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel5)
+                                                .addComponent(jLabelNombreOG)
                                                 .addGap(0, 0, Short.MAX_VALUE))
                                             .addComponent(jTextFieldNombre)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel6)
+                                                .addComponent(jLabelApellidoOG)
                                                 .addGap(0, 0, Short.MAX_VALUE))
                                             .addComponent(jTextFieldApellido))))))
                         .addGap(78, 78, 78))))
@@ -138,21 +161,21 @@ public class Modificar extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(2, 2, 2)
-                .addComponent(jLabel1)
+                .addComponent(jLabelRUT)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(jLabelNombre)
                     .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(4, 4, 4)
-                .addComponent(jLabel5)
+                .addComponent(jLabelNombreOG)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabelApellido))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
+                .addComponent(jLabelApellidoOG)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -172,13 +195,14 @@ public class Modificar extends javax.swing.JFrame {
             estudiante.setNombre(jTextFieldNombre.getText());
             estudiante.setApellido(jTextFieldApellido.getText());
             estudiante.toUpperCase();
-            colegio.actualizar(path,1);
+            
             JOptionPane.showMessageDialog(this, "Estudiante modificado\nDatos cambiados:\nNombre: "+estudiante.getNombre()+"\nApellido: "+estudiante.getApellido(), "Modificado", JOptionPane.INFORMATION_MESSAGE);
             MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
             vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            vv.setSize(this.getSize());
+            vv.setLocation(this.getLocation());
             vv.setVisible(true);
-            this.dispose();
+            this.dispose(); 
         }
     }
     
@@ -192,9 +216,10 @@ public class Modificar extends javax.swing.JFrame {
         if(evt.getSource()==jButtonCancelar){
             MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
             vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            vv.setSize(this.getSize());
+            vv.setLocation(this.getLocation());
             vv.setVisible(true);
-            this.dispose();
+            this.dispose(); 
         }
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
@@ -212,16 +237,22 @@ public class Modificar extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextFieldApellidoKeyPressed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        colegio.actualizar(pathEstudiantes,1);
+        colegio.actualizar(pathCursos,2);
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosing
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonModificar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabelApellido;
+    private javax.swing.JLabel jLabelApellidoOG;
+    private javax.swing.JLabel jLabelNombre;
+    private javax.swing.JLabel jLabelNombreOG;
+    private javax.swing.JLabel jLabelRUT;
+    private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JTextField jTextFieldApellido;
     private javax.swing.JTextField jTextFieldNombre;
     // End of variables declaration//GEN-END:variables

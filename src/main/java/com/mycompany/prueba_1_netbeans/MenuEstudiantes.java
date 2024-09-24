@@ -4,6 +4,7 @@
  */
 package com.mycompany.prueba_1_netbeans;
 
+import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -15,10 +16,25 @@ public class MenuEstudiantes extends javax.swing.JFrame {
 
     private Colegio colegio;
     private Curso curso;
+    private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
+    private final String pathCursos = "src/main/java/Cursos.csv";
     public MenuEstudiantes(Colegio colegio,Curso curso) {
         this.colegio = colegio;
         this.curso = curso;
         initComponents();
+        visual();
+    }
+    
+    private void visual(){
+        this.getContentPane().setBackground(Color.gray);
+        jButtonAgregar.setBackground(Color.lightGray);
+        jButtonBuscar.setBackground(Color.lightGray);
+        jButtonEliminar.setBackground(Color.lightGray);
+        jButtonModificar.setBackground(Color.lightGray);
+        jButtonMostrar.setBackground(Color.lightGray);
+        jButtonVolver.setBackground(Color.lightGray);
+        jLabelCurso.setBackground(Color.black);
+        jLabelTitulo.setBackground(Color.black);
     }
 
     /**
@@ -30,7 +46,7 @@ public class MenuEstudiantes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jLabelTitulo = new javax.swing.JLabel();
         jButtonAgregar = new javax.swing.JButton();
         jButtonBuscar = new javax.swing.JButton();
         jButtonEliminar = new javax.swing.JButton();
@@ -41,12 +57,16 @@ public class MenuEstudiantes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Colegio");
-        setAlwaysOnTop(true);
         setPreferredSize(new java.awt.Dimension(840, 460));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel1.setText("Menú Estudiantes");
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabelTitulo.setText("Menú Estudiantes");
+        jLabelTitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jButtonAgregar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButtonAgregar.setText("Agregar estudiante");
@@ -112,7 +132,7 @@ public class MenuEstudiantes extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.CENTER, layout.createSequentialGroup()
                 .addGap(145, 145, 145)
-                .addComponent(jLabel1)
+                .addComponent(jLabelTitulo)
                 .addGap(154, 154, 154))
             .addGroup(layout.createSequentialGroup()
                 .addGap(83, 83, 83)
@@ -130,7 +150,7 @@ public class MenuEstudiantes extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1)
+                .addComponent(jLabelTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelCurso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -155,9 +175,10 @@ public class MenuEstudiantes extends javax.swing.JFrame {
         if(evt.getSource()==jButtonAgregar){
             Agregar vv = new Agregar(colegio,curso);
             vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            vv.setSize(this.getSize());
+            vv.setLocation(this.getLocation());
             vv.setVisible(true);
-            this.dispose();
+            this.dispose(); 
             
         }
     }//GEN-LAST:event_jButtonAgregarActionPerformed
@@ -166,9 +187,10 @@ public class MenuEstudiantes extends javax.swing.JFrame {
         if (evt.getSource()==jButtonVolver){
             MenuPrincipal vv = new MenuPrincipal(colegio);
             vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            vv.setSize(this.getSize());
+            vv.setLocation(this.getLocation());
             vv.setVisible(true);
-            this.dispose();
+            this.dispose(); 
         }
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
@@ -180,9 +202,10 @@ public class MenuEstudiantes extends javax.swing.JFrame {
             else{
                 Eliminar vv = new Eliminar(colegio,curso);
                 vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                vv.setSize(this.getSize());
+                vv.setLocation(this.getLocation());
                 vv.setVisible(true);
-                this.dispose();
+                this.dispose(); 
             }
         }
     }//GEN-LAST:event_jButtonEliminarActionPerformed
@@ -192,9 +215,10 @@ public class MenuEstudiantes extends javax.swing.JFrame {
             //true para buscar y false para modificar
             Buscar vv = new Buscar(colegio,curso,true);
             vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            vv.setSize(this.getSize());
+            vv.setLocation(this.getLocation());
             vv.setVisible(true);
-            this.dispose();
+            this.dispose(); 
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
@@ -207,9 +231,10 @@ public class MenuEstudiantes extends javax.swing.JFrame {
             else{
                 ListaEstudiantes vv = new ListaEstudiantes(colegio,curso);
                 vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                vv.setSize(this.getSize());
+                vv.setLocation(this.getLocation());
                 vv.setVisible(true);
-                this.dispose();
+                this.dispose(); 
             }
         }
     }//GEN-LAST:event_jButtonMostrarActionPerformed
@@ -221,11 +246,18 @@ public class MenuEstudiantes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Necesitas primero buscar al estudiante para modificar", "Aviso", JOptionPane.INFORMATION_MESSAGE);
             Buscar vv = new Buscar(colegio,curso,false);
             vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            vv.setSize(this.getSize());
+            vv.setLocation(this.getLocation());
             vv.setVisible(true);
-            this.dispose();
+            this.dispose(); 
         }
     }//GEN-LAST:event_jButtonModificarActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        colegio.actualizar(pathEstudiantes,1);
+        colegio.actualizar(pathCursos,2);
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosing
 
 
 
@@ -236,7 +268,7 @@ public class MenuEstudiantes extends javax.swing.JFrame {
     private javax.swing.JButton jButtonModificar;
     private javax.swing.JButton jButtonMostrar;
     private javax.swing.JButton jButtonVolver;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelCurso;
+    private javax.swing.JLabel jLabelTitulo;
     // End of variables declaration//GEN-END:variables
 }

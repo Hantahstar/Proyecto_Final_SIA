@@ -63,9 +63,8 @@ public class LeerYEscribirCSV {
         }
         
         public void encabezadoCursos(File file) {
-            try (CSVWriter csvWriter = new CSVWriter(new FileWriter(file, false))) {
-                String[] encabezado = {"Curso", "Letra"};
-                csvWriter.writeNext(encabezado);
+            try (CSVWriter csvWriter = new CSVWriter(new FileWriter(file, false))) {              
+                
             } catch (IOException ex) {
             
             }

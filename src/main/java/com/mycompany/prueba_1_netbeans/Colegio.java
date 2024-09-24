@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 public class Colegio{
     private ArrayList<Curso> cursos;
-    private ArrayList <Asistencia> asistencias;
+    private ArrayList <Asistencia> asistencias; 
 
     public Colegio() {
         this.cursos = new ArrayList<>();
@@ -114,6 +114,24 @@ public class Colegio{
         return ret;
     }
     
+    
+    //en desarrollo, no sé si está bien siquiera
+    public double promedioAsistencia(Curso c){
+        int i;
+        Curso cursoAsist;
+        double contador = 0.0f;
+        double porcenUnitario = 0.0f;
+        for (i=0;asistencias.size()>i;i++){
+            cursoAsist = asistencias.get(i).getCurso();
+            if ((c.getGrado().equalsIgnoreCase(cursoAsist.getGrado())) && (c.getLetra().equalsIgnoreCase(cursoAsist.getLetra()))){
+                porcenUnitario+= (double) (asistencias.get(i).getCantidadAsist())/ (double)cursoAsist.sizeCurso();
+                contador++;        
+            }
+        }
+        return porcenUnitario/contador;
+        
+    }
+    
     public void mostrarAsistencia(Asistencia asist,JFrame panel){
         int i;
         String[] opciones = {"Revisar lista","Volver"};
@@ -198,8 +216,6 @@ public class Colegio{
         } catch (IOException e) {
         }
     }
-    
-   
     
     public void cargarCursosDesdeCSV() {
         File file = new File("src/main/java/Cursos.csv");

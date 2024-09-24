@@ -6,11 +6,13 @@ package com.mycompany.prueba_1_netbeans;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
 public class Asistencia{
     private String fecha;
     private String hora;
     private Curso curso;
     private int cantidadAsist;
+    
     public Asistencia(String fecha,String hora,Curso curso){
         this.curso = curso;
         this.fecha = fecha;

@@ -4,6 +4,7 @@
  */
 package com.mycompany.prueba_1_netbeans;
 
+import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -24,8 +25,9 @@ public class Agregar extends javax.swing.JFrame {
         this.colegio = colegio;
         this.opcion = false;
         initComponents();
-        this.remove(jLabel5);
-        this.remove(jTextFieldC3);
+        visual();
+        this.remove(jLabelApellido);
+        this.remove(jTextFieldApellido);
     }
     //agregar estudiante
     public Agregar(Colegio colegio,Curso curso){
@@ -33,7 +35,23 @@ public class Agregar extends javax.swing.JFrame {
         this.curso = curso;
         this.opcion = false;
         initComponents();
+        visual();
     }
+    
+    private void visual(){
+        this.getContentPane().setBackground(Color.gray);
+        jButtonAceptar.setBackground(Color.lightGray);
+        jButtonCancelar.setBackground(Color.lightGray);
+        jLabelApellido.setBackground(Color.black);
+        jLabelGradoOrRUT.setBackground(Color.black);
+        jLabelLetraOrNombre.setBackground(Color.black);
+        jLabelTitulo.setBackground(Color.black);
+        jTextFieldApellido.setBackground(Color.lightGray);
+        jTextFieldGradoOrRUT.setBackground(Color.lightGray);
+        jTextFieldLetraOrNombre.setBackground(Color.lightGray);
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,40 +61,44 @@ public class Agregar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabelGradoOrRUT = new javax.swing.JLabel();
+        jLabelLetraOrNombre = new javax.swing.JLabel();
         jButtonAceptar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jTextFieldA1 = new javax.swing.JTextField();
-        jTextFieldB2 = new javax.swing.JTextField();
-        jTextFieldC3 = new javax.swing.JTextField();
+        jLabelTitulo = new javax.swing.JLabel();
+        jLabelApellido = new javax.swing.JLabel();
+        jTextFieldGradoOrRUT = new javax.swing.JTextField();
+        jTextFieldLetraOrNombre = new javax.swing.JTextField();
+        jTextFieldApellido = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Colegio");
-        setAlwaysOnTop(true);
         setPreferredSize(new java.awt.Dimension(840, 460));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelGradoOrRUT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         if(curso==null){
             text1 = "Grado de curso:";
         }
         else{
             text1 = "Rut:";
         }
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText(text1);
+        jLabelGradoOrRUT.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelGradoOrRUT.setText(text1);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelLetraOrNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         if (curso==null){
             text2 = "Paralelo/letra:";
         }
         else{
             text2 = "Nombre:";
         }
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText(text2);
+        jLabelLetraOrNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelLetraOrNombre.setText(text2);
 
         jButtonAceptar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButtonAceptar.setText("Agregar");
@@ -94,37 +116,37 @@ public class Agregar extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         if (curso==null){
             titulo = "Curso";
         }
         else{
             titulo = "Estudiante";
         }
-        jLabel4.setText("Agregar "+titulo);
+        jLabelTitulo.setText("Agregar "+titulo);
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setText("Apellido:");
+        jLabelApellido.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelApellido.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelApellido.setText("Apellido:");
 
-        jTextFieldA1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTextFieldA1.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTextFieldGradoOrRUT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTextFieldGradoOrRUT.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextFieldA1KeyPressed(evt);
+                jTextFieldGradoOrRUTKeyPressed(evt);
             }
         });
 
-        jTextFieldB2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTextFieldB2.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTextFieldLetraOrNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTextFieldLetraOrNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextFieldB2KeyPressed(evt);
+                jTextFieldLetraOrNombreKeyPressed(evt);
             }
         });
 
-        jTextFieldC3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTextFieldC3.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTextFieldApellido.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTextFieldApellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextFieldC3KeyPressed(evt);
+                jTextFieldApellidoKeyPressed(evt);
             }
         });
 
@@ -143,36 +165,36 @@ public class Agregar extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(76, 76, 76)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabelLetraOrNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelGradoOrRUT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelApellido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldC3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextFieldA1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextFieldB2, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(jTextFieldApellido, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextFieldGradoOrRUT, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextFieldLetraOrNombre, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(172, 172, 172)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(122, 122, 122))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
+                .addComponent(jLabelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
                 .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldA1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelGradoOrRUT, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldGradoOrRUT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldB2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelLetraOrNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldLetraOrNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldC3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(jTextFieldApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelApellido))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -188,16 +210,18 @@ public class Agregar extends javax.swing.JFrame {
             if (curso==null){
                 MenuCursos vv = new MenuCursos(colegio);
                 vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                vv.setSize(this.getSize());
+                vv.setLocation(this.getLocation());
                 vv.setVisible(true);
-                this.dispose();
+                this.dispose(); 
             }
             else{
                 MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
                 vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                vv.setSize(this.getSize());
+                vv.setLocation(this.getLocation());
                 vv.setVisible(true);
-                this.dispose();
+                this.dispose(); 
             }
         }
     }//GEN-LAST:event_jButtonCancelarActionPerformed
@@ -208,35 +232,41 @@ public class Agregar extends javax.swing.JFrame {
         }    
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
-    private void jTextFieldA1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldA1KeyPressed
+    private void jTextFieldGradoOrRUTKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldGradoOrRUTKeyPressed
         int keycode = evt.getKeyCode();
         if (keycode==10){
             opcionAceptar();
         }
-    }//GEN-LAST:event_jTextFieldA1KeyPressed
+    }//GEN-LAST:event_jTextFieldGradoOrRUTKeyPressed
 
-    private void jTextFieldB2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldB2KeyPressed
+    private void jTextFieldLetraOrNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLetraOrNombreKeyPressed
         int keycode = evt.getKeyCode();
         if (keycode==10){
             opcionAceptar();
         }
-    }//GEN-LAST:event_jTextFieldB2KeyPressed
+    }//GEN-LAST:event_jTextFieldLetraOrNombreKeyPressed
 
-    private void jTextFieldC3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldC3KeyPressed
+    private void jTextFieldApellidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldApellidoKeyPressed
        int keycode = evt.getKeyCode();
         if (keycode==10){
             opcionAceptar();
         }
-    }//GEN-LAST:event_jTextFieldC3KeyPressed
+    }//GEN-LAST:event_jTextFieldApellidoKeyPressed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        colegio.actualizar(pathEstudiantes,1);
+        colegio.actualizar(pathCursos,2);
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosing
 
     private void opcionAceptar(){
-         if (jTextFieldA1.getText().trim().isEmpty() || jTextFieldB2.getText().trim().isEmpty()){
+         if (jTextFieldGradoOrRUT.getText().trim().isEmpty() || jTextFieldLetraOrNombre.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
          }
          else{
              //agregar curso, si no se pasa la instancia de un curso entonces se pasa a la versión de agregar del curso
              if(curso==null){
-                Curso c = new Curso(jTextFieldA1.getText(),jTextFieldB2.getText());
+                Curso c = new Curso(jTextFieldGradoOrRUT.getText(),jTextFieldLetraOrNombre.getText());
                 if (colegio.verificarCurso(c)==null){
                     if (c.formatoCorrecto()){
                         colegio.agregarCurso(c,pathCursos);
@@ -244,9 +274,10 @@ public class Agregar extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Curso agregado", "Exito!", JOptionPane.INFORMATION_MESSAGE);
                         MenuCursos vv = new MenuCursos(colegio);
                         vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                        vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                        vv.setSize(this.getSize());
+                        vv.setLocation(this.getLocation());
                         vv.setVisible(true);
-                        this.dispose();
+                        this.dispose(); 
                     }
                     else{
                         JOptionPane.showMessageDialog(this, "Formato no valido\nEjemplo de formato valido:\nGrado: 1ro medio\nLetra: a", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -261,20 +292,21 @@ public class Agregar extends javax.swing.JFrame {
              
              //agregar estudiantes 
             else{
-                Estudiante e = new Estudiante(jTextFieldB2.getText(),jTextFieldC3.getText(),jTextFieldA1.getText());
+                Estudiante e = new Estudiante(jTextFieldLetraOrNombre.getText(),jTextFieldApellido.getText(),jTextFieldGradoOrRUT.getText());
                 e.toUpperCase();
                 e.setRut(curso.verificarRut(e.getRut()));
                 if(colegio.verificarEstudiante(e.getRut())){
                     JOptionPane.showMessageDialog(this, "Estudiante ya registrado en el sistema", "Existe", JOptionPane.INFORMATION_MESSAGE);
                 }
                 else{
-                    curso.agregarEstudiante(jTextFieldA1.getText(),e);
+                    curso.agregarEstudiante(jTextFieldGradoOrRUT.getText(),e);
                     curso.agregarEstudiante(e,pathEstudiantes);
                     colegio.actualizar(pathEstudiantes,1);
                     JOptionPane.showMessageDialog(this, "Estudiante agregado", "Exito!", JOptionPane.INFORMATION_MESSAGE);
                     MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
                     vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                    vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                    vv.setSize(this.getSize());
+                    vv.setLocation(this.getLocation());
                     vv.setVisible(true);
                     this.dispose();  
                 }
@@ -288,12 +320,12 @@ public class Agregar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceptar;
     private javax.swing.JButton jButtonCancelar;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextFieldA1;
-    private javax.swing.JTextField jTextFieldB2;
-    private javax.swing.JTextField jTextFieldC3;
+    private javax.swing.JLabel jLabelApellido;
+    private javax.swing.JLabel jLabelGradoOrRUT;
+    private javax.swing.JLabel jLabelLetraOrNombre;
+    private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JTextField jTextFieldApellido;
+    private javax.swing.JTextField jTextFieldGradoOrRUT;
+    private javax.swing.JTextField jTextFieldLetraOrNombre;
     // End of variables declaration//GEN-END:variables
 }

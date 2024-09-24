@@ -4,17 +4,35 @@
  */
 package com.mycompany.prueba_1_netbeans;
 
+import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 public class RealizarAsistencia extends javax.swing.JFrame {
     private Colegio colegio;
     private Curso curso;
+    
+    private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
+    private final String pathCursos = "src/main/java/Cursos.csv";
+    
     public RealizarAsistencia(Colegio colegio,Curso curso) {
         this.colegio = colegio;
         this.curso = curso;
         initComponents();
+        visual();
     }
 
+    private void visual(){
+        this.getContentPane().setBackground(Color.gray);
+        jButtonAceptar.setBackground(Color.lightGray);
+        jButtonCancelar.setBackground(Color.lightGray);
+        jLabelFecha.setBackground(Color.black);
+        jLabelFormatoFecha.setBackground(Color.black);
+        jLabelFormatoHora.setBackground(Color.black);
+        jLabelHora.setBackground(Color.black);
+        jLabelTitulo.setBackground(Color.black);
+        jTextFieldFecha.setBackground(Color.lightGray);
+        jTextFieldHora.setBackground(Color.lightGray);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,18 +44,22 @@ public class RealizarAsistencia extends javax.swing.JFrame {
 
         jLabelFecha = new javax.swing.JLabel();
         jLabelHora = new javax.swing.JLabel();
-        jTextFieldA1 = new javax.swing.JTextField();
-        jTextFieldB2 = new javax.swing.JTextField();
+        jTextFieldFecha = new javax.swing.JTextField();
+        jTextFieldHora = new javax.swing.JTextField();
         jButtonAceptar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabelTitulo = new javax.swing.JLabel();
+        jLabelFormatoFecha = new javax.swing.JLabel();
+        jLabelFormatoHora = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Colegio");
-        setAlwaysOnTop(true);
         setPreferredSize(new java.awt.Dimension(840, 460));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabelFecha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelFecha.setText("Fecha asistencia:");
@@ -47,17 +69,17 @@ public class RealizarAsistencia extends javax.swing.JFrame {
         jLabelHora.setText("Hora asistencia:");
         jLabelHora.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        jTextFieldA1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTextFieldA1.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTextFieldFecha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTextFieldFecha.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextFieldA1KeyPressed(evt);
+                jTextFieldFechaKeyPressed(evt);
             }
         });
 
-        jTextFieldB2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTextFieldB2.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTextFieldHora.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTextFieldHora.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextFieldB2KeyPressed(evt);
+                jTextFieldHoraKeyPressed(evt);
             }
         });
 
@@ -77,12 +99,12 @@ public class RealizarAsistencia extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel4.setText("Realizar Asistencia");
+        jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabelTitulo.setText("Realizar Asistencia");
 
-        jLabel1.setText("(formato DD/MM/AAAA ej: 21/07/2004)");
+        jLabelFormatoFecha.setText("(formato DD/MM/AAAA ej: 21/07/2004)");
 
-        jLabel2.setText("(formato HH:MM ej: 22:30)");
+        jLabelFormatoHora.setText("(formato HH:MM ej: 22:30)");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -92,7 +114,7 @@ public class RealizarAsistencia extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel4))
+                        .addComponent(jLabelTitulo))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonCancelar))
@@ -110,14 +132,14 @@ public class RealizarAsistencia extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextFieldA1)
+                                .addComponent(jTextFieldFecha)
                                 .addGap(11, 11, 11))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelFormatoFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelFormatoHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(68, 68, 68))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextFieldB2)
+                                .addComponent(jTextFieldHora)
                                 .addGap(11, 11, 11)))))
                 .addGap(33, 33, 33))
         );
@@ -128,19 +150,19 @@ public class RealizarAsistencia extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(95, 95, 95)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelFecha)
-                    .addComponent(jTextFieldA1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addComponent(jLabelFormatoFecha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelHora)
-                    .addComponent(jTextFieldB2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
-                .addComponent(jLabel2)
+                .addComponent(jLabelFormatoHora)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAceptar)
@@ -156,20 +178,20 @@ public class RealizarAsistencia extends javax.swing.JFrame {
     
     private void opcionAceptar(){
         //realizar asistencia
-            if (jTextFieldA1.getText().trim().isEmpty() || jTextFieldB2.getText().trim().isEmpty()){
+            if (jTextFieldFecha.getText().trim().isEmpty() || jTextFieldHora.getText().trim().isEmpty()){
                 JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
-            if ((jTextFieldA1.getText().length() != 10) && ((jTextFieldA1.getText().charAt(2))!='/'&&(jTextFieldA1.getText().charAt(5))!='/')){
+            if ((jTextFieldFecha.getText().length() != 10) && ((jTextFieldFecha.getText().charAt(2))!='/'&&(jTextFieldFecha.getText().charAt(5))!='/')){
                 JOptionPane.showMessageDialog(this, "Formato no válido, intente otra vez", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
             }
-            else if (jTextFieldB2.getText().charAt(2)!=':') {
+            else if (jTextFieldHora.getText().charAt(2)!=':') {
                 JOptionPane.showMessageDialog(this, "Formato no válido, intente otra vez", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
             }
             
             else{
                 //crear copia  del curso
                 //aun sin hacer
-                Asistencia asist = new Asistencia(jTextFieldA1.getText(),jTextFieldB2.getText(),new Curso(curso));
+                Asistencia asist = new Asistencia(jTextFieldFecha.getText(),jTextFieldHora.getText(),new Curso(curso));
                 if(colegio.verificarAsistencia(asist)!=null){
                     JOptionPane.showMessageDialog(this, "Asistencia ya existe en el sistema", "Existe", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -179,10 +201,10 @@ public class RealizarAsistencia extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this,"Asistencia fecha : "+asist.getFecha()+"\nhora: "+asist.getHora(), "Existe", JOptionPane.INFORMATION_MESSAGE);
                         MenuAsistencia vv = new MenuAsistencia(colegio,curso);
                         vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                        vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                        vv.setAlwaysOnTop(true);
+                        vv.setSize(this.getSize());
+                        vv.setLocation(this.getLocation());
                         vv.setVisible(true);
-                        this.dispose(); 
+                        this.dispose();  
                     }
                     else{
                         JOptionPane.showMessageDialog(this,"Pase de asistencia cancelado", "Cancelado", JOptionPane.WARNING_MESSAGE);
@@ -202,37 +224,43 @@ public class RealizarAsistencia extends javax.swing.JFrame {
         if(evt.getSource()==jButtonCancelar){
             MenuAsistencia vv = new MenuAsistencia(colegio,curso);
             vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            vv.setAlwaysOnTop(true);
-            vv.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            vv.setSize(this.getSize());
+            vv.setLocation(this.getLocation());
             vv.setVisible(true);
-            this.dispose();
+            this.dispose(); 
         }
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
-    private void jTextFieldA1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldA1KeyPressed
+    private void jTextFieldFechaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldFechaKeyPressed
         int keycode = evt.getKeyCode();
         if (keycode==10){
             opcionAceptar();
         }
-    }//GEN-LAST:event_jTextFieldA1KeyPressed
+    }//GEN-LAST:event_jTextFieldFechaKeyPressed
 
-    private void jTextFieldB2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldB2KeyPressed
+    private void jTextFieldHoraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldHoraKeyPressed
         int keycode = evt.getKeyCode();
         if (keycode==10){
             opcionAceptar();
         }
-    }//GEN-LAST:event_jTextFieldB2KeyPressed
+    }//GEN-LAST:event_jTextFieldHoraKeyPressed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        colegio.actualizar(pathEstudiantes,1);
+        colegio.actualizar(pathCursos,2);
+        this.dispose();
+    }//GEN-LAST:event_formWindowClosing
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAceptar;
     private javax.swing.JButton jButtonCancelar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelFecha;
+    private javax.swing.JLabel jLabelFormatoFecha;
+    private javax.swing.JLabel jLabelFormatoHora;
     private javax.swing.JLabel jLabelHora;
-    private javax.swing.JTextField jTextFieldA1;
-    private javax.swing.JTextField jTextFieldB2;
+    private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JTextField jTextFieldFecha;
+    private javax.swing.JTextField jTextFieldHora;
     // End of variables declaration//GEN-END:variables
 }
