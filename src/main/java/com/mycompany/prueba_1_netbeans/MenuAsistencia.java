@@ -15,6 +15,7 @@ public class MenuAsistencia extends javax.swing.JFrame {
     private Curso curso;
     private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
     private final String pathCursos = "src/main/java/Cursos.csv";
+    private final String pathAsistencia = "src/main/java/Asistencia.csv";
     public MenuAsistencia(Colegio colegio,Curso curso) {
         this.colegio = colegio;
         this.curso = curso;
@@ -210,6 +211,7 @@ public class MenuAsistencia extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         colegio.actualizar(pathEstudiantes,1);
         colegio.actualizar(pathCursos,2);
+        colegio.actualizar(pathAsistencia,3);
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
 

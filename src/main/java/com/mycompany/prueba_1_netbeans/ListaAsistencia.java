@@ -19,6 +19,7 @@ public class ListaAsistencia extends javax.swing.JFrame {
     private boolean opcion;
     private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
     private final String pathCursos = "src/main/java/Cursos.csv";
+    private final String pathAsistencia = "src/main/java/Asistencia.csv";
     //booleano true es para buscar y false para eliminar
     public ListaAsistencia(Colegio colegio,Curso curso,boolean opcion) {
         this.colegio = colegio;
@@ -38,17 +39,23 @@ public class ListaAsistencia extends javax.swing.JFrame {
     }
     
     private void visual(){
+        //panel
         this.getContentPane().setBackground(Color.gray);
+        //botones
         jButtonAceptar.setBackground(Color.lightGray);
         jButtonCerrar.setBackground(Color.lightGray);
+        //label
         jLabelHora.setBackground(Color.black);
         jLabelFecha.setBackground(Color.black);
         jLabelTitulo.setBackground(Color.black);
+        //scroll
         jScrollPaneBarra.getVerticalScrollBar().setBackground(Color.black);
-        jTableLista.setBackground(Color.black);
+        //listas
+        jTableLista.setBackground(Color.lightGray);
         jTableLista.setForeground(Color.darkGray);
         jTableLista.getTableHeader().setBackground(Color.darkGray);
         jTableLista.getTableHeader().setForeground(Color.white);
+        //textField
         jTextFieldHora.setBackground(Color.lightGray);
         jTextFieldFecha.setBackground(Color.lightGray);
     }
@@ -303,6 +310,7 @@ public class ListaAsistencia extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         colegio.actualizar(pathEstudiantes,1);
         colegio.actualizar(pathCursos,2);
+        colegio.actualizar(pathAsistencia,3);
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
 

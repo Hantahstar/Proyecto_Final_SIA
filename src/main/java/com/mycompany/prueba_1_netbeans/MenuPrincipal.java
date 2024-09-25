@@ -16,6 +16,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     
     private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
     private final String pathCursos = "src/main/java/Cursos.csv";
+    private final String pathAsistencia = "src/main/java/Asistencia.csv";
     
     public MenuPrincipal(Colegio colegio) {
         this.colegio = colegio;
@@ -191,6 +192,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         if(evt.getSource()==jButtonSalir){
             colegio.actualizar(pathEstudiantes,1);
             colegio.actualizar(pathCursos,2);
+            colegio.actualizar(pathAsistencia,3);
             this.dispose();
         }
     }//GEN-LAST:event_jButtonSalirActionPerformed
@@ -198,6 +200,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         colegio.actualizar(pathEstudiantes,1);
         colegio.actualizar(pathCursos,2);
+        colegio.actualizar(pathAsistencia,3);
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
 

@@ -16,6 +16,7 @@ public class ListaCursos extends javax.swing.JFrame {
     private String titulo;
     private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
     private final String pathCursos = "src/main/java/Cursos.csv";
+    private final String pathAsistencia = "src/main/java/Asistencia.csv";
     public ListaCursos(Colegio colegio,int opcion) {
         this.colegio = colegio;
         this.opcion = opcion;
@@ -54,17 +55,23 @@ public class ListaCursos extends javax.swing.JFrame {
         
     }
     private void visual(){
+        //panel
         this.getContentPane().setBackground(Color.gray);
+        //botones
         jButtonAceptar.setBackground(Color.lightGray);
         jButtonCerrar.setBackground(Color.lightGray);
+        //labels
         jLabelLetra.setBackground(Color.black);
         jLabelGrado.setBackground(Color.black);
         jLabelTitulo.setBackground(Color.black);
+        //scroll
         jScrollPaneBarra.getVerticalScrollBar().setBackground(Color.black);
-        jTableLista.setBackground(Color.black);
+        //listas
+        jTableLista.setBackground(Color.lightGray);
         jTableLista.setForeground(Color.darkGray);
         jTableLista.getTableHeader().setBackground(Color.darkGray);
         jTableLista.getTableHeader().setForeground(Color.white);
+        //textFields
         jTextFieldGrado.setBackground(Color.lightGray);
         jTextFieldLetra.setBackground(Color.lightGray);
     }
@@ -339,6 +346,7 @@ public class ListaCursos extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         colegio.actualizar(pathEstudiantes,1);
         colegio.actualizar(pathCursos,2);
+        colegio.actualizar(pathAsistencia,3);
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
 
