@@ -11,7 +11,7 @@ public class Asistencia{
     private String fecha;
     private String hora;
     private Curso curso;
-    private int cantidadAsist;
+    private int cantidadPresentes;
     
     public Asistencia(String fecha,String hora,Curso curso){
         this.curso = curso;
@@ -38,10 +38,10 @@ public class Asistencia{
         this.hora = hora;
     }
     public int getCantidadAsist() {
-        return cantidadAsist;
+        return cantidadPresentes;
     }
     public void setCantidadAsist(int cantidadAsist){
-        this.cantidadAsist = cantidadAsist;
+        this.cantidadPresentes = cantidadAsist;
     }
     public Estudiante getEstudiante(int i){
         return curso.getEstudiante(i);
@@ -58,16 +58,16 @@ public class Asistencia{
             switch((selectionOpcion+1)){
                 case 1:
                     contador++;
-                    e.estado(e);
+                    e.setEstado(1);
                     break;
                 case 2:
-                    e.estado();
+                    e.setEstado(2);
                     break;
                 case 3:
-                    e.estadoEspecial(e);
+                    e.setEstado(3);
                     break;
                 case 4:
-                    e.estadoEspecial();
+                    e.setEstado(4);
                     break;
                 case 5:
                     return false;
@@ -82,6 +82,6 @@ public class Asistencia{
     
     @Override
     public String toString(){
-        return fecha+","+hora+","+Integer.toString(cantidadAsist)+"/"+Long.toString(curso.sizeCurso())+"\n";
+        return fecha+","+hora+","+Integer.toString(cantidadPresentes)+"/"+Long.toString(curso.sizeCurso())+"\n";
     }
 }

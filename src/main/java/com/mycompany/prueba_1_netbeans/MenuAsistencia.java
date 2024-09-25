@@ -214,7 +214,12 @@ public class MenuAsistencia extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void jButtonPorcentajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPorcentajeActionPerformed
-        // TODO add your handling code here:
+        if (colegio.asistenciaEstaVacio()){
+            JOptionPane.showMessageDialog(this, "No hay asistencias disponibles", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            //generar tabla de porcentaje
+        }
     }//GEN-LAST:event_jButtonPorcentajeActionPerformed
 
 

@@ -77,9 +77,13 @@ public class Curso{
 
 
     }
+    public void agregarEstudiante(Estudiante estudianteAgregar){
+        listCurso.add(estudianteAgregar);   
+    }
+    
     public void agregarEstudiante(Estudiante estudianteAgregar,String path){
         File file = new File(path);
-        listCurso.add(estudianteAgregar);
+        agregarEstudiante(estudianteAgregar);
 
         
         List<String[]> datos = new ArrayList<>();
@@ -198,13 +202,7 @@ public class Curso{
         return (grado+","+letra+","+Long.toString(sizeCurso())+"\n");
     }
     
-    public void cargarEstudiantes() {
-        
-        File file = new File("src/main/java/Estudiantes.csv");
-        
-        LeerYEscribirCSV lectorCSV = new LeerYEscribirCSV();
-        List<String[]> datosCSV = lectorCSV.leerCSV(file);
-        
+    public void cargarEstudiantes(List<String[]> datosCSV) {
 
         for (String[] fila : datosCSV) {
             if (fila.length >= 5) { 
@@ -214,7 +212,7 @@ public class Curso{
                 String gradoM = fila[3]; 
                 String letraM = fila[4]; 
 
-                
+
                 if (this.grado.equals(gradoM) && this.letra.equals(letraM)) {
                     Estudiante estudiante = new Estudiante(nombre, apellido, rut);
                     listCurso.add(estudiante);
@@ -224,7 +222,7 @@ public class Curso{
                 System.out.println("Error: fila con formato incorrecto en el CSV.");
             }
         }
-    }  
+    } 
     
     
     

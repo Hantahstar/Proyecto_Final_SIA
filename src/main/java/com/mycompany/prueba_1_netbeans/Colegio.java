@@ -147,16 +147,19 @@ public class Colegio{
             case 1:
                 for(i=0;c.sizeCurso()>i;i++){
                     e = asist.getEstudiante(i);
-                    if(e.isAsistencia() && !e.isInasistenciaJust()){
+                    if (e.getEstado()<=0){
+                        estado = "no valido";
+                    }
+                    else if(e.getEstado() == 1){
                         estado = "Presente";
                     }
-                    else if(!e.isAsistencia() && !e.isInasistenciaJust()){
+                    else if(e.getEstado() == 2){
                         estado = "Faltó";
                     }
-                    else if(!e.isAsistencia() && e.isInasistenciaJust()){
+                    else if(e.getEstado() == 3){
                         estado = "Falta extraordinaria";
                     }
-                    else if(e.isAsistencia() && e.isInasistenciaJust()){
+                    else if(e.getEstado() == 4){
                         estado = "Sale antes del horario";
                     }
                     selectionOpcion = JOptionPane.showOptionDialog(panel,"Nombre: "+e.getNombre()+"\nApellido: "+e.getApellido()+"\nRUT: "+e.getRut()+"\n"+estado,"Asistencia Fecha :"+asist.getFecha()+" Hora :"+asist.getHora(),JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE,null,opcionesVista,opcionesVista[0]);
@@ -176,8 +179,14 @@ public class Colegio{
     }
     
     public void cargarEstudiantesDesdeCSV() {
+
+        File file = new File("src/main/java/Estudiantes.csv");
+
+        LeerYEscribirCSV lectorCSV = new LeerYEscribirCSV();
+        List <String[]> datosCSV = lectorCSV.leerCSV(file);
+
         for (Curso curso : cursos) {
-            curso.cargarEstudiantes(); 
+            curso.cargarEstudiantes(datosCSV); 
         }
     }
     
@@ -199,6 +208,59 @@ public class Colegio{
         
         
     }
+    
+    
+    public void cargarAsistenciaDesdeCSV() {
+    File file = new File("src/main/java/Asistencia.csv");
+    LeerYEscribirCSV lectorCSV = new LeerYEscribirCSV();
+    List<String[]> datosCSV = lectorCSV.leerCSV(file);
+    
+    if (datosCSV != null) {
+        String grado = "", letra = "", fecha = "", hora = "";
+        Curso curso = null;
+        int dif = 0;
+        int cont = 0;
+        Estudiante e;
+        for (String[] aux : datosCSV) {
+            if (aux.length >= 5) {
+                String nuevoGrado = aux[0];
+                String nuevaLetra = aux[1];
+                String nuevaFecha = aux[2];
+                String nuevaHora = aux[3];
+                if (dif == 0 || !grado.equals(nuevoGrado) || !letra.equals(nuevaLetra) || !fecha.equals(nuevaFecha) || !hora.equals(nuevaHora)) {
+                    if (dif > 0 && curso!=null) {
+                        Asistencia asist = new Asistencia(fecha, hora, curso);
+                        asist.setCantidadAsist(cont);
+                        asistencias.add(asist);
+                    }
+
+                    grado = nuevoGrado;
+                    letra = nuevaLetra;
+                    fecha = nuevaFecha;
+                    hora = nuevaHora;
+                    curso = new Curso(grado, letra);
+                    dif++;
+                }
+                e = new Estudiante(aux[5], aux[6],aux[4]);
+                int estado = Integer.parseInt(aux[7]);
+                if (estado == 1){
+                    cont++;
+                }
+                e.setEstado(estado);
+                curso.agregarEstudiante(aux[4], e);
+                curso.agregarEstudiante(e);
+            }
+        }
+
+        // Agregar la última asistencia después del último cambio
+        if (dif > 0) {
+            Asistencia asist = new Asistencia(fecha, hora, curso);
+            asistencias.add(asist);
+        }
+    } else {
+        System.out.println("Error: no se pudo leer el archivo CSV.");
+    }
+}
     
     public void actualizarCSV()
     {

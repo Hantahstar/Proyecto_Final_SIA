@@ -16,7 +16,7 @@ public class Proyecto_Final_SIA {
         Colegio colegio = new Colegio();
         colegio.cargarCursosDesdeCSV();
         colegio.cargarEstudiantesDesdeCSV();
-        //colegio.cargarAsistenciaDesdeCsv();
+        colegio.cargarAsistenciaDesdeCSV();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 MenuPrincipal vv = new MenuPrincipal(colegio);

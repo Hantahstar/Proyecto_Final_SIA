@@ -8,12 +8,14 @@ public class Estudiante {
     private String nombre;
     private String apellido;
     private String rut;
-    private boolean asistencia;
-    private boolean inasistenciaJust;
+    //private boolean asistencia;
+    //private boolean inasistenciaJust;
+    private int estado;
     public Estudiante(String nombre,String apellido,String rut){
         this.nombre = nombre;
         this.apellido = apellido;
         this.rut = rut;
+        this.estado = 0;
     }
     
     public String getNombre() {
@@ -34,38 +36,14 @@ public class Estudiante {
     public void setRut(String rut) {
         this.rut = rut;
     }
-    public boolean isAsistencia() {
-        return asistencia;
+    
+    public void setEstado(int estado){
+        this.estado = estado;
     }
-    public void setAsistencia(boolean asistencia) {
-        this.asistencia = asistencia;
+    public int getEstado(){
+        return this.estado;
     }
-    public boolean isInasistenciaJust() {
-        return inasistenciaJust;
-    }
-    public void setInasistenciaJust(boolean inasistenciaJust) {
-        this.inasistenciaJust = inasistenciaJust;
-    }
-    //presente
-    public void estado(Estudiante e){
-        e.setAsistencia(true);
-        e.setInasistenciaJust(false);
-    }
-    //falta
-    public void estado(){
-        setAsistencia(false);
-        setInasistenciaJust(false);
-    }
-    //justificado
-    public void estadoEspecial(Estudiante e){
-        e.setAsistencia(false);
-        e.setInasistenciaJust(true);
-    }
-    //fuera de horario
-    public void estadoEspecial(){
-        setAsistencia(true);
-        setInasistenciaJust(true);
-    }
+    
     public void toUpperCase(){
         String despues;
         despues = nombre.substring(1);
