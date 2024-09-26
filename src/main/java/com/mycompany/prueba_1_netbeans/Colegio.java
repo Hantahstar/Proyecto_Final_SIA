@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -103,6 +104,18 @@ public class Colegio{
         }
         return null;
     }
+    public boolean verificarAsistencia(Curso c){
+        int i;
+        Curso aux;
+        for(i=0;asistencias.size()>i;i++){
+            aux = asistencias.get(i).getCurso();
+            if((aux.getGrado().equals(c.getGrado())) && (aux.getLetra().equals(c.getLetra()))){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public String mostrarAsistencia(Curso c){
         int i;
         String ret = "";
@@ -113,24 +126,64 @@ public class Colegio{
         }
         return ret;
     }
-    
-    
-    //en desarrollo, no sé si está bien siquiera
-    public double promedioAsistencia(Curso c){
-        int i;
+        
+    public HashMap<String, Double> calcularPorcentaje(Curso c) {
+
+        double totalAsistenciasValidas;
+        double asistenciasActuales;
+        double porcentajeAsistencia;
+        HashMap<String, Double> mapaDePorcenAsistencias = new HashMap<>();
         Curso cursoAsist;
-        double contador = 0.0f;
-        double porcenUnitario = 0.0f;
-        for (i=0;asistencias.size()>i;i++){
-            cursoAsist = asistencias.get(i).getCurso();
-            if ((c.getGrado().equalsIgnoreCase(cursoAsist.getGrado())) && (c.getLetra().equalsIgnoreCase(cursoAsist.getLetra()))){
-                porcenUnitario+= (double) (asistencias.get(i).getCantidadAsist())/ (double)cursoAsist.sizeCurso();
-                contador++;        
+    
+        // crear un arraylist para poder iterar los estudiantes del objeto c
+        ArrayList<Estudiante> estudiantes = new ArrayList<>();
+
+        // Inicializar el mapa con 0 asistencias y clases totales para cada estudiante
+        for (int i=0;c.sizeCurso()>i;i++) {
+            estudiantes.add(c.getEstudiante(i));
+            mapaDePorcenAsistencias.put(c.getEstudiante(i).getRut(), 0.0);
+        }
+    
+        // Total de clases registradas para el curso
+        totalAsistenciasValidas = 0.0;
+
+        // Recorrer las asistencias registradas
+        for (int j=0;asistencias.size()>j ; j++) {
+            cursoAsist = asistencias.get(j).getCurso();
+            if ((c.getGrado().equalsIgnoreCase(cursoAsist.getGrado())) && (c.getLetra().equalsIgnoreCase(cursoAsist.getLetra()))) {
+                totalAsistenciasValidas++;
+
+
+                for (int k=0;cursoAsist.sizeCurso()>k;k++) {
+                    String rut = cursoAsist.getEstudiante(k).getRut();
+                    if (mapaDePorcenAsistencias.containsKey(rut)) {
+                        if(cursoAsist.getEstudiante(k).getEstado() == 1){
+                            asistenciasActuales = mapaDePorcenAsistencias.get(rut);
+                            mapaDePorcenAsistencias.put(rut, asistenciasActuales + 1);
+                        }
+
+                    }
+                }
             }
         }
-        return porcenUnitario/contador;
-        
+
+        // Calcular el porcentaje para cada estudiante
+        for (int l=0; estudiantes.size()>l;l++) {
+            double asistenciasEstudiante = mapaDePorcenAsistencias.get(estudiantes.get(l).getRut());
+            if (totalAsistenciasValidas > 0){
+                porcentajeAsistencia = (asistenciasEstudiante/totalAsistenciasValidas)*100;
+            }
+            else{
+                //para no dividir por 0 se hace esta condición
+                porcentajeAsistencia = 0;
+            }
+            //actualiza el valor al porcentaje final para el estudiante
+            mapaDePorcenAsistencias.put(estudiantes.get(l).getRut(), porcentajeAsistencia);
+        }
+    
+        return mapaDePorcenAsistencias;
     }
+    
     
     public void mostrarAsistencia(Asistencia asist,JFrame panel){
         int i;
@@ -174,7 +227,7 @@ public class Colegio{
                 }
                 return;
             case 2:
-                return; 
+                break;
         }
     }
 
@@ -210,9 +263,9 @@ public class Colegio{
     }
 
     public void cargarAsistenciaDesdeCSV() {
-    File file = new File("src/main/java/Asistencia.csv");
-    LeerYEscribirCSV lectorCSV = new LeerYEscribirCSV();
-    List<String[]> datosCSV = lectorCSV.leerCSV(file);
+        File file = new File("src/main/java/Asistencia.csv");
+        LeerYEscribirCSV lectorCSV = new LeerYEscribirCSV();
+        List<String[]> datosCSV = lectorCSV.leerCSV(file);
     
     if (datosCSV != null) {
         String grado = "", letra = "", fecha = "", hora = "";
@@ -231,6 +284,7 @@ public class Colegio{
                         Asistencia asist = new Asistencia(fecha, hora, curso);
                         asist.setCantidadAsist(cont);
                         asistencias.add(asist);
+                        cont = 0;
                     }
 
                     grado = nuevoGrado;

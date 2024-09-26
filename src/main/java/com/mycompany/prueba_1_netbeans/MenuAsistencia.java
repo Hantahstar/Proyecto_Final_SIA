@@ -164,7 +164,7 @@ public class MenuAsistencia extends javax.swing.JFrame {
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         if (evt.getSource()==jButtonBuscar){
-            if(colegio.asistenciaEstaVacio()){
+            if(colegio.asistenciaEstaVacio() || !colegio.verificarAsistencia(curso)){
                 JOptionPane.showMessageDialog(this, "No hay asistencias disponibles", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
             else{
@@ -181,7 +181,7 @@ public class MenuAsistencia extends javax.swing.JFrame {
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         if (evt.getSource()==jButtonEliminar){
-            if(colegio.asistenciaEstaVacio()){
+            if(colegio.asistenciaEstaVacio() || !colegio.verificarAsistencia(curso)){
                 JOptionPane.showMessageDialog(this, "No hay asistencias disponibles", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
             else{
@@ -220,7 +220,12 @@ public class MenuAsistencia extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No hay asistencias disponibles", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
         else{
-            //generar tabla de porcentaje
+            GraficoAsistencia vv = new GraficoAsistencia(colegio.calcularPorcentaje(curso),colegio,curso);
+            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            vv.setSize(this.getSize());
+            vv.setLocation(this.getLocation());
+            vv.setVisible(true);
+            this.dispose();     
         }
     }//GEN-LAST:event_jButtonPorcentajeActionPerformed
 
