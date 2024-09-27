@@ -16,11 +16,25 @@ public class Curso{
     private final ArrayList <Estudiante> listCurso;
     private final Map <String,Estudiante> mapaEstudiante;
 
-    public Curso(String grado,String letra) {
-        this.grado = grado;
-        this.letra = letra;
-        this.listCurso = new ArrayList<>();
-        this.mapaEstudiante = new HashMap<>();
+    public Curso(String grado,String letra)throws CursoNotNullException{
+        if(grado == null && letra == null){
+            throw new CursoNotNullException("Grado y letra es un valor nulo");
+        }
+        else if (grado == null){
+            throw new CursoNotNullException("Grado es un valor nulo");
+        }
+        else if (letra == null){
+            throw new CursoNotNullException("Letra es un valor nulo");
+        }
+        else{
+            this.grado = grado;
+            this.letra = letra;
+            this.listCurso = new ArrayList<>();
+            this.mapaEstudiante = new HashMap<>();
+        }
+
+
+
     }
     //crear una copia del curso
     public Curso(Curso otroCurso){
@@ -39,7 +53,10 @@ public class Curso{
         return grado;
     }
 
-    public void setGrado(String grado) {
+    public void setGrado(String grado)throws CursoNotNullException {
+        if (grado == null){
+            throw new CursoNotNullException("Grado es un valor nulo");
+        }
         this.grado = grado;
     }
     
@@ -47,7 +64,10 @@ public class Curso{
         return letra;
     }
     
-    public void setLetra(String letra) {
+    public void setLetra(String letra)throws CursoNotNullException {
+        if (letra == null){
+            throw new CursoNotNullException("Letra es un valor nulo");
+        }
         this.letra = letra;
     }
     
@@ -165,6 +185,7 @@ public class Curso{
         }
         return false;
     }
+
     public String verificarRut(String rut){
         int i;
         char caracter;

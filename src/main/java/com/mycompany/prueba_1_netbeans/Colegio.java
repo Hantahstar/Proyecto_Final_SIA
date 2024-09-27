@@ -5,9 +5,8 @@
 package com.mycompany.prueba_1_netbeans;
 
 import au.com.bytecode.opencsv.CSVWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,8 +28,8 @@ public class Colegio{
     public boolean asistenciaEstaVacio(){
         return asistencias.isEmpty();
     }
-    public boolean removerCurso(Curso c){
-        return cursos.remove(c);
+    public void removerCurso(Curso c){
+        cursos.remove(c);
     }
     public void removerAsistencia(Asistencia a){
         asistencias.remove(a);
@@ -38,11 +37,10 @@ public class Colegio{
     public void agregarAsistencia(Asistencia a){
         asistencias.add(a);
     }
+
+    //posible utilización de exception
     public Curso verificarCurso(Curso c){
         int i;
-        if (c==null){
-            return null;
-        }
         for (i=0;cursos.size()>i;i++){
             if (c.getGrado()!=null && c.getLetra()!=null){
                 if(cursos.get(i).getGrado().equalsIgnoreCase(c.getGrado()) && cursos.get(i).getLetra().equalsIgnoreCase(c.getLetra())){
@@ -134,20 +132,16 @@ public class Colegio{
         double porcentajeAsistencia;
         HashMap<String, Double> mapaDePorcenAsistencias = new HashMap<>();
         Curso cursoAsist;
-    
-        // crear un arraylist para poder iterar los estudiantes del objeto c
+
         ArrayList<Estudiante> estudiantes = new ArrayList<>();
 
-        // Inicializar el mapa con 0 asistencias y clases totales para cada estudiante
         for (int i=0;c.sizeCurso()>i;i++) {
             estudiantes.add(c.getEstudiante(i));
             mapaDePorcenAsistencias.put(c.getEstudiante(i).getRut(), 0.0);
         }
-    
-        // Total de clases registradas para el curso
+
         totalAsistenciasValidas = 0.0;
 
-        // Recorrer las asistencias registradas
         for (int j=0;asistencias.size()>j ; j++) {
             cursoAsist = asistencias.get(j).getCurso();
             if ((c.getGrado().equalsIgnoreCase(cursoAsist.getGrado())) && (c.getLetra().equalsIgnoreCase(cursoAsist.getLetra()))) {
@@ -167,8 +161,7 @@ public class Colegio{
             }
         }
 
-        // Calcular el porcentaje para cada estudiante
-        for (int l=0; estudiantes.size()>l;l++) {
+        for(int l=0; estudiantes.size()>l;l++) {
             double asistenciasEstudiante = mapaDePorcenAsistencias.get(estudiantes.get(l).getRut());
             if (totalAsistenciasValidas > 0){
                 porcentajeAsistencia = (asistenciasEstudiante/totalAsistenciasValidas)*100;
@@ -192,7 +185,7 @@ public class Colegio{
         int selectionOpcion;
         Curso c = asist.getCurso();
         Estudiante e;
-        String estado = new String();
+        String estado = "";
         selectionOpcion = JOptionPane.showOptionDialog(panel,"Asistencia fecha: "+asist.getFecha()+"\nhora: "+asist.getHora(),"Encontrado",JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE,null,opciones,opciones[0]);
         switch(selectionOpcion+1){
             case 0:
@@ -231,7 +224,17 @@ public class Colegio{
         }
     }
 
-
+    public String shortStackTrace(Exception e,int maxLineas){
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        e.printStackTrace(pw);
+        String[] stackTraceString = sw.toString().split("\n");
+        StringBuilder shortStackTrace = new StringBuilder();
+        for (int i = 0; i< Math.min((stackTraceString.length),maxLineas);i++){
+            shortStackTrace.append(stackTraceString[i]).append("\n");
+        }
+        return shortStackTrace.toString();
+    }
 
     public void actualizarCSV()
     {

@@ -176,50 +176,66 @@ public class Eliminar extends javax.swing.JFrame {
     private void opcionEliminar(){
         if (jTextFieldGradoOrRUT.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
-         }
+        }
         else{
             if(curso==null){
                 if (jTextFieldGradoOrRUT.getText().trim().isEmpty()||jTextFieldLetra.getText().trim().isEmpty()){
                     JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
                 }
                 else{
-                    Curso c = new Curso(jTextFieldGradoOrRUT.getText(),jTextFieldLetra.getText());
-                    if (colegio.verificarCurso(c)==null){
-                        JOptionPane.showMessageDialog(this, "Curso no se encuentra en el sistema", "No existe", JOptionPane.INFORMATION_MESSAGE);
+                    try{
+                        Curso c = new Curso(jTextFieldGradoOrRUT.getText(),jTextFieldLetra.getText());
+                        if (colegio.verificarCurso(c)==null){
+                            JOptionPane.showMessageDialog(this, "Curso no se encuentra en el sistema", "No existe", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                        else{
+                            //Eliminar Curso
+                            JOptionPane.showMessageDialog(this,colegio.mostrarCurso(c)+"\nCurso Eliminado","Eliminado", JOptionPane.INFORMATION_MESSAGE);
+                            colegio.removerCurso(colegio.verificarCurso(c));
+
+                            MenuCursos vv = new MenuCursos(colegio);
+                            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            vv.setSize(this.getSize());
+                            vv.setLocation(this.getLocation());
+                            vv.setVisible(true);
+                            this.dispose();
+                        }
+                    }catch (CursoNotNullException e){
+                        //mensaje de exception
+                        JOptionPane.showMessageDialog(this, "Error al intentar eliminar el curso\nError: Algunos atributos del curso son nulos"+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+                        jTextFieldGradoOrRUT.setText("");
+                        jTextFieldLetra.setText("");
                     }
-                    else{
-                        //Eliminar Curso
-                        JOptionPane.showMessageDialog(this,colegio.mostrarCurso(c)+"\nCurso Eliminado","Eliminado", JOptionPane.INFORMATION_MESSAGE);
-                        colegio.removerCurso(colegio.verificarCurso(c));
-                        
-                        MenuCursos vv = new MenuCursos(colegio);
-                        vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                        vv.setSize(this.getSize());
-                        vv.setLocation(this.getLocation());
-                        vv.setVisible(true);
-                        this.dispose(); 
-                    }
+
+
                 }
             }    
             //expulsar estudiante
             else{
-                Estudiante e;
-                if(curso.contieneEstudiante(jTextFieldGradoOrRUT.getText())){
-                    e = curso.getEstudiante(jTextFieldGradoOrRUT.getText());
-                    JOptionPane.showMessageDialog(this,"Nombre: "+e.getNombre()+"\nApellido: "+e.getApellido()+"\nRUT: "+e.getRut()+"\nEstudiante Expulsado","Expulsado", JOptionPane.INFORMATION_MESSAGE);
-                    curso.removerEstudiante(e);
-                    curso.removerEstudiante(jTextFieldGradoOrRUT.getText());
-                    
-                    MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
-                    vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                    vv.setSize(this.getSize());
-                    vv.setLocation(this.getLocation());
-                    vv.setVisible(true);
-                    this.dispose(); 
+                try{
+                    Estudiante e = new Estudiante();
+                    jTextFieldGradoOrRUT.setText(curso.verificarRut(jTextFieldGradoOrRUT.getText()));
+                    e.setRut(jTextFieldGradoOrRUT.getText());
+                    if(curso.contieneEstudiante(jTextFieldGradoOrRUT.getText())){
+                        e = curso.getEstudiante(jTextFieldGradoOrRUT.getText());
+                        JOptionPane.showMessageDialog(this,"Nombre: "+e.getNombre()+"\nApellido: "+e.getApellido()+"\nRUT: "+e.getRut()+"\nEstudiante Expulsado","Expulsado", JOptionPane.INFORMATION_MESSAGE);
+                        curso.removerEstudiante(e);
+                        curso.removerEstudiante(jTextFieldGradoOrRUT.getText());
+
+                        MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
+                        vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        vv.setSize(this.getSize());
+                        vv.setLocation(this.getLocation());
+                        vv.setVisible(true);
+                        this.dispose();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "Estudiante no se encuentra\nEn el sistema", "No existe", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }catch(EstudianteNotNullException e){
+                    JOptionPane.showMessageDialog(this, "Error al intentar modificar estudiante\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+                    jTextFieldGradoOrRUT.setText("");
                 }
-                else{
-                    JOptionPane.showMessageDialog(this, "Estudiante no se encuentra\nEn el sistema", "No existe", JOptionPane.INFORMATION_MESSAGE);
-                }        
             }
         }        
     }

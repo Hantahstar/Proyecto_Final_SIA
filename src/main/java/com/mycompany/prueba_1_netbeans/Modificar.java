@@ -193,17 +193,22 @@ public class Modificar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
         else{
-            estudiante.setNombre(jTextFieldNombre.getText());
-            estudiante.setApellido(jTextFieldApellido.getText());
-            estudiante.toUpperCase();
-            
-            JOptionPane.showMessageDialog(this, "Estudiante modificado\nDatos cambiados:\nNombre: "+estudiante.getNombre()+"\nApellido: "+estudiante.getApellido(), "Modificado", JOptionPane.INFORMATION_MESSAGE);
-            MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
-            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            vv.setSize(this.getSize());
-            vv.setLocation(this.getLocation());
-            vv.setVisible(true);
-            this.dispose(); 
+            try{
+                estudiante.setNombre(jTextFieldNombre.getText());
+                estudiante.setApellido(jTextFieldApellido.getText());
+                estudiante.toUpperCase();
+
+                JOptionPane.showMessageDialog(this, "Estudiante modificado\nDatos cambiados:\nNombre: "+estudiante.getNombre()+"\nApellido: "+estudiante.getApellido(), "Modificado", JOptionPane.INFORMATION_MESSAGE);
+                MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
+                vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                vv.setSize(this.getSize());
+                vv.setLocation(this.getLocation());
+                vv.setVisible(true);
+                this.dispose();
+            }catch (EstudianteNotNullException e){
+
+            }
+
         }
     }
     

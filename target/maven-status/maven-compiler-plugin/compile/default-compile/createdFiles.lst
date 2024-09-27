@@ -1,4 +1,5 @@
 com\mycompany\prueba_1_netbeans\Agregar$1.class
+com\mycompany\prueba_1_netbeans\CursoNotNullException.class
 com\mycompany\prueba_1_netbeans\ListaAsistencia$1.class
 com\mycompany\prueba_1_netbeans\MenuAsistencia.class
 com\mycompany\prueba_1_netbeans\MenuCursos$4.class
@@ -84,6 +85,7 @@ com\mycompany\prueba_1_netbeans\MenuPrincipal$3.class
 com\mycompany\prueba_1_netbeans\Modificar$1.class
 com\mycompany\prueba_1_netbeans\ListaCursos$2.class
 com\mycompany\prueba_1_netbeans\MenuEstudiantes$3.class
+com\mycompany\prueba_1_netbeans\EstudianteNotNullException.class
 com\mycompany\prueba_1_netbeans\ListaAsistencia$5.class
 com\mycompany\prueba_1_netbeans\ListaEstudiantes$1.class
 com\mycompany\prueba_1_netbeans\Agregar$3.class

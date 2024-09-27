@@ -69,11 +69,9 @@ public class Asistencia{
                 case 4:
                     e.setEstado(4);
                     break;
-                case 5:
+                case 5, 0:
                     return false;
-                case 0:
-                    return false;
-                    
+
             }
         }
         asist.setCantidadAsist(contador);
