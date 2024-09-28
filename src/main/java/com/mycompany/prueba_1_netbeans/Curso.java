@@ -16,15 +16,15 @@ public class Curso{
     private final ArrayList <Estudiante> listCurso;
     private final Map <String,Estudiante> mapaEstudiante;
 
-    public Curso(String grado,String letra)throws CursoNotNullException{
+    public Curso(String grado,String letra)throws CursoNullPointerException {
         if(grado == null && letra == null){
-            throw new CursoNotNullException("Grado y letra tienen valor nulo");
+            throw new CursoNullPointerException("Grado y letra tienen valor nulo");
         }
         else if (grado == null){
-            throw new CursoNotNullException("Grado es un valor nulo");
+            throw new CursoNullPointerException("Grado es un valor nulo");
         }
         else if (letra == null){
-            throw new CursoNotNullException("Letra es un valor nulo");
+            throw new CursoNullPointerException("Letra es un valor nulo");
         }
         else{
             this.grado = grado;
@@ -50,9 +50,9 @@ public class Curso{
         return grado;
     }
 
-    public void setGrado(String grado)throws CursoNotNullException {
+    public void setGrado(String grado)throws CursoNullPointerException {
         if (grado == null){
-            throw new CursoNotNullException("Grado es un valor nulo");
+            throw new CursoNullPointerException("Grado es un valor nulo");
         }
         this.grado = grado;
     }
@@ -61,9 +61,9 @@ public class Curso{
         return letra;
     }
     
-    public void setLetra(String letra)throws CursoNotNullException {
+    public void setLetra(String letra)throws CursoNullPointerException {
         if (letra == null){
-            throw new CursoNotNullException("Letra es un valor nulo");
+            throw new CursoNullPointerException("Letra es un valor nulo");
         }
         this.letra = letra;
     }

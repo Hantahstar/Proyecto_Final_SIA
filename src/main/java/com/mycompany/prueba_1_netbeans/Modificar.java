@@ -205,7 +205,7 @@ public class Modificar extends javax.swing.JFrame {
                 vv.setLocation(this.getLocation());
                 vv.setVisible(true);
                 this.dispose();
-            }catch (EstudianteNotNullException e){
+            }catch (EstudianteNullPointerException e){
                 JOptionPane.showMessageDialog(this, "Error al intentar modificar estudiante\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
                 jTextFieldNombre.setText("");
                 jTextFieldApellido.setText("");

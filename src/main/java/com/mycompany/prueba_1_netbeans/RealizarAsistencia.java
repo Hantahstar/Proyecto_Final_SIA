@@ -211,7 +211,7 @@ public class RealizarAsistencia extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(this,"Pase de asistencia cancelado", "Cancelado", JOptionPane.WARNING_MESSAGE);
                         }
                     }
-                }catch (AsistenciaNotNullException e){
+                }catch (AsistenciaNullPointerException e){
                     JOptionPane.showMessageDialog(this, "Error al realizar la asistencia\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
                     jTextFieldFecha.setText("");
                     jTextFieldHora.setText("");

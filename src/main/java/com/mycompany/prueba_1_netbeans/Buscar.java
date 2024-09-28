@@ -44,6 +44,15 @@ public class Buscar extends javax.swing.JFrame {
         jTextFieldGradoOrRUT.setBackground(Color.lightGray);
         jTextFieldLetra.setBackground(Color.lightGray);
     }
+
+    public boolean isOpcion() {
+        return opcion;
+    }
+
+    public void setOpcion(boolean opcion) {
+        this.opcion = opcion;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -207,7 +216,7 @@ public class Buscar extends javax.swing.JFrame {
                             vv.setVisible(true);
                             this.dispose();
                         }
-                    }catch (CursoNotNullException e){
+                    }catch (CursoNullPointerException e){
                         JOptionPane.showMessageDialog(this, "Error al buscar el curso\nError: Algunos atributos del curso son nulos"+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
                         jTextFieldGradoOrRUT.setText("");
                         jTextFieldLetra.setText("");
@@ -227,7 +236,7 @@ public class Buscar extends javax.swing.JFrame {
                     if(curso.contieneEstudiante(jTextFieldGradoOrRUT.getText())){
                         e = curso.getEstudiante(jTextFieldGradoOrRUT.getText());
                         JOptionPane.showMessageDialog(this,"RUT: "+e.getRut()+"\nNombre: "+e.getNombre()+"\nApellido: "+e.getApellido()+"\nEstudiante Encontrado","Encontrado", JOptionPane.INFORMATION_MESSAGE);
-                        if(opcion){
+                        if(isOpcion()){
                             MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
                             vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                             vv.setSize(this.getSize());
@@ -249,7 +258,7 @@ public class Buscar extends javax.swing.JFrame {
                     else{
                         JOptionPane.showMessageDialog(this, "Estudiante no se encuentra en el sistema", "No existe", JOptionPane.INFORMATION_MESSAGE);
                     }
-                }catch (EstudianteNotNullException e){
+                }catch (EstudianteNullPointerException e){
                     JOptionPane.showMessageDialog(this, "Error al buscar el estudiante\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
                     jTextFieldGradoOrRUT.setText("");
                     jTextFieldLetra.setText("");

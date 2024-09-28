@@ -15,15 +15,15 @@ public class Asistencia{
     private Curso curso;
     private int cantidadPresentes;
     
-    public Asistencia(String fecha,String hora,Curso curso)throws AsistenciaNotNullException{
+    public Asistencia(String fecha,String hora,Curso curso)throws AsistenciaNullPointerException {
         if (fecha == null && hora == null){
-            throw new AsistenciaNotNullException("Fecha y hora tiene valor nulo");
+            throw new AsistenciaNullPointerException("Fecha y hora tiene valor nulo");
         }
         else if(fecha == null){
-            throw new AsistenciaNotNullException("Fecha tiene valor nulo");
+            throw new AsistenciaNullPointerException("Fecha tiene valor nulo");
         }
         else if(hora == null){
-            throw new AsistenciaNotNullException("Hora tiene valor nulo");
+            throw new AsistenciaNullPointerException("Hora tiene valor nulo");
         }
         else{
             this.curso = curso;
@@ -44,7 +44,7 @@ public class Asistencia{
     }
     public void setFecha(String fecha) {
         if (fecha == null){
-            throw new AsistenciaNotNullException("Fecha tiene valor nulo");
+            throw new AsistenciaNullPointerException("Fecha tiene valor nulo");
         }
         else{
             this.fecha = fecha;
@@ -56,7 +56,7 @@ public class Asistencia{
     }
     public void setHora(String hora) {
         if (hora == null){
-            throw new AsistenciaNotNullException("Hora tiene valor nulo");
+            throw new AsistenciaNullPointerException("Hora tiene valor nulo");
         }
         else{
             this.hora = hora;
@@ -68,7 +68,7 @@ public class Asistencia{
     }
     public void setCantidadPresentes(int cantidadPresentes){
         if (cantidadPresentes<0){
-            throw new AsistenciaNotNullException("La cantidad de presentes no puede tener valores negativos");
+            throw new AsistenciaNullPointerException("La cantidad de presentes no puede tener valores negativos");
         }
         else{
             this.cantidadPresentes = cantidadPresentes;
@@ -121,7 +121,7 @@ public class Asistencia{
             }
             asist.setCantidadPresentes(contador);
             return true;
-        }catch (AsistenciaNotNullException ex){
+        }catch (AsistenciaNullPointerException ex){
             JOptionPane.showMessageDialog(panel, "Error al pasar la asistencia\nError: "+ex.getMessage()+"\n"+shortStackTrace(ex,10), "Error", JOptionPane.ERROR_MESSAGE);
         }catch (Exception ex){
             JOptionPane.showMessageDialog(panel,"Error génerico\n"+shortStackTrace(ex,10),"Error",JOptionPane.ERROR_MESSAGE);

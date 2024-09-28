@@ -200,7 +200,7 @@ public class Eliminar extends javax.swing.JFrame {
                             vv.setVisible(true);
                             this.dispose();
                         }
-                    }catch (CursoNotNullException e){
+                    }catch (CursoNullPointerException e){
                         //mensaje de exception
                         JOptionPane.showMessageDialog(this, "Error al intentar eliminar el curso\nError: Algunos atributos del curso son nulos"+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
                         jTextFieldGradoOrRUT.setText("");
@@ -236,7 +236,7 @@ public class Eliminar extends javax.swing.JFrame {
                     else{
                         JOptionPane.showMessageDialog(this, "Estudiante no se encuentra\nEn el sistema", "No existe", JOptionPane.INFORMATION_MESSAGE);
                     }
-                }catch(EstudianteNotNullException e){
+                }catch(EstudianteNullPointerException e){
                     JOptionPane.showMessageDialog(this, "Error al intentar eliminar estudiante\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
                     jTextFieldGradoOrRUT.setText("");
                 }catch (Exception e){

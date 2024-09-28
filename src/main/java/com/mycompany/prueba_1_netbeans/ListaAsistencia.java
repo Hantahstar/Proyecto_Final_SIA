@@ -253,7 +253,7 @@ public class ListaAsistencia extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(this, "Asistencia no está registrada en el sistema", "No existe", JOptionPane.WARNING_MESSAGE);
                         }
 
-                    }catch (AsistenciaNotNullException e){
+                    }catch (AsistenciaNullPointerException e){
                         JOptionPane.showMessageDialog(this, "Error al realizar la asistencia\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
                         jTextFieldFecha.setText("");
                         jTextFieldHora.setText("");
@@ -282,7 +282,7 @@ public class ListaAsistencia extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(this, "Asistencia no está registrada en el sistema", "No existe", JOptionPane.WARNING_MESSAGE);
                         }
 
-                    }catch (AsistenciaNotNullException e){
+                    }catch (AsistenciaNullPointerException e){
                         JOptionPane.showMessageDialog(this, "Error al realizar la asistencia\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
                         jTextFieldFecha.setText("");
                         jTextFieldHora.setText("");

@@ -5,9 +5,6 @@
 package com.mycompany.prueba_1_netbeans;
 
 import java.awt.Color;
-import java.io.PrintWriter;
-import java.io.StringReader;
-import java.io.StringWriter;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -20,14 +17,12 @@ public class Agregar extends javax.swing.JFrame {
     private Colegio colegio;
     private Curso curso;
     private String titulo,text1,text2;
-    private boolean opcion;
     private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
     private final String pathCursos = "src/main/java/Cursos.csv";
     private final String pathAsistencia = "src/main/java/Asistencia.csv";
     //agregar curso
     public Agregar(Colegio colegio) {
         this.colegio = colegio;
-        this.opcion = false;
         initComponents();
         visual();
         this.remove(jLabelApellido);
@@ -37,7 +32,6 @@ public class Agregar extends javax.swing.JFrame {
     public Agregar(Colegio colegio,Curso curso){
         this.colegio = colegio;
         this.curso = curso;
-        this.opcion = false;
         initComponents();
         visual();
     }
@@ -55,8 +49,6 @@ public class Agregar extends javax.swing.JFrame {
         jTextFieldLetraOrNombre.setBackground(Color.lightGray);
     }
 
-
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -294,7 +286,7 @@ public class Agregar extends javax.swing.JFrame {
                     else{
                         JOptionPane.showMessageDialog(this, "Curso ya está en el sistema", "Existe", JOptionPane.INFORMATION_MESSAGE);
                     }
-                }catch (CursoNotNullException e){
+                }catch (CursoNullPointerException e){
                     //muestra el StackTrace de la excepción causada
                     JOptionPane.showMessageDialog(this, "Error al crear el curso\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
                     jTextFieldGradoOrRUT.setText("");
@@ -329,7 +321,7 @@ public class Agregar extends javax.swing.JFrame {
                         vv.setVisible(true);
                         this.dispose();
                     }
-                }catch(EstudianteNotNullException e){
+                }catch(EstudianteNullPointerException e){
                     JOptionPane.showMessageDialog(this, "Error al crear al estudiante\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
                     jTextFieldGradoOrRUT.setText("");
                     jTextFieldLetraOrNombre.setText("");
