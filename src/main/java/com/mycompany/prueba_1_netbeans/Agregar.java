@@ -269,7 +269,6 @@ public class Agregar extends javax.swing.JFrame {
                     if (colegio.verificarCurso(c)==null){
                         if (c.formatoCorrecto()){
                             colegio.agregarCurso(c,pathCursos);
-                            colegio.actualizar(pathCursos,2);
                             JOptionPane.showMessageDialog(this, "Curso agregado", "Exito!", JOptionPane.INFORMATION_MESSAGE);
                             MenuCursos vv = new MenuCursos(colegio);
                             vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -312,7 +311,6 @@ public class Agregar extends javax.swing.JFrame {
                     else{
                         curso.agregarEstudiante(jTextFieldGradoOrRUT.getText(),e);
                         curso.agregarEstudiante(e,pathEstudiantes);
-                        colegio.actualizar(pathEstudiantes,1);
                         JOptionPane.showMessageDialog(this, "Estudiante agregado", "Exito!", JOptionPane.INFORMATION_MESSAGE);
                         MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
                         vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -325,6 +323,7 @@ public class Agregar extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Error al crear al estudiante\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
                     jTextFieldGradoOrRUT.setText("");
                     jTextFieldLetraOrNombre.setText("");
+                    jTextFieldApellido.setText("");
                 }catch (Exception e){
                     JOptionPane.showMessageDialog(this,"Error génerico","Error",JOptionPane.ERROR_MESSAGE);
                 }
