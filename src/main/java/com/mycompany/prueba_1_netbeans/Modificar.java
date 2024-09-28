@@ -211,6 +211,7 @@ public class Modificar extends javax.swing.JFrame {
                 jTextFieldApellido.setText("");
             }catch (Exception e){
                 JOptionPane.showMessageDialog(this,"Error génerico\n"+colegio.shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);                jTextFieldNombre.setText("");
+                jTextFieldNombre.setText("");
                 jTextFieldApellido.setText("");
             }
 

@@ -265,6 +265,7 @@ public class Buscar extends javax.swing.JFrame {
                 }catch (Exception e){
                     JOptionPane.showMessageDialog(this,"Error génerico\n"+colegio.shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);
                     jTextFieldGradoOrRUT.setText("");
+                    jTextFieldLetra.setText("");
                 }
 
             }   

@@ -326,6 +326,9 @@ public class Agregar extends javax.swing.JFrame {
                     jTextFieldApellido.setText("");
                 }catch (Exception e){
                     JOptionPane.showMessageDialog(this,"Error génerico","Error",JOptionPane.ERROR_MESSAGE);
+                    jTextFieldGradoOrRUT.setText("");
+                    jTextFieldLetraOrNombre.setText("");
+                    jTextFieldApellido.setText("");
                 }
 
             }
