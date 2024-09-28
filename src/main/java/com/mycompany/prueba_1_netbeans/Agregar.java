@@ -299,6 +299,10 @@ public class Agregar extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Error al crear el curso\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
                     jTextFieldGradoOrRUT.setText("");
                     jTextFieldLetraOrNombre.setText("");
+                }catch (Exception e){
+                    JOptionPane.showMessageDialog(this,"Error génerico\n"+colegio.shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);
+                    jTextFieldGradoOrRUT.setText("");
+                    jTextFieldLetraOrNombre.setText("");
                 }
 
             
@@ -329,6 +333,8 @@ public class Agregar extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Error al crear al estudiante\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
                     jTextFieldGradoOrRUT.setText("");
                     jTextFieldLetraOrNombre.setText("");
+                }catch (Exception e){
+                    JOptionPane.showMessageDialog(this,"Error génerico","Error",JOptionPane.ERROR_MESSAGE);
                 }
 
             }

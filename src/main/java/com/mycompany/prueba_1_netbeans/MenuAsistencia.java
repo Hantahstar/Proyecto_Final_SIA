@@ -164,10 +164,11 @@ public class MenuAsistencia extends javax.swing.JFrame {
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         if (evt.getSource()==jButtonBuscar){
-            if(colegio.asistenciaEstaVacio() || !colegio.verificarAsistencia(curso)){
+            boolean encontradoBuscar = colegio.verificarAsistencia(curso);
+            if(colegio.asistenciaEstaVacio() || !encontradoBuscar){
                 JOptionPane.showMessageDialog(this, "No hay asistencias disponibles", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
-            else{
+            else if(encontradoBuscar){
                 //true para buscar
                 ListaAsistencia vv = new ListaAsistencia(colegio,curso,true);
                 vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -181,10 +182,11 @@ public class MenuAsistencia extends javax.swing.JFrame {
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         if (evt.getSource()==jButtonEliminar){
-            if(colegio.asistenciaEstaVacio() || !colegio.verificarAsistencia(curso)){
+            boolean encontradoEliminar = colegio.verificarAsistencia(curso);
+            if(colegio.asistenciaEstaVacio() || !encontradoEliminar){
                 JOptionPane.showMessageDialog(this, "No hay asistencias disponibles", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
-            else{
+            else if(encontradoEliminar){
                 //false para lo otro
                 ListaAsistencia vv = new ListaAsistencia(colegio,curso,false);
                 vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

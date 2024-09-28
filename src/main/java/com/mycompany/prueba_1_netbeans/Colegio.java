@@ -93,9 +93,13 @@ public class Colegio{
     }
     public Asistencia verificarAsistencia(Asistencia a){
         int i;
+        Asistencia auxAsist;
+        Curso auxCurso;
         for (i=0;asistencias.size()>i;i++){
-            if(asistencias.get(i).getFecha().equals(a.getFecha())&&asistencias.get(i).getHora().equals(a.getHora())){
-                if (asistencias.get(i).getCurso().getGrado().equals(a.getCurso().getGrado()) && asistencias.get(i).getCurso().getLetra().equals(a.getCurso().getLetra())) {
+            auxAsist = asistencias.get(i);
+            if(auxAsist.getFecha().equals(a.getFecha())&&auxAsist.getHora().equals(a.getHora())){
+                auxCurso = auxAsist.getCurso();
+                if (auxCurso.getGrado().equals(a.getCurso().getGrado()) && auxCurso.getLetra().equals(a.getCurso().getLetra())) {
                     return asistencias.get(i);
                 }
             }
@@ -285,7 +289,7 @@ public class Colegio{
                 if (dif == 0 || !grado.equals(nuevoGrado) || !letra.equals(nuevaLetra) || !fecha.equals(nuevaFecha) || !hora.equals(nuevaHora)) {
                     if (dif > 0 && curso!=null) {
                         Asistencia asist = new Asistencia(fecha, hora, curso);
-                        asist.setCantidadAsist(cont);
+                        asist.setCantidadPresentes(cont);
                         asistencias.add(asist);
                         cont = 0;
                     }

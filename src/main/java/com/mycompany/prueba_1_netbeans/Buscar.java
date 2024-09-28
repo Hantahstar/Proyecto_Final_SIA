@@ -211,6 +211,10 @@ public class Buscar extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Error al buscar el curso\nError: Algunos atributos del curso son nulos"+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
                         jTextFieldGradoOrRUT.setText("");
                         jTextFieldLetra.setText("");
+                    }catch (Exception e){
+                        JOptionPane.showMessageDialog(this,"Error génerico\n"+colegio.shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);                        jTextFieldGradoOrRUT.setText("");
+                        jTextFieldGradoOrRUT.setText("");
+                        jTextFieldLetra.setText("");
                     }
 
                 }    
@@ -232,7 +236,7 @@ public class Buscar extends javax.swing.JFrame {
                             this.dispose();
                         }
                         else{
-                            //modificar
+                            //Ventana a modificar
                             Modificar vv = new  Modificar(colegio,curso,e);
                             vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                             vv.setSize(this.getSize());
@@ -247,6 +251,10 @@ public class Buscar extends javax.swing.JFrame {
                     }
                 }catch (EstudianteNotNullException e){
                     JOptionPane.showMessageDialog(this, "Error al buscar el estudiante\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+                    jTextFieldGradoOrRUT.setText("");
+                    jTextFieldLetra.setText("");
+                }catch (Exception e){
+                    JOptionPane.showMessageDialog(this,"Error génerico\n"+colegio.shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);
                     jTextFieldGradoOrRUT.setText("");
                 }
 

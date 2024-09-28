@@ -237,39 +237,60 @@ public class ListaAsistencia extends javax.swing.JFrame {
             else{
                 //buscar asistencia
                 if(opcion){
-                    Asistencia asist = new Asistencia(jTextFieldFecha.getText(),jTextFieldHora.getText(),curso);
-                    asist = colegio.verificarAsistencia(asist);
-                    if(asist!=null){
-                        colegio.mostrarAsistencia(asist,this);
-                        MenuAsistencia vv = new MenuAsistencia(colegio,curso);
-                        vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                        vv.setSize(this.getSize());
-                        vv.setLocation(this.getLocation());
-                        vv.setVisible(true);
-                        this.dispose(); 
+                    try{
+                        Asistencia asist = new Asistencia(jTextFieldFecha.getText(),jTextFieldHora.getText(),curso);
+                        asist = colegio.verificarAsistencia(asist);
+                        if(asist!=null){
+                            colegio.mostrarAsistencia(asist,this);
+                            MenuAsistencia vv = new MenuAsistencia(colegio,curso);
+                            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            vv.setSize(this.getSize());
+                            vv.setLocation(this.getLocation());
+                            vv.setVisible(true);
+                            this.dispose();
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(this, "Asistencia no está registrada en el sistema", "No existe", JOptionPane.WARNING_MESSAGE);
+                        }
+
+                    }catch (AsistenciaNotNullException e){
+                        JOptionPane.showMessageDialog(this, "Error al realizar la asistencia\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+                        jTextFieldFecha.setText("");
+                        jTextFieldHora.setText("");
+                    }catch (Exception e){
+                        JOptionPane.showMessageDialog(this,"Error génerico\n"+colegio.shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);
                     }
-                    else{
-                        JOptionPane.showMessageDialog(this, "Asistencia no está registrada en el sistema", "No existe", JOptionPane.WARNING_MESSAGE);
-                    }
+
                 }
                 
                 //eliminar asistencia
                 else{
-                    Asistencia asist = new Asistencia(jTextFieldFecha.getText(),jTextFieldHora.getText(),curso);
-                    asist = colegio.verificarAsistencia(asist);
-                    if(asist!=null){
-                        colegio.removerAsistencia(asist);
-                        JOptionPane.showMessageDialog(this, "Asistencia de fecha: "+asist.getFecha()+"\nhora: "+asist.getHora(), "Eliminado", JOptionPane.INFORMATION_MESSAGE);
-                        MenuAsistencia vv = new MenuAsistencia(colegio,curso);
-                        vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                        vv.setSize(this.getSize());
-                        vv.setLocation(this.getLocation());
-                        vv.setVisible(true);
-                        this.dispose();                         
+                    try{
+                        Asistencia asist = new Asistencia(jTextFieldFecha.getText(),jTextFieldHora.getText(),curso);
+                        asist = colegio.verificarAsistencia(asist);
+                        if(asist!=null){
+                            colegio.removerAsistencia(asist);
+                            JOptionPane.showMessageDialog(this, "Asistencia de fecha: "+asist.getFecha()+"\nhora: "+asist.getHora(), "Eliminado", JOptionPane.INFORMATION_MESSAGE);
+                            MenuAsistencia vv = new MenuAsistencia(colegio,curso);
+                            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            vv.setSize(this.getSize());
+                            vv.setLocation(this.getLocation());
+                            vv.setVisible(true);
+                            this.dispose();
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(this, "Asistencia no está registrada en el sistema", "No existe", JOptionPane.WARNING_MESSAGE);
+                        }
+
+                    }catch (AsistenciaNotNullException e){
+                        JOptionPane.showMessageDialog(this, "Error al realizar la asistencia\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+                        jTextFieldFecha.setText("");
+                        jTextFieldHora.setText("");
+                    }catch (Exception e){
+                        JOptionPane.showMessageDialog(this,"Error génerico\n"+colegio.shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);
                     }
-                    else{
-                        JOptionPane.showMessageDialog(this, "Asistencia no está registrada en el sistema", "No existe", JOptionPane.WARNING_MESSAGE);
-                    }                   
+
+
                 }
             }
         

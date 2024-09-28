@@ -191,26 +191,34 @@ public class RealizarAsistencia extends javax.swing.JFrame {
             
             else{
                 //crear copia  del curso
-                //aun sin hacer
-                Asistencia asist = new Asistencia(jTextFieldFecha.getText(),jTextFieldHora.getText(),new Curso(curso));
-                if(colegio.verificarAsistencia(asist)!=null){
-                    JOptionPane.showMessageDialog(this, "Asistencia ya existe en el sistema", "Existe", JOptionPane.INFORMATION_MESSAGE);
-                }
-                else{
-                    if(asist.pasaAsistencia(curso,asist,this)){
-                        colegio.agregarAsistencia(asist);
-                        JOptionPane.showMessageDialog(this,"Asistencia fecha : "+asist.getFecha()+"\nhora: "+asist.getHora(), "Existe", JOptionPane.INFORMATION_MESSAGE);
-                        MenuAsistencia vv = new MenuAsistencia(colegio,curso);
-                        vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                        vv.setSize(this.getSize());
-                        vv.setLocation(this.getLocation());
-                        vv.setVisible(true);
-                        this.dispose();  
+                try{
+                    Asistencia asist = new Asistencia(jTextFieldFecha.getText(),jTextFieldHora.getText(),new Curso(curso));
+                    if(colegio.verificarAsistencia(asist)!=null){
+                        JOptionPane.showMessageDialog(this, "Asistencia ya existe en el sistema", "Existe", JOptionPane.INFORMATION_MESSAGE);
                     }
                     else{
-                        JOptionPane.showMessageDialog(this,"Pase de asistencia cancelado", "Cancelado", JOptionPane.WARNING_MESSAGE);
+                        if(asist.pasaAsistencia(curso,asist,this)){
+                            colegio.agregarAsistencia(asist);
+                            JOptionPane.showMessageDialog(this,"Asistencia fecha : "+asist.getFecha()+"\nhora: "+asist.getHora(), "Existe", JOptionPane.INFORMATION_MESSAGE);
+                            MenuAsistencia vv = new MenuAsistencia(colegio,curso);
+                            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            vv.setSize(this.getSize());
+                            vv.setLocation(this.getLocation());
+                            vv.setVisible(true);
+                            this.dispose();
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(this,"Pase de asistencia cancelado", "Cancelado", JOptionPane.WARNING_MESSAGE);
+                        }
                     }
+                }catch (AsistenciaNotNullException e){
+                    JOptionPane.showMessageDialog(this, "Error al realizar la asistencia\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+                    jTextFieldFecha.setText("");
+                    jTextFieldHora.setText("");
+                }catch (Exception e){
+                    JOptionPane.showMessageDialog(this,"Error génerico\n"+colegio.shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);
                 }
+
             }
             
     }

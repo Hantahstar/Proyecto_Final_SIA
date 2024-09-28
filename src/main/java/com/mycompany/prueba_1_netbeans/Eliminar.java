@@ -205,6 +205,10 @@ public class Eliminar extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Error al intentar eliminar el curso\nError: Algunos atributos del curso son nulos"+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
                         jTextFieldGradoOrRUT.setText("");
                         jTextFieldLetra.setText("");
+                    }catch (Exception e){
+                        JOptionPane.showMessageDialog(this,"Error génerico\n"+colegio.shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);
+                        jTextFieldGradoOrRUT.setText("");
+                        jTextFieldLetra.setText("");
                     }
 
 
@@ -233,7 +237,10 @@ public class Eliminar extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Estudiante no se encuentra\nEn el sistema", "No existe", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }catch(EstudianteNotNullException e){
-                    JOptionPane.showMessageDialog(this, "Error al intentar modificar estudiante\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Error al intentar eliminar estudiante\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+                    jTextFieldGradoOrRUT.setText("");
+                }catch (Exception e){
+                    JOptionPane.showMessageDialog(this,"Error génerico\n"+colegio.shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);
                     jTextFieldGradoOrRUT.setText("");
                 }
             }

@@ -18,7 +18,7 @@ public class Curso{
 
     public Curso(String grado,String letra)throws CursoNotNullException{
         if(grado == null && letra == null){
-            throw new CursoNotNullException("Grado y letra es un valor nulo");
+            throw new CursoNotNullException("Grado y letra tienen valor nulo");
         }
         else if (grado == null){
             throw new CursoNotNullException("Grado es un valor nulo");
@@ -32,9 +32,6 @@ public class Curso{
             this.listCurso = new ArrayList<>();
             this.mapaEstudiante = new HashMap<>();
         }
-
-
-
     }
     //crear una copia del curso
     public Curso(Curso otroCurso){
