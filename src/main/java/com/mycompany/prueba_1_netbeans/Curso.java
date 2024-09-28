@@ -5,9 +5,9 @@
 package com.mycompany.prueba_1_netbeans;
 
 import au.com.bytecode.opencsv.CSVWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+
+import javax.swing.*;
+import java.io.*;
 import java.util.*;
 
 public class Curso{
@@ -130,7 +130,7 @@ public class Curso{
         return mapaEstudiante.containsKey(rut);
     }
     
-    public boolean formatoCorrecto(){
+    public boolean formatoCorrecto()throws CursoNullPointerException{
         String nivel;
         if (((Character.isDigit(grado.charAt(0))) && (Character.isAlphabetic(letra.charAt(0)))) && letra.length() == 1){
             if( ((Character.isAlphabetic(grado.charAt(1))) && (Character.isAlphabetic(grado.charAt(2)))) && (grado.charAt(3) == ' ')){
@@ -153,7 +153,7 @@ public class Curso{
     }
     
     
-    public void toUpperCase(){
+    public void toUpperCase()throws CursoNullPointerException{
         String antes,despues;
         setLetra(letra.toUpperCase());
         antes = grado.substring(0,4);
@@ -219,32 +219,51 @@ public class Curso{
     public String toString(){
         return (grado+","+letra+","+Long.toString(sizeCurso())+"\n");
     }
-    
-    public void cargarEstudiantes(List<String[]> datosCSV) {
 
-        for (String[] fila : datosCSV) {
-            if (fila.length >= 5) { 
-                String rut = fila[0];
-                String nombre = fila[1];
-                String apellido = fila[2];
-                String gradoM = fila[3]; 
-                String letraM = fila[4]; 
-
-
-                if (this.grado.equals(gradoM) && this.letra.equals(letraM)) {
-                    Estudiante estudiante = new Estudiante(nombre, apellido, rut);
-                    listCurso.add(estudiante);
-                    mapaEstudiante.put(rut,estudiante);
-                }
-            } else {
-                System.out.println("Error: fila con formato incorrecto en el CSV.");
-            }
+    public String shortStackTrace(Exception e,int maxLineas){
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        e.printStackTrace(pw);
+        String[] stackTraceString = sw.toString().split("\n");
+        StringBuilder shortStackTrace = new StringBuilder();
+        for (int i = 0; i< Math.min((stackTraceString.length),maxLineas);i++){
+            shortStackTrace.append(stackTraceString[i]).append("\n");
         }
+        return shortStackTrace.toString();
+    }
+
+    public void cargarEstudiantes(List<String[]> datosCSV, JFrame panel) {
+        try{
+            for (String[] fila : datosCSV) {
+                if (fila.length >= 5) {
+                    String rut = fila[0];
+                    String nombre = fila[1];
+                    String apellido = fila[2];
+                    String gradoM = fila[3];
+                    String letraM = fila[4];
+
+
+                    if (this.grado.equals(gradoM) && this.letra.equals(letraM)) {
+                        Estudiante estudiante = new Estudiante(nombre, apellido, rut);
+                        listCurso.add(estudiante);
+                        mapaEstudiante.put(rut,estudiante);
+                    }
+                } else {
+                    System.out.println("Error: fila con formato incorrecto en el CSV.");
+                }
+            }
+        }catch (EstudianteNullPointerException e){
+            JOptionPane.showMessageDialog(panel, "Error al cargar un estudiante\nError: "+e.getMessage()+"\n"+shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(panel,"Error génerico\n"+shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);
+        }
+
     } 
     
     
     
-    public void actualizarCSV() {
+    public void actualizarCSVEstudiantes() {
         File file = new File("src/main/java/Estudiantes.csv");
         try (CSVWriter csvWriter = new CSVWriter(new FileWriter(file,true))) { 
             for (Estudiante estudiante : listCurso) {

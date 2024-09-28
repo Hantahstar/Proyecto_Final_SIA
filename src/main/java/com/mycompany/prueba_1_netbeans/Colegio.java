@@ -240,7 +240,7 @@ public class Colegio{
         return shortStackTrace.toString();
     }
 
-    public void actualizarCSV()
+    public void actualizarCSVCursos()
     {
         File file = new File("src/main/java/Cursos.csv");
         try(CSVWriter csvWriter = new CSVWriter(new FileWriter(file,true)))
@@ -257,7 +257,7 @@ public class Colegio{
         }
     }
 
-    public void cargarEstudiantesDesdeCSV() {
+    public void cargarEstudiantesDesdeCSV(JFrame panel) {
 
         File file = new File("src/main/java/Estudiantes.csv");
 
@@ -265,62 +265,76 @@ public class Colegio{
         List <String[]> datosCSV = lectorCSV.leerCSV(file);
 
         for (Curso curso : cursos) {
-            curso.cargarEstudiantes(datosCSV); 
+            curso.cargarEstudiantes(datosCSV,panel);
         }
     }
 
-    public void cargarAsistenciaDesdeCSV() {
-        File file = new File("src/main/java/Asistencia.csv");
+    public void cargarAsistenciaDesdeCSV(JFrame panel) {
+        File file = new File("src/main/java/Asistencias.csv");
         LeerYEscribirCSV lectorCSV = new LeerYEscribirCSV();
         List<String[]> datosCSV = lectorCSV.leerCSV(file);
-    
-    if (datosCSV != null) {
-        String grado = "", letra = "", fecha = "", hora = "";
-        Curso curso = null;
-        int dif = 0;
-        int cont = 0;
-        Estudiante e;
-        for (String[] aux : datosCSV) {
-            if (aux.length >= 5) {
-                String nuevoGrado = aux[0];
-                String nuevaLetra = aux[1];
-                String nuevaFecha = aux[2];
-                String nuevaHora = aux[3];
-                if (dif == 0 || !grado.equals(nuevoGrado) || !letra.equals(nuevaLetra) || !fecha.equals(nuevaFecha) || !hora.equals(nuevaHora)) {
-                    if (dif > 0 && curso!=null) {
-                        Asistencia asist = new Asistencia(fecha, hora, curso);
-                        asist.setCantidadPresentes(cont);
-                        asistencias.add(asist);
-                        cont = 0;
+        try{
+            if (datosCSV != null) {
+                String grado = "", letra = "", fecha = "", hora = "";
+                Curso curso = null;
+                int dif = 0;
+                int cont = 0;
+                Estudiante e;
+                for (String[] aux : datosCSV) {
+                    if (aux.length >= 5) {
+                        String nuevoGrado = aux[0];
+                        String nuevaLetra = aux[1];
+                        String nuevaFecha = aux[2];
+                        String nuevaHora = aux[3];
+                        if (dif == 0 || !grado.equals(nuevoGrado) || !letra.equals(nuevaLetra) || !fecha.equals(nuevaFecha) || !hora.equals(nuevaHora)) {
+                            if (dif > 0 && curso!=null) {
+                                Asistencia asist = new Asistencia(fecha, hora, curso);
+                                asist.setCantidadPresentes(cont);
+                                asistencias.add(asist);
+                                cont = 0;
+                            }
+
+                            grado = nuevoGrado;
+                            letra = nuevaLetra;
+                            fecha = nuevaFecha;
+                            hora = nuevaHora;
+                            curso = new Curso(grado, letra);
+                            dif++;
+                        }
+                        e = new Estudiante(aux[5], aux[6],aux[4]);
+                        int estado = Integer.parseInt(aux[7]);
+                        if (estado == 1){
+                            cont++;
+                        }
+                        e.setEstado(estado);
+                        curso.agregarEstudiante(aux[4], e);
+                        curso.agregarEstudiante(e);
                     }
+                }
 
-                    grado = nuevoGrado;
-                    letra = nuevaLetra;
-                    fecha = nuevaFecha;
-                    hora = nuevaHora;
-                    curso = new Curso(grado, letra);
-                    dif++;
+                // Agregar la última asistencia después del último cambio
+                if (dif > 0) {
+                    Asistencia asist = new Asistencia(fecha, hora, curso);
+                    asistencias.add(asist);
                 }
-                e = new Estudiante(aux[5], aux[6],aux[4]);
-                int estado = Integer.parseInt(aux[7]);
-                if (estado == 1){
-                    cont++;
-                }
-                e.setEstado(estado);
-                curso.agregarEstudiante(aux[4], e);
-                curso.agregarEstudiante(e);
             }
+            else {
+                System.out.println("Error: no se pudo leer el archivo CSV.");
+            }
+        }catch (CursoNullPointerException e){
+            JOptionPane.showMessageDialog(panel, "Error al cargar el curso en la asistencia\nError: "+e.getMessage()+"\n"+shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+
+        }catch (EstudianteNullPointerException e){
+            JOptionPane.showMessageDialog(panel, "Error al cargar un estudiante en la asistencia\nError: "+e.getMessage()+"\n"+shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+
+        }catch (AsistenciaNullPointerException e){
+            JOptionPane.showMessageDialog(panel, "Error al cargar una asistencia\nError: "+e.getMessage()+"\n"+shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(panel,"Error génerico\n"+shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);
         }
 
-        // Agregar la última asistencia después del último cambio
-        if (dif > 0) {
-            Asistencia asist = new Asistencia(fecha, hora, curso);
-            asistencias.add(asist);
-        }
-    } else {
-        System.out.println("Error: no se pudo leer el archivo CSV.");
     }
-}
 
     public void actualizar(String path,int numero){
         File file = new File(path);
@@ -330,12 +344,12 @@ public class Colegio{
         {
             p.encabezadoEstudiantes(file);
             for (Curso curso : cursos) {
-                curso.actualizarCSV();
+                curso.actualizarCSVEstudiantes();
             }
         }
         else if(numero == 2){
             p.encabezadoCursos(file);
-            actualizarCSV();
+            actualizarCSVCursos();
         }
         else{
             p.encabezadoAsistencia(file);
@@ -347,7 +361,7 @@ public class Colegio{
 
     public void actualizarCSVAsistencias(){
 
-        File file = new File("src/main/java/Asistencia.csv");
+        File file = new File("src/main/java/Asistencias.csv");
         try (CSVWriter csvWriter = new CSVWriter(new FileWriter(file,true)))
         {
             for (int i = 0 ; i < asistencias.size();i++)
@@ -374,28 +388,34 @@ public class Colegio{
     }
 
 
-    public void cargarCursosDesdeCSV() {
+    public void cargarCursosDesdeCSV(JFrame panel) {
         File file = new File("src/main/java/Cursos.csv");
 
         LeerYEscribirCSV lectorCSV = new LeerYEscribirCSV();
         List<String[]> datosCSV = lectorCSV.leerCSV(file);
+        try{
+            if (datosCSV != null) {
+                for (String[] fila : datosCSV) {
 
-        if (datosCSV != null) {
-            for (String[] fila : datosCSV) {
-                
-                if (fila.length >= 2) { 
-                    String grado = fila[0];
-                    String letra = fila[1];
+                    if (fila.length >= 2) {
+                        String grado = fila[0];
+                        String letra = fila[1];
 
-                    
-                    Curso curso = new Curso(grado, letra);
-                    cursos.add(curso);
-                } else {
-                    System.out.println("Error: fila con formato incorrecto en el CSV.");
+
+                        Curso curso = new Curso(grado, letra);
+                        cursos.add(curso);
+                    } else {
+                        System.out.println("Error: fila con formato incorrecto en el CSV.");
+                    }
                 }
+            } else {
+                System.out.println("Error: no se pudo leer el archivo CSV.");
             }
-        } else {
-            System.out.println("Error: no se pudo leer el archivo CSV.");
+        }catch(CursoNullPointerException e){
+            JOptionPane.showMessageDialog(panel, "Error al cargar un curso\nError: "+e.getMessage()+"\n"+shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(panel,"Error génerico\n"+shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);
         }
+
     }
 }

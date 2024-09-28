@@ -16,7 +16,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     
     private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
     private final String pathCursos = "src/main/java/Cursos.csv";
-    private final String pathAsistencia = "src/main/java/Asistencia.csv";
+    private final String pathAsistencia = "src/main/java/Asistencias.csv";
     
     public MenuPrincipal(Colegio colegio) {
         this.colegio = colegio;

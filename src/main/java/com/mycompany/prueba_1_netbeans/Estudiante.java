@@ -10,7 +10,7 @@ public class Estudiante {
     private String rut;
     private int estado;
 
-    public Estudiante(String nombre,String apellido,String rut){
+    public Estudiante(String nombre,String apellido,String rut)throws EstudianteNullPointerException{
         if (nombre == null && apellido == null && rut == null){
             throw new EstudianteNullPointerException("Nombre,apellido y RUT son nulos");
         }
@@ -49,7 +49,7 @@ public class Estudiante {
     public String getNombre() {
         return nombre;
     }
-    public void setNombre(String nombre) {
+    public void setNombre(String nombre)throws EstudianteNullPointerException {
         if (nombre == null){
             throw new EstudianteNullPointerException("Nombre es nulo");
         }
@@ -61,7 +61,7 @@ public class Estudiante {
     public String getApellido() {
         return apellido;
     }
-    public void setApellido(String apellido) {
+    public void setApellido(String apellido) throws EstudianteNullPointerException{
         if (apellido == null){
             throw new EstudianteNullPointerException("Apellido es nulo");
         }
@@ -73,7 +73,7 @@ public class Estudiante {
     public String getRut() {
         return rut;
     }
-    public void setRut(String rut) {
+    public void setRut(String rut)throws EstudianteNullPointerException {
         if (rut == null){
             throw new EstudianteNullPointerException("RUT es nulo");
         }
@@ -114,7 +114,7 @@ public class Estudiante {
         return nombreOrApellido;
     }
 
-    public void toUpperCase(){
+    public void toUpperCase()throws EstudianteNullPointerException{
         setNombre(toUpperCaseNombreOrApellido(nombre));
         setApellido(toUpperCaseNombreOrApellido(apellido));
     }

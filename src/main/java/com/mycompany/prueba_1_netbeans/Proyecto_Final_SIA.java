@@ -14,12 +14,13 @@ public class Proyecto_Final_SIA {
     
     public static void main(String[] args) {
         Colegio colegio = new Colegio();
-        colegio.cargarCursosDesdeCSV();
-        colegio.cargarEstudiantesDesdeCSV();
-        colegio.cargarAsistenciaDesdeCSV();
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 MenuPrincipal vv = new MenuPrincipal(colegio);
+                colegio.cargarCursosDesdeCSV(vv);
+                colegio.cargarEstudiantesDesdeCSV(vv);
+                colegio.cargarAsistenciaDesdeCSV(vv);
                 vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 vv.setVisible(true);
             }

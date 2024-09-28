@@ -16,7 +16,7 @@ public class ListaCursos extends javax.swing.JFrame {
     private String titulo;
     private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
     private final String pathCursos = "src/main/java/Cursos.csv";
-    private final String pathAsistencia = "src/main/java/Asistencia.csv";
+    private final String pathAsistencia = "src/main/java/Asistencias.csv";
     public ListaCursos(Colegio colegio,int opcion) {
         this.colegio = colegio;
         this.opcion = opcion;

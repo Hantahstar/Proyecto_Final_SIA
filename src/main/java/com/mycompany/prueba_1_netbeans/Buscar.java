@@ -16,7 +16,7 @@ public class Buscar extends javax.swing.JFrame {
     private boolean opcion;
     private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
     private final String pathCursos = "src/main/java/Cursos.csv";
-    private final String pathAsistencia = "src/main/java/Asistencia.csv";
+    private final String pathAsistencia = "src/main/java/Asistencias.csv";
     //buscar curso
     public Buscar(Colegio colegio) {
         this.colegio = colegio;

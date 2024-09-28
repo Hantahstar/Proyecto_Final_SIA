@@ -42,7 +42,7 @@ public class Asistencia{
     public String getFecha() {
         return fecha;
     }
-    public void setFecha(String fecha) {
+    public void setFecha(String fecha)throws AsistenciaNullPointerException {
         if (fecha == null){
             throw new AsistenciaNullPointerException("Fecha tiene valor nulo");
         }
@@ -54,7 +54,7 @@ public class Asistencia{
     public String getHora() {
         return hora;
     }
-    public void setHora(String hora) {
+    public void setHora(String hora)throws AsistenciaNullPointerException {
         if (hora == null){
             throw new AsistenciaNullPointerException("Hora tiene valor nulo");
         }
@@ -66,7 +66,7 @@ public class Asistencia{
     public int getCantidadAsist() {
         return cantidadPresentes;
     }
-    public void setCantidadPresentes(int cantidadPresentes){
+    public void setCantidadPresentes(int cantidadPresentes)throws AsistenciaNullPointerException{
         if (cantidadPresentes<0){
             throw new AsistenciaNullPointerException("La cantidad de presentes no puede tener valores negativos");
         }

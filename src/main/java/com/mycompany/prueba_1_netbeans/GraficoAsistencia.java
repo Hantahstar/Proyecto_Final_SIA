@@ -25,7 +25,7 @@ public class GraficoAsistencia extends javax.swing.JFrame {
     private Curso curso;
     private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
     private final String pathCursos = "src/main/java/Cursos.csv";
-    private final String pathAsistencia = "src/main/java/Asistencia.csv";
+    private final String pathAsistencia = "src/main/java/Asistencias.csv";
     public GraficoAsistencia(HashMap<String, Double> mapaPorcentaje,Colegio colegio,Curso curso) {
         this.mapaPorcentaje = mapaPorcentaje;
         this.colegio = colegio;
