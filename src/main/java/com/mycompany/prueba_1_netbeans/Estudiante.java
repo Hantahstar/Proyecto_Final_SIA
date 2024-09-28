@@ -94,15 +94,29 @@ public class Estudiante {
     public int getEstado(){
         return this.estado;
     }
-    
+
+    private String toUpperCaseNombreOrApellido(String nombreOrApellido){
+        String despues,antes;
+        char letra;
+        for(int i=0;nombreOrApellido.length()>i;i++){
+            if(i == 0){
+                letra = Character.toUpperCase(nombreOrApellido.charAt(0));
+                despues = nombreOrApellido.substring(1);
+                nombreOrApellido = letra+despues;
+            }
+            else if(nombreOrApellido.charAt(i) == ' '){
+                antes = nombreOrApellido.substring(0,i+1);
+                letra = Character.toUpperCase(nombreOrApellido.charAt(i+1));
+                despues = nombreOrApellido.substring(i+2);
+                nombreOrApellido = antes+letra+despues;
+            }
+        }
+        return nombreOrApellido;
+    }
+
     public void toUpperCase(){
-        String despues;
-        despues = nombre.substring(1);
-        char letra = Character.toUpperCase(nombre.charAt(0));
-        setNombre(letra+despues); 
-        despues = apellido.substring(1);
-        letra = Character.toUpperCase(apellido.charAt(0));
-        setApellido(letra+despues);
+        setNombre(toUpperCaseNombreOrApellido(nombre));
+        setApellido(toUpperCaseNombreOrApellido(apellido));
     }
 
 
