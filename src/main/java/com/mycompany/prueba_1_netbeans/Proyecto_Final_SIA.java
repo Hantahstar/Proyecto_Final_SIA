@@ -18,11 +18,25 @@ public class Proyecto_Final_SIA {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 MenuPrincipal vv = new MenuPrincipal(colegio);
-                colegio.cargarCursosDesdeCSV(vv);
-                colegio.cargarEstudiantesDesdeCSV(vv);
-                colegio.cargarAsistenciaDesdeCSV(vv);
                 vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 vv.setVisible(true);
+                try{
+                    colegio.cargarCursosDesdeCSV();
+                    colegio.cargarEstudiantesDesdeCSV();
+                    colegio.cargarAsistenciaDesdeCSV();
+                }catch (EstudianteNullPointerException e){
+                    JOptionPane.showMessageDialog(vv, "Error al cargar estudiante/s\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+
+                }catch (CursoNullPointerException e){
+                    JOptionPane.showMessageDialog(vv, "Error al cargar curso/s\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+
+                }catch (AsistenciaNullPointerException e){
+                    JOptionPane.showMessageDialog(vv, "Error al cargar asistencia/s\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+
+                }catch (Exception e){
+                    JOptionPane.showMessageDialog(vv, "Error génerico\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
             }
            
         });

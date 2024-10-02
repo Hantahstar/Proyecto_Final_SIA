@@ -19,7 +19,6 @@ public class Agregar extends javax.swing.JFrame {
     private String titulo,text1,text2;
     private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
     private final String pathCursos = "src/main/java/Cursos.csv";
-    private final String pathAsistencia = "src/main/java/Asistencias.csv";
     //agregar curso
     public Agregar(Colegio colegio) {
         this.colegio = colegio;
@@ -251,9 +250,8 @@ public class Agregar extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldApellidoKeyPressed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        colegio.actualizar(pathEstudiantes,1);
-        colegio.actualizar(pathCursos,2);
-        colegio.actualizar(pathAsistencia,3);
+        MenuPrincipal vv = new MenuPrincipal(colegio);
+        vv.catchException(this);
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
 

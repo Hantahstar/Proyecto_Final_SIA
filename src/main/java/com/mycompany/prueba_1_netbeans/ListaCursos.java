@@ -272,41 +272,52 @@ public class ListaCursos extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
             else{
-                Curso c = new Curso(jTextFieldGrado.getText(),jTextFieldLetra.getText());
-                if (colegio.verificarCurso(c)==null){
-                    JOptionPane.showMessageDialog(this, "El curso que eligió no existe", "No existe", JOptionPane.WARNING_MESSAGE);
-                }
-                else{
-                    if(opcion==2){
-                        MenuEstudiantes vv = new MenuEstudiantes(colegio,colegio.verificarCurso(c));
-                        vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                        vv.setSize(this.getSize());
-                        vv.setLocation(this.getLocation());
-                        vv.setVisible(true);
-                        this.dispose(); 
+                try{
+                    Curso c = new Curso(jTextFieldGrado.getText(),jTextFieldLetra.getText());
+                    if (colegio.verificarCurso(c)==null){
+                        JOptionPane.showMessageDialog(this, "El curso que eligió no existe", "No existe", JOptionPane.WARNING_MESSAGE);
                     }
-                    else if(opcion==3){
-                        if(colegio.verificarCurso(c).sizeCurso()!=0){
-                            MenuAsistencia vv = new MenuAsistencia(colegio,colegio.verificarCurso(c));
+                    else{
+                        if(opcion==2){
+                            MenuEstudiantes vv = new MenuEstudiantes(colegio,colegio.verificarCurso(c));
                             vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                             vv.setSize(this.getSize());
                             vv.setLocation(this.getLocation());
                             vv.setVisible(true);
-                            this.dispose(); 
+                            this.dispose();
+                        }
+                        else if(opcion==3){
+                            if(colegio.verificarCurso(c).sizeCurso()!=0){
+                                MenuAsistencia vv = new MenuAsistencia(colegio,colegio.verificarCurso(c));
+                                vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                                vv.setSize(this.getSize());
+                                vv.setLocation(this.getLocation());
+                                vv.setVisible(true);
+                                this.dispose();
+                            }
+                            else{
+                                JOptionPane.showMessageDialog(this, "El curso que eligió no tiene estudiantes", "No se puede", JOptionPane.WARNING_MESSAGE);
+                            }
                         }
                         else{
-                            JOptionPane.showMessageDialog(this, "El curso que eligió no tiene estudiantes", "No se puede", JOptionPane.WARNING_MESSAGE);
+                            MenuCursos vv = new MenuCursos(colegio);
+                            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            vv.setSize(this.getSize());
+                            vv.setLocation(this.getLocation());
+                            vv.setVisible(true);
+                            this.dispose();
                         }
                     }
-                    else{
-                        MenuCursos vv = new MenuCursos(colegio);
-                        vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                        vv.setSize(this.getSize());
-                        vv.setLocation(this.getLocation());
-                        vv.setVisible(true);
-                        this.dispose(); 
-                    }
+                }catch(CursoNullPointerException e){
+                    JOptionPane.showMessageDialog(this, "Error al crear al seleccionar el curso\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+                    jTextFieldGrado.setText("");
+                    jTextFieldLetra.setText("");
+                }catch (Exception e){
+                    JOptionPane.showMessageDialog(this,"Error génerico\n"+colegio.shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);
+                    jTextFieldGrado.setText("");
+                    jTextFieldLetra.setText("");
                 }
+
             }
     }
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
@@ -344,9 +355,8 @@ public class ListaCursos extends javax.swing.JFrame {
     }//GEN-LAST:event_jTableListaMouseClicked
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        colegio.actualizar(pathEstudiantes,1);
-        colegio.actualizar(pathCursos,2);
-        colegio.actualizar(pathAsistencia,3);
+        MenuPrincipal vv = new MenuPrincipal(colegio);
+        vv.catchException(this);
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
 

@@ -5,8 +5,9 @@
 package com.mycompany.prueba_1_netbeans;
 
 import java.awt.Color;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import java.io.IOException;
+import javax.swing.*;
+
 /**
  *
  * @author Usuario
@@ -190,18 +191,32 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
         if(evt.getSource()==jButtonSalir){
+            catchException(this);
+        }
+    }//GEN-LAST:event_jButtonSalirActionPerformed
+    public void catchException(JFrame panel){
+        try{
             colegio.actualizar(pathEstudiantes,1);
             colegio.actualizar(pathCursos,2);
             colegio.actualizar(pathAsistencia,3);
             this.dispose();
-        }
-    }//GEN-LAST:event_jButtonSalirActionPerformed
+        }catch (EstudianteNullPointerException e){
+            JOptionPane.showMessageDialog(panel, "Error al actualizar estudiante/s\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
 
+        }catch (CursoNullPointerException e){
+            JOptionPane.showMessageDialog(panel, "Error al actualizar curso/s\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+
+        }catch (AsistenciaNullPointerException e){
+            JOptionPane.showMessageDialog(panel, "Error al actualizar asistencia/s\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+
+        }catch (IOException e){
+            JOptionPane.showMessageDialog(panel, "Errores de CSV\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(panel, "Error génerico\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        colegio.actualizar(pathEstudiantes,1);
-        colegio.actualizar(pathCursos,2);
-        colegio.actualizar(pathAsistencia,3);
-        this.dispose();
+        catchException(this);
     }//GEN-LAST:event_formWindowClosing
 
 

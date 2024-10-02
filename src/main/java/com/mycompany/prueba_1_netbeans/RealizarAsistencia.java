@@ -255,9 +255,8 @@ public class RealizarAsistencia extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldHoraKeyPressed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        colegio.actualizar(pathEstudiantes,1);
-        colegio.actualizar(pathCursos,2);
-        colegio.actualizar(pathAsistencia,3);
+        MenuPrincipal vv = new MenuPrincipal(colegio);
+        vv.catchException(this);
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
 
