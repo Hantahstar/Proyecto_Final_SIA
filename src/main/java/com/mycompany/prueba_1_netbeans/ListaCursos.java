@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+
+//Ventana para un listado de los cursos
 public class ListaCursos extends javax.swing.JFrame {
 
     private Colegio colegio;
@@ -17,6 +19,7 @@ public class ListaCursos extends javax.swing.JFrame {
         this.colegio = colegio;
         this.opcion = opcion;
         initComponents();
+        //Rellenar los datos del Jtable
         String s = this.colegio.mostrarCurso();
         String[] arr = s.split("\n");
         DefaultTableModel model = (DefaultTableModel) jTableLista.getModel();

@@ -7,6 +7,7 @@ package com.mycompany.prueba_1_netbeans;
 import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+//Ventana para registrar asistencia
 public class RealizarAsistencia extends javax.swing.JFrame {
     private Colegio colegio;
     private Curso curso;
@@ -17,6 +18,7 @@ public class RealizarAsistencia extends javax.swing.JFrame {
         visual();
     }
 
+    //Para tener a mano las configuraciones visuales de la ventana
     private void visual(){
         this.getContentPane().setBackground(Color.gray);
         jButtonAceptar.setBackground(Color.lightGray);
@@ -171,59 +173,65 @@ public class RealizarAsistencia extends javax.swing.JFrame {
     
     
     
-    
+    //Al presionar el botón enter o clickear en el botón de aceptar llama este method
     private void opcionAceptar(){
         //realizar asistencia
-            if (jTextFieldFecha.getText().trim().isEmpty() || jTextFieldHora.getText().trim().isEmpty()){
-                JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
-            }
-            if ((jTextFieldFecha.getText().length() != 10) && ((jTextFieldFecha.getText().charAt(2))!='/'&&(jTextFieldFecha.getText().charAt(5))!='/')){
-                JOptionPane.showMessageDialog(this, "Formato no válido, intente otra vez", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
-            }
-            else if (jTextFieldHora.getText().charAt(2)!=':') {
-                JOptionPane.showMessageDialog(this, "Formato no válido, intente otra vez", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
-            }
-            
-            else{
-                //crear copia  del curso
-                try{
-                    Asistencia asist = new Asistencia(jTextFieldFecha.getText(),jTextFieldHora.getText(),new Curso(curso));
-                    if(colegio.verificarAsistencia(asist)!=null){
-                        JOptionPane.showMessageDialog(this, "Asistencia ya existe en el sistema", "Existe", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                    else{
-                        if(asist.pasaAsistencia(curso,asist,this)){
-                            colegio.agregarAsistencia(asist);
-                            JOptionPane.showMessageDialog(this,"Asistencia fecha : "+asist.getFecha()+"\nhora: "+asist.getHora(), "Existe", JOptionPane.INFORMATION_MESSAGE);
-                            MenuAsistencia vv = new MenuAsistencia(colegio,curso);
-                            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                            vv.setSize(this.getSize());
-                            vv.setLocation(this.getLocation());
-                            vv.setVisible(true);
-                            this.dispose();
-                        }
-                        else{
-                            JOptionPane.showMessageDialog(this,"Pase de asistencia cancelado", "Cancelado", JOptionPane.WARNING_MESSAGE);
-                        }
-                    }
-                }catch (AsistenciaNullPointerException e){
-                    JOptionPane.showMessageDialog(this, "Error al realizar la asistencia\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
-                    jTextFieldFecha.setText("");
-                    jTextFieldHora.setText("");
-                }catch (Exception e){
-                    JOptionPane.showMessageDialog(this,"Error génerico\n"+colegio.shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);
+        //verifica que ambos TextField tengan algo
+        if (jTextFieldFecha.getText().trim().isEmpty() || jTextFieldHora.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+        //verificar el formato esté correcto
+        if ((jTextFieldFecha.getText().length() != 10) && ((jTextFieldFecha.getText().charAt(2))!='/'&&(jTextFieldFecha.getText().charAt(5))!='/')){
+            JOptionPane.showMessageDialog(this, "Formato no válido, intente otra vez", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else if (jTextFieldHora.getText().charAt(2)!=':') {
+            JOptionPane.showMessageDialog(this, "Formato no válido, intente otra vez", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
+        }
+        //una vez ya esté verificado
+        else{
+            //crear copia  del curso y objeto de asistencia
+            try{
+                Asistencia asist = new Asistencia(jTextFieldFecha.getText(),jTextFieldHora.getText(),new Curso(curso));
+                if(colegio.verificarAsistencia(asist)!=null){
+                    JOptionPane.showMessageDialog(this, "Asistencia ya existe en el sistema", "Existe", JOptionPane.INFORMATION_MESSAGE);
                 }
-
+                else{
+                    //pasa la asistencia
+                    if(asist.pasaAsistencia(curso,asist,this)){
+                        colegio.agregarAsistencia(asist);
+                        JOptionPane.showMessageDialog(this,"Asistencia fecha : "+asist.getFecha()+"\nhora: "+asist.getHora(), "Existe", JOptionPane.INFORMATION_MESSAGE);
+                        MenuAsistencia vv = new MenuAsistencia(colegio,curso);
+                        vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        vv.setSize(this.getSize());
+                        vv.setLocation(this.getLocation());
+                        vv.setVisible(true);
+                        this.dispose();
+                    }
+                    //esto en el caso que se cancele y retorne false
+                    else{
+                        JOptionPane.showMessageDialog(this,"Pase de asistencia cancelado", "Cancelado", JOptionPane.WARNING_MESSAGE);
+                    }
+                }
+            //catchers para tomar excepciones
+            }catch (AsistenciaNullPointerException e){
+                JOptionPane.showMessageDialog(this, "Error al realizar la asistencia\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+                jTextFieldFecha.setText("");
+                jTextFieldHora.setText("");
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(this,"Error génerico\n"+colegio.shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);
             }
-            
+        }
     }
-    
+
+
+    //Evento de botón "aceptar" de la ventana
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
         if (evt.getSource()==jButtonAceptar){
             opcionAceptar();
         }
     }//GEN-LAST:event_jButtonAceptarActionPerformed
-    
+
+    //Evento de botón "eliminar" de la ventana
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         if(evt.getSource()==jButtonCancelar){
             MenuAsistencia vv = new MenuAsistencia(colegio,curso);
@@ -235,6 +243,7 @@ public class RealizarAsistencia extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
+    //Evento al presionar el botón enter
     private void jTextFieldFechaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldFechaKeyPressed
         int keycode = evt.getKeyCode();
         if (keycode==10){
@@ -242,6 +251,7 @@ public class RealizarAsistencia extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextFieldFechaKeyPressed
 
+    //Evento al presionar enter
     private void jTextFieldHoraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldHoraKeyPressed
         int keycode = evt.getKeyCode();
         if (keycode==10){
@@ -249,6 +259,7 @@ public class RealizarAsistencia extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextFieldHoraKeyPressed
 
+    //El CSV se actualiza por completo al cerrarse en cualquiera de las ventanas
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         MenuPrincipal vv = new MenuPrincipal(colegio);
         vv.catchException(this);
