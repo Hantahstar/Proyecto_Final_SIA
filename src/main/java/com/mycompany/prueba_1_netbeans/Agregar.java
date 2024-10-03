@@ -17,8 +17,7 @@ public class Agregar extends javax.swing.JFrame {
     private Colegio colegio;
     private Curso curso;
     private String titulo,text1,text2;
-    private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
-    private final String pathCursos = "src/main/java/Cursos.csv";
+    private final Path ruta = new Path();
     //agregar curso
     public Agregar(Colegio colegio) {
         this.colegio = colegio;
@@ -266,7 +265,7 @@ public class Agregar extends javax.swing.JFrame {
                     Curso c = new Curso(jTextFieldGradoOrRUT.getText(),jTextFieldLetraOrNombre.getText());
                     if (colegio.verificarCurso(c)==null){
                         if (c.formatoCorrecto()){
-                            colegio.agregarCurso(c,pathCursos);
+                            colegio.agregarCurso(c,ruta.getPathCursos());
                             JOptionPane.showMessageDialog(this, "Curso agregado", "Exito!", JOptionPane.INFORMATION_MESSAGE);
                             MenuCursos vv = new MenuCursos(colegio);
                             vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -308,7 +307,7 @@ public class Agregar extends javax.swing.JFrame {
                     }
                     else{
                         curso.agregarEstudiante(jTextFieldGradoOrRUT.getText(),e);
-                        curso.agregarEstudiante(e,pathEstudiantes);
+                        curso.agregarEstudiante(e,ruta.getPathEstudiantes());
                         JOptionPane.showMessageDialog(this, "Estudiante agregado", "Exito!", JOptionPane.INFORMATION_MESSAGE);
                         MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
                         vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

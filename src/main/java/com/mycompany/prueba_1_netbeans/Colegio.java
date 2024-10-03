@@ -51,7 +51,7 @@ public class Colegio{
         }
         return null;
     }
-     public void agregarCurso(Curso c,String path)throws IOException{
+    public void agregarCurso(Curso c,String path)throws IOException{
         File file = new File(path);
         cursos.add(c);
 
@@ -240,36 +240,29 @@ public class Colegio{
         return shortStackTrace.toString();
     }
 
-    public void actualizarCSVCursos() {
-        File file = new File("src/main/java/Cursos.csv");
-        try(CSVWriter csvWriter = new CSVWriter(new FileWriter(file,true)))
-        {
-            for (Curso rec : cursos)
-            {
-                String [] fila = new String[2];
+    public void actualizarCSVCursos(String path)throws IOException{
+        File file = new File(path);
+        try(CSVWriter csvWriter = new CSVWriter(new FileWriter(file,true))) {
+            for (Curso rec : cursos) {
+                String[] fila = new String[2];
                 fila[0] = rec.getGrado();
                 fila[1] = rec.getLetra();
                 csvWriter.writeNext(fila);
             }
-
-        } catch (IOException e) {
         }
     }
 
-    public void cargarEstudiantesDesdeCSV()throws Exception{
-
-        File file = new File("src/main/java/Estudiantes.csv");
-
+    public void cargarEstudiantesDesdeCSV(String path)throws Exception{
+        File file = new File(path);
         LeerYEscribirCSV lectorCSV = new LeerYEscribirCSV();
         List <String[]> datosCSV = lectorCSV.leerCSV(file);
-
         for (Curso curso : cursos) {
             curso.cargarEstudiantes(datosCSV);
         }
     }
 
-    public void cargarAsistenciaDesdeCSV()throws Exception{
-        File file = new File("src/main/java/Asistencias.csv");
+    public void cargarAsistenciaDesdeCSV(String path)throws Exception{
+        File file = new File(path);
         LeerYEscribirCSV lectorCSV = new LeerYEscribirCSV();
         List<String[]> datosCSV = lectorCSV.leerCSV(file);
         if (datosCSV != null) {
@@ -316,10 +309,6 @@ public class Colegio{
                 asistencias.add(asist);
             }
         }
-        else {
-            System.out.println("Error: no se pudo leer el archivo CSV.");
-        }
-
     }
 
     public void actualizar(String path,int numero)throws Exception{
@@ -330,48 +319,53 @@ public class Colegio{
         {
             p.encabezadoEstudiantes(file);
             for (Curso curso : cursos) {
-                curso.actualizarCSVEstudiantes();
+                curso.actualizarCSVEstudiantes(path);
             }
         }
         else if(numero == 2){
-            p.dejarEnBlanco(file);
-            actualizarCSVCursos();
+            try (CSVWriter csvWriter = new CSVWriter(new FileWriter(file, false))){
+                actualizarCSVCursos(path);
+            }
+
         }
         else{
-            p.dejarEnBlanco(file);
-            actualizarCSVAsistencias();
+            try (CSVWriter csvWriter = new CSVWriter(new FileWriter(file, false))) {
+                actualizarCSVAsistencias(path);
+            }
         }
 
 
     }
 
-    public void actualizarCSVAsistencias()throws IOException{
+    public void actualizarCSVAsistencias(String path)throws IOException{
 
-        File file = new File("src/main/java/Asistencias.csv");
-        CSVWriter csvWriter = new CSVWriter(new FileWriter(file,true));
-        for (int i = 0 ; i < asistencias.size();i++) {
-            Curso c = asistencias.get(i).getCurso();
+        File file = new File(path);
+        try (CSVWriter csvWriter = new CSVWriter(new FileWriter(file,true))){
+            for (int i = 0 ; i < asistencias.size();i++) {
+                Curso c = asistencias.get(i).getCurso();
 
-            for (int j = 0 ; j < c.sizeCurso(); j++)
-            {
-                Estudiante e = c.getEstudiante(j);
-                String [] fila = new String [8];
-                fila[0] = c.getGrado();
-                fila[1] = c.getLetra();
-                fila[2] = asistencias.get(i).getFecha();
-                fila[3] = asistencias.get(i).getHora();
-                fila[4] = e.getRut();
-                fila[5] = e.getNombre();
-                fila[6] = e.getApellido();
-                fila[7] = Integer.toString(e.getEstado());
-                csvWriter.writeNext(fila);
+                for (int j = 0 ; j < c.sizeCurso(); j++)
+                {
+                    Estudiante e = c.getEstudiante(j);
+                    String [] fila = new String [8];
+                    fila[0] = c.getGrado();
+                    fila[1] = c.getLetra();
+                    fila[2] = asistencias.get(i).getFecha();
+                    fila[3] = asistencias.get(i).getHora();
+                    fila[4] = e.getRut();
+                    fila[5] = e.getNombre();
+                    fila[6] = e.getApellido();
+                    fila[7] = Integer.toString(e.getEstado());
+                    csvWriter.writeNext(fila);
+                }
             }
         }
     }
 
 
-    public void cargarCursosDesdeCSV()throws Exception{
-        File file = new File("src/main/java/Cursos.csv");
+    public void cargarCursosDesdeCSV(String path)throws Exception{
+        File file = new File(path);
+
         LeerYEscribirCSV lectorCSV = new LeerYEscribirCSV();
         List<String[]> datosCSV = lectorCSV.leerCSV(file);
         if (datosCSV != null) {

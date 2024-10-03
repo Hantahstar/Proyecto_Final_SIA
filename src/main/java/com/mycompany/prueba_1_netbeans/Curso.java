@@ -255,17 +255,18 @@ public class Curso{
     
     
     
-    public void actualizarCSVEstudiantes()throws IOException {
-        File file = new File("src/main/java/Estudiantes.csv");
-        CSVWriter csvWriter = new CSVWriter(new FileWriter(file,true));
-        for (Estudiante estudiante : listCurso) {
-            String[] fila = new String[5];
-            fila[0] = estudiante.getRut();
-            fila[1] = estudiante.getNombre();
-            fila[2] = estudiante.getApellido();
-            fila[3] = this.getGrado();
-            fila[4] = this.getLetra();
-            csvWriter.writeNext(fila);
+    public void actualizarCSVEstudiantes(String path)throws IOException {
+        File file = new File(path);
+        try (CSVWriter csvWriter = new CSVWriter(new FileWriter(file,true))){
+            for (Estudiante estudiante : listCurso) {
+                String[] fila = new String[5];
+                fila[0] = estudiante.getRut();
+                fila[1] = estudiante.getNombre();
+                fila[2] = estudiante.getApellido();
+                fila[3] = this.getGrado();
+                fila[4] = this.getLetra();
+                csvWriter.writeNext(fila);
+            }
         }
 
     }

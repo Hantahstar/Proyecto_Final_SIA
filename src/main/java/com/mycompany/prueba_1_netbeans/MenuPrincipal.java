@@ -15,9 +15,7 @@ import javax.swing.*;
 public class MenuPrincipal extends javax.swing.JFrame {
     private Colegio colegio;
     
-    private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
-    private final String pathCursos = "src/main/java/Cursos.csv";
-    private final String pathAsistencia = "src/main/java/Asistencias.csv";
+    private final Path ruta = new Path();
     
     public MenuPrincipal(Colegio colegio) {
         this.colegio = colegio;
@@ -194,11 +192,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
             catchException(this);
         }
     }//GEN-LAST:event_jButtonSalirActionPerformed
+
+
     public void catchException(JFrame panel){
         try{
-            colegio.actualizar(pathEstudiantes,1);
-            colegio.actualizar(pathCursos,2);
-            colegio.actualizar(pathAsistencia,3);
+            colegio.actualizar(ruta.getPathEstudiantes(),1);
+            colegio.actualizar(ruta.getPathCursos(),2);
+            colegio.actualizar(ruta.getPathAsistencia(),3);
             this.dispose();
         }catch (EstudianteNullPointerException e){
             JOptionPane.showMessageDialog(panel, "Error al actualizar estudiante/s\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
@@ -215,6 +215,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(panel, "Error génerico\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
+
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         catchException(this);
     }//GEN-LAST:event_formWindowClosing
