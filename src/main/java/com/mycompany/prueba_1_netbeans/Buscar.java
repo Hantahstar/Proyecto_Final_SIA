@@ -56,7 +56,7 @@ public class Buscar extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        String titulo,label;
+        String titulo,labelTextFieldGradoOrRUT;
         jButtonBuscar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jLabelGradoOrRUT = new javax.swing.JLabel();
@@ -93,13 +93,13 @@ public class Buscar extends javax.swing.JFrame {
 
         jLabelGradoOrRUT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         if(curso==null){
-            label = "Grado de curso:";
+            labelTextFieldGradoOrRUT = "Grado de curso:";
         }
         else{
-            label = "Rut de estudiante";
+            labelTextFieldGradoOrRUT = "Rut de estudiante";
         }
         jLabelGradoOrRUT.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelGradoOrRUT.setText(label);
+        jLabelGradoOrRUT.setText(labelTextFieldGradoOrRUT);
 
         jLabelLetra.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelLetra.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);

@@ -54,7 +54,7 @@ public class Agregar extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        String titulo,text1,text2;
+        String titulo,labelTextFieldGradoOrRut,labelTextFieldLetraOrNombre;
         jLabelGradoOrRUT = new javax.swing.JLabel();
         jLabelLetraOrNombre = new javax.swing.JLabel();
         jButtonAceptar = new javax.swing.JButton();
@@ -76,23 +76,23 @@ public class Agregar extends javax.swing.JFrame {
 
         jLabelGradoOrRUT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         if(curso==null){
-            text1 = "Grado de curso:";
+            labelTextFieldGradoOrRut = "Grado de curso:";
         }
         else{
-            text1 = "Rut:";
+            labelTextFieldGradoOrRut = "Rut:";
         }
         jLabelGradoOrRUT.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelGradoOrRUT.setText(text1);
+        jLabelGradoOrRUT.setText(labelTextFieldGradoOrRut);
 
         jLabelLetraOrNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         if (curso==null){
-            text2 = "Paralelo/letra:";
+            labelTextFieldLetraOrNombre = "Paralelo/letra:";
         }
         else{
-            text2 = "Nombre:";
+            labelTextFieldLetraOrNombre = "Nombre:";
         }
         jLabelLetraOrNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelLetraOrNombre.setText(text2);
+        jLabelLetraOrNombre.setText(labelTextFieldLetraOrNombre);
 
         jButtonAceptar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButtonAceptar.setText("Agregar");

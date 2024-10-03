@@ -46,7 +46,7 @@ public class Eliminar extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        String titulo,gradoOrRut;
+        String titulo,labelTextFieldGradoOrRut;
         jButtonEliminar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jLabelTitulo = new javax.swing.JLabel();
@@ -91,12 +91,12 @@ public class Eliminar extends javax.swing.JFrame {
 
         jLabelGradoOrRUT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         if (curso==null){
-            gradoOrRut = "Grado de curso:";
+            labelTextFieldGradoOrRut = "Grado de curso:";
         }
         else{
-            gradoOrRut = "Rut de estudiante";
+            labelTextFieldGradoOrRut = "Rut de estudiante";
         }
-        jLabelGradoOrRUT.setText(gradoOrRut);
+        jLabelGradoOrRUT.setText(labelTextFieldGradoOrRut);
         jLabelGradoOrRUT.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         jLabelLetra.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
