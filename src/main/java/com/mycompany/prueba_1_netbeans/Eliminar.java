@@ -12,12 +12,6 @@ public class Eliminar extends javax.swing.JFrame {
 
     private Colegio colegio;
     private Curso curso;
-    private String titulo;
-    private String gradoOrRut;
-    private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
-    private final String pathCursos = "src/main/java/Cursos.csv";
-    private final String pathAsistencia = "src/main/java/Asistencias.csv";
-   
     public Eliminar(Colegio colegio){
         this.colegio = colegio;
         initComponents();
@@ -52,7 +46,7 @@ public class Eliminar extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+        String titulo,gradoOrRut;
         jButtonEliminar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jLabelTitulo = new javax.swing.JLabel();
@@ -171,7 +165,67 @@ public class Eliminar extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
+
+    private void eliminarCurso(){
+        try{
+            Curso c = new Curso(jTextFieldGradoOrRUT.getText(),jTextFieldLetra.getText());
+            if (colegio.verificarCurso(c)==null){
+                JOptionPane.showMessageDialog(this, "Curso no se encuentra en el sistema", "No existe", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else{
+                //Eliminar Curso
+                JOptionPane.showMessageDialog(this,colegio.mostrarCurso(c)+"\nCurso Eliminado","Eliminado", JOptionPane.INFORMATION_MESSAGE);
+                colegio.removerCurso(colegio.verificarCurso(c));
+
+                MenuCursos vv = new MenuCursos(colegio);
+                vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                vv.setSize(this.getSize());
+                vv.setLocation(this.getLocation());
+                vv.setVisible(true);
+                this.dispose();
+            }
+        }catch (CursoNullPointerException e){
+            //mensaje de exception
+            JOptionPane.showMessageDialog(this, "Error al intentar eliminar el curso\nError: Algunos atributos del curso son nulos"+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+            jTextFieldGradoOrRUT.setText("");
+            jTextFieldLetra.setText("");
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(this,"Error génerico\n"+colegio.shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);
+            jTextFieldGradoOrRUT.setText("");
+            jTextFieldLetra.setText("");
+        }
+    }
+
+    private void eliminarEstudiante(){
+        try{
+            Estudiante e = new Estudiante();
+            jTextFieldGradoOrRUT.setText(curso.verificarRut(jTextFieldGradoOrRUT.getText()));
+            e.setRut(jTextFieldGradoOrRUT.getText());
+            if(curso.contieneEstudiante(jTextFieldGradoOrRUT.getText())){
+                e = curso.getEstudiante(jTextFieldGradoOrRUT.getText());
+                JOptionPane.showMessageDialog(this,"Nombre: "+e.getNombre()+"\nApellido: "+e.getApellido()+"\nRUT: "+e.getRut()+"\nEstudiante Expulsado","Expulsado", JOptionPane.INFORMATION_MESSAGE);
+                curso.removerEstudiante(e);
+                curso.removerEstudiante(jTextFieldGradoOrRUT.getText());
+
+                MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
+                vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                vv.setSize(this.getSize());
+                vv.setLocation(this.getLocation());
+                vv.setVisible(true);
+                this.dispose();
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Estudiante no se encuentra\nEn el sistema", "No existe", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }catch(EstudianteNullPointerException e){
+            JOptionPane.showMessageDialog(this, "Error al intentar eliminar estudiante\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+            jTextFieldGradoOrRUT.setText("");
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(this,"Error génerico\n"+colegio.shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);
+            jTextFieldGradoOrRUT.setText("");
+        }
+    }
     
     private void opcionEliminar(){
         if (jTextFieldGradoOrRUT.getText().trim().isEmpty()){
@@ -183,66 +237,12 @@ public class Eliminar extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
                 }
                 else{
-                    try{
-                        Curso c = new Curso(jTextFieldGradoOrRUT.getText(),jTextFieldLetra.getText());
-                        if (colegio.verificarCurso(c)==null){
-                            JOptionPane.showMessageDialog(this, "Curso no se encuentra en el sistema", "No existe", JOptionPane.INFORMATION_MESSAGE);
-                        }
-                        else{
-                            //Eliminar Curso
-                            JOptionPane.showMessageDialog(this,colegio.mostrarCurso(c)+"\nCurso Eliminado","Eliminado", JOptionPane.INFORMATION_MESSAGE);
-                            colegio.removerCurso(colegio.verificarCurso(c));
-
-                            MenuCursos vv = new MenuCursos(colegio);
-                            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                            vv.setSize(this.getSize());
-                            vv.setLocation(this.getLocation());
-                            vv.setVisible(true);
-                            this.dispose();
-                        }
-                    }catch (CursoNullPointerException e){
-                        //mensaje de exception
-                        JOptionPane.showMessageDialog(this, "Error al intentar eliminar el curso\nError: Algunos atributos del curso son nulos"+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
-                        jTextFieldGradoOrRUT.setText("");
-                        jTextFieldLetra.setText("");
-                    }catch (Exception e){
-                        JOptionPane.showMessageDialog(this,"Error génerico\n"+colegio.shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);
-                        jTextFieldGradoOrRUT.setText("");
-                        jTextFieldLetra.setText("");
-                    }
-
-
+                    eliminarCurso();
                 }
             }    
             //expulsar estudiante
             else{
-                try{
-                    Estudiante e = new Estudiante();
-                    jTextFieldGradoOrRUT.setText(curso.verificarRut(jTextFieldGradoOrRUT.getText()));
-                    e.setRut(jTextFieldGradoOrRUT.getText());
-                    if(curso.contieneEstudiante(jTextFieldGradoOrRUT.getText())){
-                        e = curso.getEstudiante(jTextFieldGradoOrRUT.getText());
-                        JOptionPane.showMessageDialog(this,"Nombre: "+e.getNombre()+"\nApellido: "+e.getApellido()+"\nRUT: "+e.getRut()+"\nEstudiante Expulsado","Expulsado", JOptionPane.INFORMATION_MESSAGE);
-                        curso.removerEstudiante(e);
-                        curso.removerEstudiante(jTextFieldGradoOrRUT.getText());
-
-                        MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
-                        vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                        vv.setSize(this.getSize());
-                        vv.setLocation(this.getLocation());
-                        vv.setVisible(true);
-                        this.dispose();
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(this, "Estudiante no se encuentra\nEn el sistema", "No existe", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                }catch(EstudianteNullPointerException e){
-                    JOptionPane.showMessageDialog(this, "Error al intentar eliminar estudiante\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
-                    jTextFieldGradoOrRUT.setText("");
-                }catch (Exception e){
-                    JOptionPane.showMessageDialog(this,"Error génerico\n"+colegio.shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);
-                    jTextFieldGradoOrRUT.setText("");
-                }
+                eliminarEstudiante();
             }
         }        
     }

@@ -13,10 +13,6 @@ public class ListaCursos extends javax.swing.JFrame {
 
     private Colegio colegio;
     private int opcion;
-    private String titulo;
-    private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
-    private final String pathCursos = "src/main/java/Cursos.csv";
-    private final String pathAsistencia = "src/main/java/Asistencias.csv";
     public ListaCursos(Colegio colegio,int opcion) {
         this.colegio = colegio;
         this.opcion = opcion;
@@ -83,7 +79,7 @@ public class ListaCursos extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+        String titulo;
         jScrollPaneBarra = new javax.swing.JScrollPane();
         jTableLista = new javax.swing.JTable();
         jLabelTitulo = new javax.swing.JLabel();
@@ -267,6 +263,7 @@ public class ListaCursos extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_jButtonCerrarActionPerformed
+
     private void opcionAceptar(){
         if (jTextFieldGrado.getText().trim().isEmpty() || jTextFieldLetra.getText().trim().isEmpty()){
                 JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);

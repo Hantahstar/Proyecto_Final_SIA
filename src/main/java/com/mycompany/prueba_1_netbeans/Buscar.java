@@ -11,12 +11,7 @@ public class Buscar extends javax.swing.JFrame {
 
     private Colegio colegio;
     private Curso curso;
-    private String titulo;
-    private String label;
     private boolean opcion;
-    private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
-    private final String pathCursos = "src/main/java/Cursos.csv";
-    private final String pathAsistencia = "src/main/java/Asistencias.csv";
     //buscar curso
     public Buscar(Colegio colegio) {
         this.colegio = colegio;
@@ -61,7 +56,7 @@ public class Buscar extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+        String titulo,label;
         jButtonBuscar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jLabelGradoOrRUT = new javax.swing.JLabel();
@@ -187,8 +182,76 @@ public class Buscar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    
-    
+    private void buscarCurso(){
+        try{
+            Curso c = new Curso(jTextFieldGradoOrRUT.getText(),jTextFieldLetra.getText());
+            c = colegio.verificarCurso(c);
+            if (c==null){
+                JOptionPane.showMessageDialog(this, "Curso no se encuentra en el sistema", "No existe", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else{
+                //mostrarCurso
+                JOptionPane.showMessageDialog(this,(colegio.mostrarCurso(c)),"Encontrado", JOptionPane.INFORMATION_MESSAGE);
+                MenuCursos vv = new MenuCursos(colegio);
+                vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                vv.setSize(this.getSize());
+                vv.setLocation(this.getLocation());
+                vv.setVisible(true);
+                this.dispose();
+            }
+        }catch (CursoNullPointerException e){
+            JOptionPane.showMessageDialog(this, "Error al buscar el curso\nError: Algunos atributos del curso son nulos"+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+            jTextFieldGradoOrRUT.setText("");
+            jTextFieldLetra.setText("");
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(this,"Error génerico\n"+colegio.shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);                        jTextFieldGradoOrRUT.setText("");
+            jTextFieldGradoOrRUT.setText("");
+            jTextFieldLetra.setText("");
+        }
+    }
+
+    private void buscarEstudiante(){
+        try{
+            Estudiante e = new Estudiante();
+            jTextFieldGradoOrRUT.setText(curso.verificarRut(jTextFieldGradoOrRUT.getText()));
+            e.setRut(jTextFieldGradoOrRUT.getText());
+            if(curso.contieneEstudiante(jTextFieldGradoOrRUT.getText())){
+                e = curso.getEstudiante(jTextFieldGradoOrRUT.getText());
+                JOptionPane.showMessageDialog(this,"RUT: "+e.getRut()+"\nNombre: "+e.getNombre()+"\nApellido: "+e.getApellido()+"\nEstudiante Encontrado","Encontrado", JOptionPane.INFORMATION_MESSAGE);
+                if(isOpcion()){
+                    MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
+                    vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    vv.setSize(this.getSize());
+                    vv.setLocation(this.getLocation());
+                    vv.setVisible(true);
+                    this.dispose();
+                }
+                else{
+                    //Ventana a modificar
+                    Modificar vv = new  Modificar(colegio,curso,e);
+                    vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    vv.setSize(this.getSize());
+                    vv.setLocation(this.getLocation());
+                    vv.setVisible(true);
+                    this.dispose();
+                }
+
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Estudiante no se encuentra en el sistema", "No existe", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }catch (EstudianteNullPointerException e){
+            JOptionPane.showMessageDialog(this, "Error al buscar el estudiante\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+            jTextFieldGradoOrRUT.setText("");
+            jTextFieldLetra.setText("");
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(this,"Error génerico\n"+colegio.shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);
+            jTextFieldGradoOrRUT.setText("");
+            jTextFieldLetra.setText("");
+        }
+    }
+
+
     private void opcionBuscar(){
         if (jTextFieldGradoOrRUT.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -200,74 +263,11 @@ public class Buscar extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
                 }
                 else{
-                    try{
-                        Curso c = new Curso(jTextFieldGradoOrRUT.getText(),jTextFieldLetra.getText());
-                        c = colegio.verificarCurso(c);
-                        if (c==null){
-                            JOptionPane.showMessageDialog(this, "Curso no se encuentra en el sistema", "No existe", JOptionPane.INFORMATION_MESSAGE);
-                        }
-                        else{
-                            //mostrarCurso
-                            JOptionPane.showMessageDialog(this,(colegio.mostrarCurso(c)),"Encontrado", JOptionPane.INFORMATION_MESSAGE);
-                            MenuCursos vv = new MenuCursos(colegio);
-                            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                            vv.setSize(this.getSize());
-                            vv.setLocation(this.getLocation());
-                            vv.setVisible(true);
-                            this.dispose();
-                        }
-                    }catch (CursoNullPointerException e){
-                        JOptionPane.showMessageDialog(this, "Error al buscar el curso\nError: Algunos atributos del curso son nulos"+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
-                        jTextFieldGradoOrRUT.setText("");
-                        jTextFieldLetra.setText("");
-                    }catch (Exception e){
-                        JOptionPane.showMessageDialog(this,"Error génerico\n"+colegio.shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);                        jTextFieldGradoOrRUT.setText("");
-                        jTextFieldGradoOrRUT.setText("");
-                        jTextFieldLetra.setText("");
-                    }
-
+                    buscarCurso();
                 }    
             }
             else{
-                try{
-                    Estudiante e = new Estudiante();
-                    jTextFieldGradoOrRUT.setText(curso.verificarRut(jTextFieldGradoOrRUT.getText()));
-                    e.setRut(jTextFieldGradoOrRUT.getText());
-                    if(curso.contieneEstudiante(jTextFieldGradoOrRUT.getText())){
-                        e = curso.getEstudiante(jTextFieldGradoOrRUT.getText());
-                        JOptionPane.showMessageDialog(this,"RUT: "+e.getRut()+"\nNombre: "+e.getNombre()+"\nApellido: "+e.getApellido()+"\nEstudiante Encontrado","Encontrado", JOptionPane.INFORMATION_MESSAGE);
-                        if(isOpcion()){
-                            MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
-                            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                            vv.setSize(this.getSize());
-                            vv.setLocation(this.getLocation());
-                            vv.setVisible(true);
-                            this.dispose();
-                        }
-                        else{
-                            //Ventana a modificar
-                            Modificar vv = new  Modificar(colegio,curso,e);
-                            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                            vv.setSize(this.getSize());
-                            vv.setLocation(this.getLocation());
-                            vv.setVisible(true);
-                            this.dispose();
-                        }
-
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(this, "Estudiante no se encuentra en el sistema", "No existe", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                }catch (EstudianteNullPointerException e){
-                    JOptionPane.showMessageDialog(this, "Error al buscar el estudiante\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
-                    jTextFieldGradoOrRUT.setText("");
-                    jTextFieldLetra.setText("");
-                }catch (Exception e){
-                    JOptionPane.showMessageDialog(this,"Error génerico\n"+colegio.shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);
-                    jTextFieldGradoOrRUT.setText("");
-                    jTextFieldLetra.setText("");
-                }
-
+                buscarEstudiante();
             }   
         }
     }

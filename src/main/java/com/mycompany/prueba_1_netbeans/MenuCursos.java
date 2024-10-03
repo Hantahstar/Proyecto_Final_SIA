@@ -15,9 +15,6 @@ import javax.swing.JOptionPane;
 public class MenuCursos extends javax.swing.JFrame {
 
     private Colegio colegio;
-    private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
-    private final String pathCursos = "src/main/java/Cursos.csv";
-    private final String pathAsistencia = "src/main/java/Asistencias.csv";
     public MenuCursos(Colegio colegio) {
         this.colegio = colegio;
         initComponents();

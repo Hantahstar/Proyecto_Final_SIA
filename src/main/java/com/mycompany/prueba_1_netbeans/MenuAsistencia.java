@@ -13,9 +13,6 @@ public class MenuAsistencia extends javax.swing.JFrame {
     
     private Colegio colegio;
     private Curso curso;
-    private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
-    private final String pathCursos = "src/main/java/Cursos.csv";
-    private final String pathAsistencia = "src/main/java/Asistencias.csv";
     public MenuAsistencia(Colegio colegio,Curso curso) {
         this.colegio = colegio;
         this.curso = curso;

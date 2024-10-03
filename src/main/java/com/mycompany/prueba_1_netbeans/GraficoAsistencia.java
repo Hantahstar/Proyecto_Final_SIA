@@ -14,18 +14,11 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-/**
- *
- * @author Usuario
- */
 public class GraficoAsistencia extends javax.swing.JFrame {
 
     private HashMap<String, Double> mapaPorcentaje;
     private Colegio colegio;
     private Curso curso;
-    private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
-    private final String pathCursos = "src/main/java/Cursos.csv";
-    private final String pathAsistencia = "src/main/java/Asistencias.csv";
     public GraficoAsistencia(HashMap<String, Double> mapaPorcentaje,Colegio colegio,Curso curso) {
         this.mapaPorcentaje = mapaPorcentaje;
         this.colegio = colegio;
@@ -34,7 +27,6 @@ public class GraficoAsistencia extends javax.swing.JFrame {
         initComponents();
         visual();
     }
-    
     
     private void mostrarGraficoAsistencia(HashMap<String, Double> porcentajesAsistencia) {
         // Crear el dataset con los datos de asistencia

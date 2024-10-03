@@ -16,7 +16,6 @@ public class Agregar extends javax.swing.JFrame {
     
     private Colegio colegio;
     private Curso curso;
-    private String titulo,text1,text2;
     private final Path ruta = new Path();
     //agregar curso
     public Agregar(Colegio colegio) {
@@ -55,7 +54,7 @@ public class Agregar extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+        String titulo,text1,text2;
         jLabelGradoOrRUT = new javax.swing.JLabel();
         jLabelLetraOrNombre = new javax.swing.JLabel();
         jButtonAceptar = new javax.swing.JButton();
@@ -254,6 +253,76 @@ public class Agregar extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
 
+
+
+    private void agregarCurso(){
+        try{
+            Curso c = new Curso(jTextFieldGradoOrRUT.getText(),jTextFieldLetraOrNombre.getText());
+            if (colegio.verificarCurso(c)==null){
+                if (c.formatoCorrecto()){
+                    colegio.agregarCurso(c,ruta.getPathCursos());
+                    JOptionPane.showMessageDialog(this, "Curso agregado", "Exito!", JOptionPane.INFORMATION_MESSAGE);
+                    MenuCursos vv = new MenuCursos(colegio);
+                    vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    vv.setSize(this.getSize());
+                    vv.setLocation(this.getLocation());
+                    vv.setVisible(true);
+                    this.dispose();
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Formato no valido\nEjemplo de formato valido:\nGrado: 1ro medio\nLetra: a", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                }
+
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Curso ya está en el sistema", "Existe", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }catch (CursoNullPointerException e){
+            //muestra el StackTrace de la excepción causada
+            JOptionPane.showMessageDialog(this, "Error al crear el curso\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+            jTextFieldGradoOrRUT.setText("");
+            jTextFieldLetraOrNombre.setText("");
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(this,"Error génerico\n"+colegio.shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);
+            jTextFieldGradoOrRUT.setText("");
+            jTextFieldLetraOrNombre.setText("");
+        }
+    }
+
+
+
+    private void agregarEstudiante(){
+        try{
+            Estudiante e = new Estudiante(jTextFieldLetraOrNombre.getText(),jTextFieldApellido.getText(),jTextFieldGradoOrRUT.getText());
+            e.toUpperCase();
+            e.setRut(curso.verificarRut(e.getRut()));
+            if(colegio.verificarEstudiante(e.getRut())){
+                JOptionPane.showMessageDialog(this, "Estudiante ya registrado en el sistema", "Existe", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else{
+                curso.agregarEstudiante(jTextFieldGradoOrRUT.getText(),e);
+                curso.agregarEstudiante(e,ruta.getPathEstudiantes());
+                JOptionPane.showMessageDialog(this, "Estudiante agregado", "Exito!", JOptionPane.INFORMATION_MESSAGE);
+                MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
+                vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                vv.setSize(this.getSize());
+                vv.setLocation(this.getLocation());
+                vv.setVisible(true);
+                this.dispose();
+            }
+        }catch(EstudianteNullPointerException e){
+            JOptionPane.showMessageDialog(this, "Error al crear al estudiante\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+            jTextFieldGradoOrRUT.setText("");
+            jTextFieldLetraOrNombre.setText("");
+            jTextFieldApellido.setText("");
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(this,"Error génerico","Error",JOptionPane.ERROR_MESSAGE);
+            jTextFieldGradoOrRUT.setText("");
+            jTextFieldLetraOrNombre.setText("");
+            jTextFieldApellido.setText("");
+        }
+    }
+
     private void opcionAceptar(){
         if (jTextFieldGradoOrRUT.getText().trim().isEmpty() || jTextFieldLetraOrNombre.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -261,73 +330,12 @@ public class Agregar extends javax.swing.JFrame {
         else{
             //agregar curso, si no se pasa la instancia de un curso en el constructor entonces se pasa a la versión de agregar del curso
             if(curso==null){
-                try{
-                    Curso c = new Curso(jTextFieldGradoOrRUT.getText(),jTextFieldLetraOrNombre.getText());
-                    if (colegio.verificarCurso(c)==null){
-                        if (c.formatoCorrecto()){
-                            colegio.agregarCurso(c,ruta.getPathCursos());
-                            JOptionPane.showMessageDialog(this, "Curso agregado", "Exito!", JOptionPane.INFORMATION_MESSAGE);
-                            MenuCursos vv = new MenuCursos(colegio);
-                            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                            vv.setSize(this.getSize());
-                            vv.setLocation(this.getLocation());
-                            vv.setVisible(true);
-                            this.dispose();
-                        }
-                        else{
-                            JOptionPane.showMessageDialog(this, "Formato no valido\nEjemplo de formato valido:\nGrado: 1ro medio\nLetra: a", "Advertencia", JOptionPane.WARNING_MESSAGE);
-                        }
-
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(this, "Curso ya está en el sistema", "Existe", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                }catch (CursoNullPointerException e){
-                    //muestra el StackTrace de la excepción causada
-                    JOptionPane.showMessageDialog(this, "Error al crear el curso\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
-                    jTextFieldGradoOrRUT.setText("");
-                    jTextFieldLetraOrNombre.setText("");
-                }catch (Exception e){
-                    JOptionPane.showMessageDialog(this,"Error génerico\n"+colegio.shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);
-                    jTextFieldGradoOrRUT.setText("");
-                    jTextFieldLetraOrNombre.setText("");
-                }
-
-            
+                agregarCurso();
             }
 
             //agregar estudiantes
             else{
-                try{
-                    Estudiante e = new Estudiante(jTextFieldLetraOrNombre.getText(),jTextFieldApellido.getText(),jTextFieldGradoOrRUT.getText());
-                    e.toUpperCase();
-                    e.setRut(curso.verificarRut(e.getRut()));
-                    if(colegio.verificarEstudiante(e.getRut())){
-                        JOptionPane.showMessageDialog(this, "Estudiante ya registrado en el sistema", "Existe", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                    else{
-                        curso.agregarEstudiante(jTextFieldGradoOrRUT.getText(),e);
-                        curso.agregarEstudiante(e,ruta.getPathEstudiantes());
-                        JOptionPane.showMessageDialog(this, "Estudiante agregado", "Exito!", JOptionPane.INFORMATION_MESSAGE);
-                        MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
-                        vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                        vv.setSize(this.getSize());
-                        vv.setLocation(this.getLocation());
-                        vv.setVisible(true);
-                        this.dispose();
-                    }
-                }catch(EstudianteNullPointerException e){
-                    JOptionPane.showMessageDialog(this, "Error al crear al estudiante\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
-                    jTextFieldGradoOrRUT.setText("");
-                    jTextFieldLetraOrNombre.setText("");
-                    jTextFieldApellido.setText("");
-                }catch (Exception e){
-                    JOptionPane.showMessageDialog(this,"Error génerico","Error",JOptionPane.ERROR_MESSAGE);
-                    jTextFieldGradoOrRUT.setText("");
-                    jTextFieldLetraOrNombre.setText("");
-                    jTextFieldApellido.setText("");
-                }
-
+                agregarEstudiante();
             }
         }    
     }     
