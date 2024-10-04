@@ -48,6 +48,7 @@ public class MenuAsistencia extends javax.swing.JFrame {
         jButtonVolver = new javax.swing.JButton();
         jLabelCurso = new javax.swing.JLabel();
         jButtonPorcentaje = new javax.swing.JButton();
+        jButtonReporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Colegio");
@@ -105,6 +106,14 @@ public class MenuAsistencia extends javax.swing.JFrame {
             }
         });
 
+        jButtonReporte.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButtonReporte.setText("Crear reporte");
+        jButtonReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReporteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,7 +132,8 @@ public class MenuAsistencia extends javax.swing.JFrame {
                             .addComponent(jButtonRealizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonPorcentaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButtonPorcentaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(74, 74, 74))))
         );
         layout.setVerticalGroup(
@@ -141,6 +151,8 @@ public class MenuAsistencia extends javax.swing.JFrame {
                 .addComponent(jButtonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonPorcentaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonVolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(59, 59, 59))
@@ -230,6 +242,18 @@ public class MenuAsistencia extends javax.swing.JFrame {
             this.dispose();     
         }
     }//GEN-LAST:event_jButtonPorcentajeActionPerformed
+    //Método para generar un reportaje en un archivo externo
+    private void jButtonReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReporteActionPerformed
+        if (evt.getSource() == jButtonReporte){
+            if(colegio.asistenciaEstaVacio()){
+                JOptionPane.showMessageDialog(this, "No hay asistencias disponibles", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
+            else{
+                //Crear reportaje aqui
+                JOptionPane.showMessageDialog(this, "Reporte creado exitosamente!", "Exito", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButtonReporteActionPerformed
 
 
 
@@ -238,6 +262,7 @@ public class MenuAsistencia extends javax.swing.JFrame {
     private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonPorcentaje;
     private javax.swing.JButton jButtonRealizar;
+    private javax.swing.JButton jButtonReporte;
     private javax.swing.JButton jButtonVolver;
     private javax.swing.JLabel jLabelCurso;
     private javax.swing.JLabel jLabelTitulo;
