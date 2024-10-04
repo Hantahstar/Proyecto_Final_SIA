@@ -30,10 +30,11 @@ public class MenuAsistencia extends javax.swing.JFrame {
         jButtonBuscar.setBackground(Color.lightGray);
         jButtonEliminar.setBackground(Color.lightGray);
         jButtonRealizar.setBackground(Color.lightGray);
+        jButtonReporte.setBackground(Color.lightGray);
+        jButtonPorcentaje.setBackground(Color.lightGray);
         jButtonVolver.setBackground(Color.lightGray);
         jLabelCurso.setBackground(Color.black);
         jLabelTitulo.setBackground(Color.black);
-        jButtonPorcentaje.setBackground(Color.lightGray);
     }
 
     /**
