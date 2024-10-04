@@ -8,16 +8,13 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Usuario
- */
+//Clase para modificar un estudiante
 public class Modificar extends javax.swing.JFrame {
-
+    //Atributos de instancia
     private Colegio colegio;
     private Curso curso;
     private Estudiante estudiante;
-    
+    //Constructor de la clase Modificar
     public Modificar(Colegio colegio,Curso curso,Estudiante estudiante) {
         this.colegio = colegio;
         this.curso = curso;
@@ -25,7 +22,7 @@ public class Modificar extends javax.swing.JFrame {
         initComponents();
         visual();
     }
-
+    //Método para visualizar la interfaz gráfica y configurarla al gusto
     private void visual(){
         this.getContentPane().setBackground(Color.gray);
         jButtonCancelar.setBackground(Color.lightGray);
@@ -184,13 +181,15 @@ public class Modificar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    
+    //Método para modificar un estudiante
     private void opcionModificar(){
+        //Si no se completan todas las casillas, se muestra un mensaje de advertencia
         if(jTextFieldNombre.getText().trim().isEmpty() || jTextFieldApellido.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
         else{
             try{
+                //Se modifican los datos del estudiante
                 estudiante.setNombre(jTextFieldNombre.getText());
                 estudiante.setApellido(jTextFieldApellido.getText());
                 estudiante.toUpperCase();
@@ -202,6 +201,8 @@ public class Modificar extends javax.swing.JFrame {
                 vv.setLocation(this.getLocation());
                 vv.setVisible(true);
                 this.dispose();
+
+            //En caso de que ocurra un error, se muestra un mensaje de error
             }catch (EstudianteNullPointerException e){
                 JOptionPane.showMessageDialog(this, "Error al intentar modificar estudiante\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
                 jTextFieldNombre.setText("");
@@ -214,13 +215,13 @@ public class Modificar extends javax.swing.JFrame {
 
         }
     }
-    
+    //Método para modificar un estudiante
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
         if (evt.getSource()==jButtonModificar){
             opcionModificar();
         }
     }//GEN-LAST:event_jButtonModificarActionPerformed
-
+    //Método para volver al menú de estudiantes
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         if(evt.getSource()==jButtonCancelar){
             MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
@@ -231,21 +232,21 @@ public class Modificar extends javax.swing.JFrame {
             this.dispose(); 
         }
     }//GEN-LAST:event_jButtonCancelarActionPerformed
-
+    //Método para al presionar enter en la casilla de nombre se ejecute la opción de modificar
     private void jTextFieldNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreKeyPressed
         int keycode = evt.getKeyCode();
         if (keycode==10){
             opcionModificar();
         }
     }//GEN-LAST:event_jTextFieldNombreKeyPressed
-
+    //Método para al presionar enter en la casilla de apellido se ejecute la opción de modificar
     private void jTextFieldApellidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldApellidoKeyPressed
         int keycode = evt.getKeyCode();
         if (keycode==10){
             opcionModificar();
         }
     }//GEN-LAST:event_jTextFieldApellidoKeyPressed
-
+    //Actualiza los CSV de los estudiantes, cursos y asistencias
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         MenuPrincipal vv = new MenuPrincipal(colegio);
         vv.catchException(this);

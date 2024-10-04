@@ -8,21 +8,19 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Usuario
- */
+//Clase para el menú de estudiantes
 public class MenuEstudiantes extends javax.swing.JFrame {
-
+    //Atributos de instancia
     private Colegio colegio;
     private Curso curso;
+    //Constructor de la clase MenuEstudiantes
     public MenuEstudiantes(Colegio colegio,Curso curso) {
         this.colegio = colegio;
         this.curso = curso;
         initComponents();
         visual();
     }
-    
+    //Método para visualizar la interfaz gráfica y configurarla al gusto
     private void visual(){
         this.getContentPane().setBackground(Color.gray);
         jButtonAgregar.setBackground(Color.lightGray);
@@ -168,7 +166,7 @@ public class MenuEstudiantes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    //Método para agregar un estudiante
     private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
         if(evt.getSource()==jButtonAgregar){
             Agregar vv = new Agregar(colegio,curso);
@@ -180,7 +178,7 @@ public class MenuEstudiantes extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_jButtonAgregarActionPerformed
-
+    //Método para volver al menú principal
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
         if (evt.getSource()==jButtonVolver){
             MenuPrincipal vv = new MenuPrincipal(colegio);
@@ -191,7 +189,7 @@ public class MenuEstudiantes extends javax.swing.JFrame {
             this.dispose(); 
         }
     }//GEN-LAST:event_jButtonVolverActionPerformed
-
+    //Método para eliminar un estudiante
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         if(evt.getSource()==jButtonEliminar){
             if(curso.estaCursoVacio()){
@@ -207,7 +205,7 @@ public class MenuEstudiantes extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButtonEliminarActionPerformed
-
+    //Método para buscar un estudiante en una ventana
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         if (evt.getSource()==jButtonBuscar){
             //true para buscar y false para modificar
@@ -219,7 +217,7 @@ public class MenuEstudiantes extends javax.swing.JFrame {
             this.dispose(); 
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
-
+    //Método para mostrar todos los estudiantes del curso en una ventana
     private void jButtonMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarActionPerformed
         //lista para mostrar todos los estudiantes
         if (evt.getSource()==jButtonMostrar){
@@ -236,11 +234,11 @@ public class MenuEstudiantes extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButtonMostrarActionPerformed
-
+    //Método para modificar un estudiante antes yendo por una ventana de buscar
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
-        //modificar estudiante
+        //Modificar estudiante
         if (evt.getSource()==jButtonModificar){
-            //ventana de modificar que primero pasa por la de buscar
+            //Ventana de modificar que primero pasa por la de buscar
             JOptionPane.showMessageDialog(this, "Necesitas primero buscar al estudiante para modificar", "Aviso", JOptionPane.INFORMATION_MESSAGE);
             Buscar vv = new Buscar(colegio,curso,false);
             vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -250,7 +248,7 @@ public class MenuEstudiantes extends javax.swing.JFrame {
             this.dispose(); 
         }
     }//GEN-LAST:event_jButtonModificarActionPerformed
-
+    //Para actualizar los CSV de los estudiantes, cursos y asistencias
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         MenuPrincipal vv = new MenuPrincipal(colegio);
         vv.catchException(this);

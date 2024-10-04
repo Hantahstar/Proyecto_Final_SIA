@@ -9,18 +9,13 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Usuario
- */
+//Clase para mostrar la lista de asistencias
 public class ListaAsistencia extends javax.swing.JFrame {
+    //Atributos de instancia
     private Colegio colegio;
     private Curso curso;
     private boolean opcion;
-    private final String pathEstudiantes = "src/main/java/Estudiantes.csv";
-    private final String pathCursos = "src/main/java/Cursos.csv";
-    private final String pathAsistencia = "src/main/java/Asistencias.csv";
-    //booleano true es para buscar y false para eliminar
+    //Constructor de la clase ListaAsistencia, con consideración de excepciones, el booleano opcion es para saber si se quiere eliminar o ver la asistencia
     public ListaAsistencia(Colegio colegio,Curso curso,boolean opcion) {
         this.colegio = colegio;
         this.curso = curso;
@@ -37,7 +32,7 @@ public class ListaAsistencia extends javax.swing.JFrame {
         jTableLista.getTableHeader().setReorderingAllowed(false);
         visual();
     }
-    
+    //Método para visualizar la interfaz gráfica y configurarla al gusto
     private void visual(){
         //panel
         this.getContentPane().setBackground(Color.gray);
@@ -212,7 +207,7 @@ public class ListaAsistencia extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    //Método para cerrar la ventana y volver al menú de asistencia
     private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed
         if (evt.getSource()==jButtonCerrar){
             MenuAsistencia vv = new MenuAsistencia(colegio,curso);
@@ -223,7 +218,7 @@ public class ListaAsistencia extends javax.swing.JFrame {
             this.dispose(); 
         }
     }//GEN-LAST:event_jButtonCerrarActionPerformed
-    
+    //Método para aceptar la asistencia
     private void opcionAceptar(){
         if (jTextFieldFecha.getText().trim().isEmpty() || jTextFieldHora.getText().trim().isEmpty()){
                 JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -235,7 +230,7 @@ public class ListaAsistencia extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Formato no válido, intente otra vez", "Advertencia", JOptionPane.INFORMATION_MESSAGE);
             }
             else{
-                //buscar asistencia
+                //Buscar asistencia
                 if(opcion){
                     try{
                         Asistencia asist = new Asistencia(jTextFieldFecha.getText(),jTextFieldHora.getText(),curso);
@@ -250,6 +245,7 @@ public class ListaAsistencia extends javax.swing.JFrame {
                             this.dispose();
                         }
                         else{
+                            //Caso donde no se encuentra la asistencia
                             JOptionPane.showMessageDialog(this, "Asistencia no está registrada en el sistema", "No existe", JOptionPane.WARNING_MESSAGE);
                         }
 
@@ -263,7 +259,7 @@ public class ListaAsistencia extends javax.swing.JFrame {
 
                 }
                 
-                //eliminar asistencia
+                //Eliminar asistencia
                 else{
                     try{
                         Asistencia asist = new Asistencia(jTextFieldFecha.getText(),jTextFieldHora.getText(),curso);
@@ -279,6 +275,7 @@ public class ListaAsistencia extends javax.swing.JFrame {
                             this.dispose();
                         }
                         else{
+                            //Si no se encuentra la asistencia
                             JOptionPane.showMessageDialog(this, "Asistencia no está registrada en el sistema", "No existe", JOptionPane.WARNING_MESSAGE);
                         }
 
@@ -295,27 +292,27 @@ public class ListaAsistencia extends javax.swing.JFrame {
             }
         
     }
-    
+    //Método para aceptar la asistencia con el botón aceptar
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
         if(evt.getSource()==jButtonAceptar){
             opcionAceptar();
         }    
     }//GEN-LAST:event_jButtonAceptarActionPerformed
-
+    //Método para aceptar la asistencia con la tecla enter
     private void jTextFieldFechaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldFechaKeyPressed
         int keycode = evt.getKeyCode();
         if (keycode==10){
             opcionAceptar();
         }
     }//GEN-LAST:event_jTextFieldFechaKeyPressed
-
+    //Método para aceptar la asistencia con la tecla enter
     private void jTextFieldHoraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldHoraKeyPressed
         int keycode = evt.getKeyCode();
         if (keycode==10){
             opcionAceptar();
         }
     }//GEN-LAST:event_jTextFieldHoraKeyPressed
-
+    //Método para seleccionar una asistencia de la lista con el mouse y mostrarla en los campos de texto
     private void jTableListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListaMouseClicked
        String fecha,hora;
         int fila = jTableLista.getSelectedRow();
@@ -327,7 +324,7 @@ public class ListaAsistencia extends javax.swing.JFrame {
             opcionAceptar();
         }
     }//GEN-LAST:event_jTableListaMouseClicked
-
+    //Al cerrar la pestaña se actualiza el CSV de asistencias, estudiantes y cursos
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         MenuPrincipal vv = new MenuPrincipal(colegio);
         vv.catchException(this);

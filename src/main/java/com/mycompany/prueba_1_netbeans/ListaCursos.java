@@ -12,9 +12,10 @@ import javax.swing.table.DefaultTableModel;
 
 //Ventana para un listado de los cursos
 public class ListaCursos extends javax.swing.JFrame {
-
+    //Atributos de instancia
     private Colegio colegio;
     private int opcion;
+    //Constructor de la clase ListaCursos para poder elegir un curso
     public ListaCursos(Colegio colegio,int opcion) {
         this.colegio = colegio;
         this.opcion = opcion;
@@ -32,6 +33,7 @@ public class ListaCursos extends javax.swing.JFrame {
         visual();
         
     }
+    //Constructor de la clase ListaCursos para el caso de que se quiera mostrar solo los cursos
     public ListaCursos(Colegio colegio){
         this.colegio = colegio;
         this.opcion = 1;
@@ -53,6 +55,7 @@ public class ListaCursos extends javax.swing.JFrame {
         this.remove(jButtonAceptar);
         
     }
+    //Método para visualizar la interfaz gráfica y configurarla al gusto
     private void visual(){
         //panel
         this.getContentPane().setBackground(Color.gray);
@@ -243,7 +246,7 @@ public class ListaCursos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    //Método para volver al menú de cursos o al menú principal
     private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed
         if (evt.getSource()==jButtonCerrar){
             if(opcion==1){
@@ -266,7 +269,7 @@ public class ListaCursos extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_jButtonCerrarActionPerformed
-
+    //Método para aceptar la elección de un curso
     private void opcionAceptar(){
         if (jTextFieldGrado.getText().trim().isEmpty() || jTextFieldLetra.getText().trim().isEmpty()){
                 JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -278,6 +281,7 @@ public class ListaCursos extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "El curso que eligió no existe", "No existe", JOptionPane.WARNING_MESSAGE);
                     }
                     else{
+                        //Dependiendo de la opción se abrirá una ventana u otra con el curso seleccionado
                         if(opcion==2){
                             MenuEstudiantes vv = new MenuEstudiantes(colegio,colegio.verificarCurso(c));
                             vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -288,6 +292,7 @@ public class ListaCursos extends javax.swing.JFrame {
                         }
                         else if(opcion==3){
                             if(colegio.verificarCurso(c).sizeCurso()!=0){
+                                //Si el curso tiene estudiantes se abrirá la ventana de asistencia
                                 MenuAsistencia vv = new MenuAsistencia(colegio,colegio.verificarCurso(c));
                                 vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                                 vv.setSize(this.getSize());
@@ -308,6 +313,7 @@ public class ListaCursos extends javax.swing.JFrame {
                             this.dispose();
                         }
                     }
+                //catchers de excepciones
                 }catch(CursoNullPointerException e){
                     JOptionPane.showMessageDialog(this, "Error al crear al seleccionar el curso\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
                     jTextFieldGrado.setText("");
@@ -320,26 +326,27 @@ public class ListaCursos extends javax.swing.JFrame {
 
             }
     }
+    //Método para aceptar la elección de un curso al presionar el botón aceptar
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
         if(evt.getSource()==jButtonAceptar){
             opcionAceptar();
         }
     }//GEN-LAST:event_jButtonAceptarActionPerformed
-
+    //Método para aceptar la elección de un curso al presionar la tecla enter
     private void jTextFieldGradoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldGradoKeyPressed
         int keycode = evt.getKeyCode();
         if (keycode==10){
             opcionAceptar();
         }
     }//GEN-LAST:event_jTextFieldGradoKeyPressed
-
+    //Método para aceptar la elección de un curso al presionar la tecla enter
     private void jTextFieldLetraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLetraKeyPressed
         int keycode = evt.getKeyCode();
         if (keycode==10){
             opcionAceptar();
         }
     }//GEN-LAST:event_jTextFieldLetraKeyPressed
-
+    //Método para aceptar la elección de un curso al hacer click en la tabla de cursos
     private void jTableListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListaMouseClicked
         if(opcion!=1){
             String grado,letra;
@@ -353,7 +360,7 @@ public class ListaCursos extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jTableListaMouseClicked
-
+    //Al cerrar la ventana se actualizarán todos los CSV
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         MenuPrincipal vv = new MenuPrincipal(colegio);
         vv.catchException(this);

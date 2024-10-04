@@ -3,16 +3,14 @@
  */
 
 package com.mycompany.prueba_1_netbeans;
-
-/**
- *
- * @author Usuario
- */
 import javax.swing.*;
+import java.io.IOException;
 
+//Clase para manejar los paths de los archivos CSV
 public class Proyecto_Final_SIA {
-    
-    public static void main(String[] args) {
+    //Método main
+    public static void main(String[] args){
+        //Instancias de las clases
         Colegio colegio = new Colegio();
         Path ruta = new Path();
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -21,9 +19,11 @@ public class Proyecto_Final_SIA {
                 vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 vv.setVisible(true);
                 try{
+                    //Cargar los datos de los archivos CSV
                     colegio.cargarCursosDesdeCSV(ruta.getPathCursos());
                     colegio.cargarEstudiantesDesdeCSV(ruta.getPathEstudiantes());
                     colegio.cargarAsistenciaDesdeCSV(ruta.getPathAsistencia());
+                //Manejo de excepciones
                 }catch (EstudianteNullPointerException e){
                     JOptionPane.showMessageDialog(vv, "Error al cargar estudiante/s\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
 
@@ -33,7 +33,9 @@ public class Proyecto_Final_SIA {
                 }catch (AsistenciaNullPointerException e){
                     JOptionPane.showMessageDialog(vv, "Error al cargar asistencia/s\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
 
-                }catch (Exception e){
+                }catch(IOException e){
+                    JOptionPane.showMessageDialog(vv, "Error con el CSV\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+                }catch(Exception e){
                     JOptionPane.showMessageDialog(vv, "Error génerico\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
                 }
 

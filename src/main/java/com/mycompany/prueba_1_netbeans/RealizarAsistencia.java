@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 //Ventana para registrar asistencia
 public class RealizarAsistencia extends javax.swing.JFrame {
+    //Atributos necesarios para trabajar con la clase
     private Colegio colegio;
     private Curso curso;
     public RealizarAsistencia(Colegio colegio,Curso curso) {
@@ -173,7 +174,7 @@ public class RealizarAsistencia extends javax.swing.JFrame {
     
     
     
-    //Al presionar el botón enter o clickear en el botón de aceptar llama este method
+    //Al presionar el botón enter o clickear en el botón de aceptar llama este método
     private void opcionAceptar(){
         //realizar asistencia
         //verifica que ambos TextField tengan algo

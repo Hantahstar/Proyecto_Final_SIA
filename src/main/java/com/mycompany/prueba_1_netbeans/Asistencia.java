@@ -10,11 +10,12 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 public class Asistencia{
+    //Atributos de instancia
     private String fecha;
     private String hora;
     private Curso curso;
     private int cantidadPresentes;
-    
+    //Método constructor con consideración de excepciones
     public Asistencia(String fecha,String hora,Curso curso)throws AsistenciaNullPointerException {
         if (fecha == null && hora == null){
             throw new AsistenciaNullPointerException("Fecha y hora tiene valor nulo");
@@ -32,7 +33,7 @@ public class Asistencia{
         }
 
     }
-   
+    //Getters y Setters
     public Curso getCurso() {
         return curso;
     }
@@ -78,7 +79,7 @@ public class Asistencia{
     public Estudiante getEstudiante(int i){
         return curso.getEstudiante(i);
     }
-
+    //Método compartido por varias clases para acortar el máximo de líneas de error del StackTrace
     public String shortStackTrace(Exception e,int maxLineas){
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);
@@ -90,45 +91,42 @@ public class Asistencia{
         }
         return shortStackTrace.toString();
     }
+    //Método utilizado una vez se realice la asistencia, muestra JOptionPanes de opciones para decir los diferentes caso de asistencia del estudiante
+    public boolean pasaAsistencia(Curso c,Asistencia asist,JFrame panel)throws AsistenciaNullPointerException{
+        int i, contador = 0;
+        //Opciones del JOPtion
+        String[] opciones = {"Presente","Faltó","Falta just.","Sale fuera de horario","Cancelar"};
+        int selectionOpcion;
+        Estudiante e;
+        for(i=0;c.sizeCurso()>i;i++){
+            e = asist.getEstudiante(i);
+            selectionOpcion = JOptionPane.showOptionDialog(panel,("Nombre : "+e.getNombre()+" "+e.getApellido()+"\nRut : "+e.getRut()),"Asistencia",JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE,null,opciones,opciones[0]);
+            //Dependiendo la opción elegida actualizará el "estado" de cada estudiante en este pase de asistencia
+            switch((selectionOpcion+1)){
+                case 1:
+                    contador++;
+                    e.setEstado(1);
+                    break;
+                case 2:
+                    e.setEstado(2);
+                    break;
+                case 3:
+                    e.setEstado(3);
+                    break;
+                case 4:
+                    e.setEstado(4);
+                    break;
+                case 5, 0:
+                    //Caso donde se cancele o se cierre alguno de los popup
+                    return false;
 
-    public boolean pasaAsistencia(Curso c,Asistencia asist,JFrame panel){
-        try{
-            int i, contador = 0;
-            String[] opciones = {"Presente","Faltó","Falta just.","Sale fuera de horario","Cancelar"};
-            int selectionOpcion;
-            Estudiante e;
-            for(i=0;c.sizeCurso()>i;i++){
-                e = asist.getEstudiante(i);
-                selectionOpcion = JOptionPane.showOptionDialog(panel,("Nombre : "+e.getNombre()+" "+e.getApellido()+"\nRut : "+e.getRut()),"Asistencia",JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE,null,opciones,opciones[0]);
-                switch((selectionOpcion+1)){
-                    case 1:
-                        contador++;
-                        e.setEstado(1);
-                        break;
-                    case 2:
-                        e.setEstado(2);
-                        break;
-                    case 3:
-                        e.setEstado(3);
-                        break;
-                    case 4:
-                        e.setEstado(4);
-                        break;
-                    case 5, 0:
-                        return false;
-
-                }
             }
-            asist.setCantidadPresentes(contador);
-            return true;
-        }catch (AsistenciaNullPointerException ex){
-            JOptionPane.showMessageDialog(panel, "Error al pasar la asistencia\nError: "+ex.getMessage()+"\n"+shortStackTrace(ex,10), "Error", JOptionPane.ERROR_MESSAGE);
-        }catch (Exception ex){
-            JOptionPane.showMessageDialog(panel,"Error génerico\n"+shortStackTrace(ex,10),"Error",JOptionPane.ERROR_MESSAGE);
         }
-        return false;
+        //Al terminar se setea la cantidad de personas presentes en este pase de asistencia
+        asist.setCantidadPresentes(contador);
+        return true;
     }
-    
+    //Método sobreescrito de Object toString()
     @Override
     public String toString(){
         return fecha+","+hora+","+Integer.toString(cantidadPresentes)+"/"+Long.toString(curso.sizeCurso())+"\n";

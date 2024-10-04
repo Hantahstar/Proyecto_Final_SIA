@@ -8,21 +8,18 @@ import java.awt.Color;
 import java.io.IOException;
 import javax.swing.*;
 
-/**
- *
- * @author Usuario
- */
+//Clase para mostrar el menú principal
 public class MenuPrincipal extends javax.swing.JFrame {
+    //Atributos de instancia
     private Colegio colegio;
-    
     private final Path ruta = new Path();
-    
+    //Constructor de la clase MenuPrincipal
     public MenuPrincipal(Colegio colegio) {
         this.colegio = colegio;
         initComponents();
         visual();
     }
-    
+    //Método para visualizar la interfaz gráfica y configurarla al gusto
     private void visual(){
         this.getContentPane().setBackground(Color.gray);
         jButtonAsistencias.setBackground(Color.lightGray);
@@ -139,7 +136,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    //Método para ir al menú de cursos
     private void jButtonCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCursosActionPerformed
         if (evt.getSource()==jButtonCursos){
             MenuCursos vv = new MenuCursos(this.colegio);
@@ -150,13 +147,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
             this.dispose(); 
         }
     }//GEN-LAST:event_jButtonCursosActionPerformed
-
+    //Método para ir al menú de asistencias
     private void jButtonAsistenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAsistenciasActionPerformed
         if (evt.getSource()==jButtonAsistencias){
             if(colegio.cursoEstaVacio()){
+                //En el caso de que no haya cursos disponibles
                 JOptionPane.showMessageDialog(this, "No hay cursos disponibles", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
             else{
+                //se pone 3 como parametro para que vaya al menu de asistencias
                 ListaCursos vv = new ListaCursos(colegio,3);
                 vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 vv.setSize(this.getSize());
@@ -166,7 +165,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButtonAsistenciasActionPerformed
-
+    //Método para ir al menú de estudiantes
     private void jButtonEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEstudiantesActionPerformed
         if (evt.getSource()==jButtonEstudiantes){
             if(!colegio.cursoEstaVacio()){
@@ -177,23 +176,23 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 vv.setLocation(this.getLocation());
                 vv.setVisible(true);
                 this.dispose(); 
-                //ventana de estudiantes
+                //Ventana de estudiantes
             }
             else{
-                //no hay
+                //No hay cursos disponibles
                 JOptionPane.showMessageDialog(this, "No hay cursos disponibles", "Advertencia", JOptionPane.WARNING_MESSAGE);
                 
             }
         }
     }//GEN-LAST:event_jButtonEstudiantesActionPerformed
-
+    //Método para salir de la aplicación
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
         if(evt.getSource()==jButtonSalir){
             catchException(this);
         }
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
-
+    //Método para actualizar los CSV de los estudiantes, cursos y asistencias y capturar excepciones
     public void catchException(JFrame panel){
         try{
             colegio.actualizar(ruta.getPathEstudiantes(),1);
@@ -216,9 +215,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
     }
 
-
+    //Para actualizar los CSV de los estudiantes, cursos y asistencias al cerrar la ventana
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         catchException(this);
+        this.dispose();
     }//GEN-LAST:event_formWindowClosing
 
 

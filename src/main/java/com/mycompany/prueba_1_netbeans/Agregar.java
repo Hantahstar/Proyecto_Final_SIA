@@ -8,16 +8,13 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Usuario
- */
+//Clase ventana Agregar, funciona para agregar cursos y estudiantes
 public class Agregar extends javax.swing.JFrame {
-    
+    //Atributos necesarios para trabajar con la clase
     private Colegio colegio;
     private Curso curso;
     private final Path ruta = new Path();
-    //agregar curso
+    //Contructor para agregar curso
     public Agregar(Colegio colegio) {
         this.colegio = colegio;
         initComponents();
@@ -25,14 +22,14 @@ public class Agregar extends javax.swing.JFrame {
         this.remove(jLabelApellido);
         this.remove(jTextFieldApellido);
     }
-    //agregar estudiante
+    //Constructor para agregar estudiante
     public Agregar(Colegio colegio,Curso curso){
         this.colegio = colegio;
         this.curso = curso;
         initComponents();
         visual();
     }
-    
+    //método para tener a mano las configuraciones de las visuales
     private void visual(){
         this.getContentPane().setBackground(Color.gray);
         jButtonAceptar.setBackground(Color.lightGray);
@@ -199,9 +196,12 @@ public class Agregar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
+    //Acción que se realiza al presionar el botón "cancelar" depende de si en el constructor se pasó un objeto de Curso o no
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         if(evt.getSource()==jButtonCancelar){
             if (curso==null){
+                //Regresa al menú de cursos
                 MenuCursos vv = new MenuCursos(colegio);
                 vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 vv.setSize(this.getSize());
@@ -210,6 +210,7 @@ public class Agregar extends javax.swing.JFrame {
                 this.dispose(); 
             }
             else{
+                //Regresa al menú de estudiantes
                 MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
                 vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 vv.setSize(this.getSize());
@@ -220,33 +221,34 @@ public class Agregar extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
+    //Evento que se activa al cliquear el botón "aceptar"
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
         if (evt.getSource()==jButtonAceptar){
             opcionAceptar();
         }    
     }//GEN-LAST:event_jButtonAceptarActionPerformed
-
+    //Evento que sucede al presionar la tecla enter
     private void jTextFieldGradoOrRUTKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldGradoOrRUTKeyPressed
         int keycode = evt.getKeyCode();
         if (keycode==10){
             opcionAceptar();
         }
     }//GEN-LAST:event_jTextFieldGradoOrRUTKeyPressed
-
+    //Evento al presionar la tecla enter
     private void jTextFieldLetraOrNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLetraOrNombreKeyPressed
         int keycode = evt.getKeyCode();
         if (keycode==10){
             opcionAceptar();
         }
     }//GEN-LAST:event_jTextFieldLetraOrNombreKeyPressed
-
+    //Evento al presionar la tecla enter
     private void jTextFieldApellidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldApellidoKeyPressed
        int keycode = evt.getKeyCode();
         if (keycode==10){
             opcionAceptar();
         }
     }//GEN-LAST:event_jTextFieldApellidoKeyPressed
-
+    //Al cerrar la ventana se actualizan los CSV
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         MenuPrincipal vv = new MenuPrincipal(colegio);
         vv.catchException(this);
@@ -254,7 +256,7 @@ public class Agregar extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
 
-
+    //Método cuando la clase Agregar en su constructor no pasa un objeto tipo Curso
     private void agregarCurso(){
         try{
             Curso c = new Curso(jTextFieldGradoOrRUT.getText(),jTextFieldLetraOrNombre.getText());
@@ -290,16 +292,18 @@ public class Agregar extends javax.swing.JFrame {
     }
 
 
-
+    //Método para agregar estudiantes
     private void agregarEstudiante(){
         try{
             Estudiante e = new Estudiante(jTextFieldLetraOrNombre.getText(),jTextFieldApellido.getText(),jTextFieldGradoOrRUT.getText());
             e.toUpperCase();
             e.setRut(curso.verificarRut(e.getRut()));
             if(colegio.verificarEstudiante(e.getRut())){
+                //Caso donde estudiante que se quiere agregar ya se haya añadido con anterioridad
                 JOptionPane.showMessageDialog(this, "Estudiante ya registrado en el sistema", "Existe", JOptionPane.INFORMATION_MESSAGE);
             }
             else{
+                //Agrega automáticamente al CSV de estudiante en el caso de no estar registrado en el sistema, además de la colección en si
                 curso.agregarEstudiante(jTextFieldGradoOrRUT.getText(),e);
                 curso.agregarEstudiante(e,ruta.getPathEstudiantes());
                 JOptionPane.showMessageDialog(this, "Estudiante agregado", "Exito!", JOptionPane.INFORMATION_MESSAGE);
@@ -310,6 +314,7 @@ public class Agregar extends javax.swing.JFrame {
                 vv.setVisible(true);
                 this.dispose();
             }
+        //catchers de excepciones
         }catch(EstudianteNullPointerException e){
             JOptionPane.showMessageDialog(this, "Error al crear al estudiante\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
             jTextFieldGradoOrRUT.setText("");
@@ -323,6 +328,7 @@ public class Agregar extends javax.swing.JFrame {
         }
     }
 
+    //Método utilizado por varios eventos para poder ingresar los datos al querer agregar, llama a los dos métodos de agregar dependiendo el caso
     private void opcionAceptar(){
         if (jTextFieldGradoOrRUT.getText().trim().isEmpty() || jTextFieldLetraOrNombre.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);

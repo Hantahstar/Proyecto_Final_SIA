@@ -8,19 +8,16 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Usuario
- */
+//Clase para el menú de cursos
 public class MenuCursos extends javax.swing.JFrame {
-
+    //Atributos de instancia
     private Colegio colegio;
     public MenuCursos(Colegio colegio) {
         this.colegio = colegio;
         initComponents();
         visual();
     }
-
+    //Método para visualizar la interfaz gráfica y configurarla al gusto
     private void visual(){
         this.getContentPane().setBackground(Color.gray);
         jButtonAgregar.setBackground(Color.lightGray);
@@ -141,7 +138,7 @@ public class MenuCursos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    //Método para agregar un curso
     private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
         if (evt.getSource()==jButtonAgregar){
             Agregar vv = new Agregar(colegio);
@@ -153,7 +150,7 @@ public class MenuCursos extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_jButtonAgregarActionPerformed
-
+    //Método para volver al menú principal
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
         if (evt.getSource()==jButtonVolver){
             MenuPrincipal vv = new MenuPrincipal(colegio);
@@ -164,7 +161,7 @@ public class MenuCursos extends javax.swing.JFrame {
             this.dispose(); 
         }
     }//GEN-LAST:event_jButtonVolverActionPerformed
-
+    //Método para buscar un curso
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         if(evt.getSource()==jButtonBuscar){
             if(colegio.cursoEstaVacio()){
@@ -180,7 +177,7 @@ public class MenuCursos extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
-
+    //Método para eliminar un curso
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         if(evt.getSource()==jButtonEliminar){
             if(colegio.cursoEstaVacio()){
@@ -196,7 +193,7 @@ public class MenuCursos extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButtonEliminarActionPerformed
-
+    //Método para mostrar los cursos
     private void jButtonMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarActionPerformed
         if(evt.getSource()==jButtonMostrar){
             if (colegio.cursoEstaVacio()){
@@ -213,7 +210,7 @@ public class MenuCursos extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_jButtonMostrarActionPerformed
-
+    //Para actualizar los CSV de los estudiantes, cursos y asistencias
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         MenuPrincipal vv = new MenuPrincipal(colegio);
         vv.catchException(this);

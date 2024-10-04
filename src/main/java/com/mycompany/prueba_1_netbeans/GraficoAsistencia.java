@@ -15,10 +15,11 @@ import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 public class GraficoAsistencia extends javax.swing.JFrame {
-
+    //Atributos de instancia
     private HashMap<String, Double> mapaPorcentaje;
     private Colegio colegio;
     private Curso curso;
+    //Constructor de la clase GraficoAsistencia
     public GraficoAsistencia(HashMap<String, Double> mapaPorcentaje,Colegio colegio,Curso curso) {
         this.mapaPorcentaje = mapaPorcentaje;
         this.colegio = colegio;
@@ -27,7 +28,7 @@ public class GraficoAsistencia extends javax.swing.JFrame {
         initComponents();
         visual();
     }
-    
+    //Método para mostrar el gráfico de asistencia de los estudiantes
     private void mostrarGraficoAsistencia(HashMap<String, Double> porcentajesAsistencia) {
         // Crear el dataset con los datos de asistencia
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -51,8 +52,9 @@ public class GraficoAsistencia extends javax.swing.JFrame {
         chartPanelGrafico = new ChartPanel(barChartGrafico);
 
         this.setContentPane(chartPanelGrafico);
-    } 
-    
+    }
+
+    //Método para visualizar la interfaz gráfica y configurarla al gusto
     private void visual(){
         this.getContentPane().setBackground(Color.gray);
         jButtonVolver.setBackground(Color.lightGray);
@@ -112,7 +114,7 @@ public class GraficoAsistencia extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    //Método para volver al menú de asistencia
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
         if (evt.getSource()==jButtonVolver){
             MenuAsistencia vv = new MenuAsistencia(colegio,curso);
@@ -123,7 +125,7 @@ public class GraficoAsistencia extends javax.swing.JFrame {
             this.dispose();                
         }
     }//GEN-LAST:event_jButtonVolverActionPerformed
-
+    //Para actualizar los CSV de los estudiantes, cursos y asistencias
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         MenuPrincipal vv = new MenuPrincipal(colegio);
         vv.catchException(this);

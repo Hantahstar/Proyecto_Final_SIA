@@ -8,18 +8,19 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+//Clase para mostrar el menú de asistencia
 public class MenuAsistencia extends javax.swing.JFrame {
-    
-    
+    //Atributos de instancia
     private Colegio colegio;
     private Curso curso;
+    //Constructor de la clase MenuAsistencia
     public MenuAsistencia(Colegio colegio,Curso curso) {
         this.colegio = colegio;
         this.curso = curso;
         initComponents();
         visual();
     }
-    
+    //Método para visualizar la interfaz gráfica y configurarla al gusto
     private void visual(){
         this.getContentPane().setBackground(Color.gray);
         jButtonBuscar.setBackground(Color.lightGray);
@@ -147,7 +148,7 @@ public class MenuAsistencia extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    //Método para realizar la asistencia de un curso en una nueva ventana
     private void jButtonRealizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRealizarActionPerformed
         if (evt.getSource()==jButtonRealizar){
             RealizarAsistencia vv = new RealizarAsistencia(colegio,curso);
@@ -158,7 +159,7 @@ public class MenuAsistencia extends javax.swing.JFrame {
             this.dispose(); 
         }
     }//GEN-LAST:event_jButtonRealizarActionPerformed
-
+    //Método para buscar la asistencia de un curso en una nueva ventana
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         if (evt.getSource()==jButtonBuscar){
             boolean encontradoBuscar = colegio.verificarAsistencia(curso);
@@ -176,10 +177,11 @@ public class MenuAsistencia extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
-
+    //Método para eliminar la asistencia de un curso en una nueva ventana
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         if (evt.getSource()==jButtonEliminar){
             boolean encontradoEliminar = colegio.verificarAsistencia(curso);
+            //Si no hay asistencias disponibles o no se encuentra la asistencia
             if(colegio.asistenciaEstaVacio() || !encontradoEliminar){
                 JOptionPane.showMessageDialog(this, "No hay asistencias disponibles", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
@@ -195,7 +197,7 @@ public class MenuAsistencia extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_jButtonEliminarActionPerformed
-
+    //Método para volver al menú principal
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
         if(evt.getSource()==jButtonVolver){
             MenuPrincipal vv = new MenuPrincipal(colegio);
@@ -207,12 +209,14 @@ public class MenuAsistencia extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonVolverActionPerformed
 
+    //Para actualizar los CSV de los estudiantes, cursos y asistencias
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         MenuPrincipal vv = new MenuPrincipal(colegio);
         vv.catchException(this);
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
 
+    //Método para generar un gráfico de porcentaje de asistencia de un curso
     private void jButtonPorcentajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPorcentajeActionPerformed
         if (colegio.asistenciaEstaVacio()){
             JOptionPane.showMessageDialog(this, "No hay asistencias disponibles", "Advertencia", JOptionPane.WARNING_MESSAGE);

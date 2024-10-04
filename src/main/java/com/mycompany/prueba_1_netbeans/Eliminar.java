@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.mycompany.prueba_1_netbeans;
 
 import java.awt.Color;
@@ -12,13 +8,16 @@ public class Eliminar extends javax.swing.JFrame {
 
     private Colegio colegio;
     private Curso curso;
+
+    //Constructor para eliminar cursos
     public Eliminar(Colegio colegio){
         this.colegio = colegio;
         initComponents();
         visual();
     }
-    //eliminar para estudiantes
-    public Eliminar(Colegio colegio,Curso curso){
+
+    //Constructor para eliminar estudiantes
+    public Eliminar(Colegio colegio, Curso curso){
         this.colegio = colegio;
         this.curso = curso;
         initComponents();
@@ -26,7 +25,8 @@ public class Eliminar extends javax.swing.JFrame {
         this.remove(jLabelLetra);
         this.remove(jTextFieldLetra);
     }
-    
+
+    //Método para configurar la apariencia de la ventana
     private void visual(){
         this.getContentPane().setBackground(Color.gray);
         jButtonCancelar.setBackground(Color.lightGray);
@@ -166,7 +166,7 @@ public class Eliminar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
+    //Método para eliminar un curso
     private void eliminarCurso(){
         try{
             Curso c = new Curso(jTextFieldGradoOrRUT.getText(),jTextFieldLetra.getText());
@@ -196,7 +196,7 @@ public class Eliminar extends javax.swing.JFrame {
             jTextFieldLetra.setText("");
         }
     }
-
+    //Método para eliminar un estudiante
     private void eliminarEstudiante(){
         try{
             Estudiante e = new Estudiante();
@@ -205,6 +205,7 @@ public class Eliminar extends javax.swing.JFrame {
             if(curso.contieneEstudiante(jTextFieldGradoOrRUT.getText())){
                 e = curso.getEstudiante(jTextFieldGradoOrRUT.getText());
                 JOptionPane.showMessageDialog(this,"Nombre: "+e.getNombre()+"\nApellido: "+e.getApellido()+"\nRUT: "+e.getRut()+"\nEstudiante Expulsado","Expulsado", JOptionPane.INFORMATION_MESSAGE);
+                //Eliminar Estudiante
                 curso.removerEstudiante(e);
                 curso.removerEstudiante(jTextFieldGradoOrRUT.getText());
 
@@ -226,7 +227,8 @@ public class Eliminar extends javax.swing.JFrame {
             jTextFieldGradoOrRUT.setText("");
         }
     }
-    
+
+    //Método para determinar la opción de eliminación
     private void opcionEliminar(){
         if (jTextFieldGradoOrRUT.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -239,21 +241,22 @@ public class Eliminar extends javax.swing.JFrame {
                 else{
                     eliminarCurso();
                 }
-            }    
+            }
             //expulsar estudiante
             else{
                 eliminarEstudiante();
             }
-        }        
+        }
     }
-    
-    
+
+    //Evento al presionar el botón Eliminar
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         if (evt.getSource()==jButtonEliminar){
             opcionEliminar();
         }
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
+    //Evento al presionar el botón Cancelar
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         if(evt.getSource()==jButtonCancelar){
             if (curso!=null){
@@ -262,7 +265,7 @@ public class Eliminar extends javax.swing.JFrame {
                 vv.setSize(this.getSize());
                 vv.setLocation(this.getLocation());
                 vv.setVisible(true);
-                this.dispose(); 
+                this.dispose();
             }
             else{
                 MenuCursos vv = new MenuCursos(colegio);
@@ -270,27 +273,27 @@ public class Eliminar extends javax.swing.JFrame {
                 vv.setSize(this.getSize());
                 vv.setLocation(this.getLocation());
                 vv.setVisible(true);
-                this.dispose(); 
+                this.dispose();
             }
-            
-            
+
+
         }
     }//GEN-LAST:event_jButtonCancelarActionPerformed
-
+    //Evento al presionar una tecla en el campo de texto Grado o RUT, para eliminar
     private void jTextFieldGradoOrRUTKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldGradoOrRUTKeyPressed
         int keycode = evt.getKeyCode();
         if (keycode==10){
             opcionEliminar();
         }
     }//GEN-LAST:event_jTextFieldGradoOrRUTKeyPressed
-
+    //Evento al presionar una tecla en el campo de texto Letra, para eliminar
     private void jTextFieldLetraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLetraKeyPressed
         int keycode = evt.getKeyCode();
         if (keycode==10){
             opcionEliminar();
         }
     }//GEN-LAST:event_jTextFieldLetraKeyPressed
-
+    //Evento al cerrar la ventana , actualiza los CSV de cursos, estudiantes y asistencias
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         MenuPrincipal vv = new MenuPrincipal(colegio);
         vv.catchException(this);

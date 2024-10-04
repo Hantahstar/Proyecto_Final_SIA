@@ -8,18 +8,17 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Usuario
- */
+//Clase para mostrar la lista de estudiantes de un curso
 public class ListaEstudiantes extends javax.swing.JFrame {
-
+    //Atributos de instancia
     private Colegio colegio;
     private Curso curso;
+    //Constructor de la clase ListaEstudiantes
     public ListaEstudiantes(Colegio colegio,Curso curso) {
         this.colegio = colegio;
         this.curso = curso;
         initComponents();
+        //Mostrar la lista de estudiantes en la tabla
         int i;
         String s = this.curso.mostrarEstudiante();
         String[] arr = s.split("\n");
@@ -32,7 +31,7 @@ public class ListaEstudiantes extends javax.swing.JFrame {
         jTableLista.getTableHeader().setReorderingAllowed(false);
         visual();
     }
-    
+    //Método para visualizar la interfaz gráfica y configurarla al gusto
     private void visual(){
         //panel
         this.getContentPane().setBackground(Color.gray);
@@ -154,7 +153,7 @@ public class ListaEstudiantes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    //Método para volver al menú de estudiantes
     private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed
         if (evt.getSource()==jButtonCerrar){
             MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
@@ -165,7 +164,7 @@ public class ListaEstudiantes extends javax.swing.JFrame {
             this.dispose(); 
         }
     }//GEN-LAST:event_jButtonCerrarActionPerformed
-
+    //Para actualizar los CSV de los estudiantes, cursos y asistencias
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         MenuPrincipal vv = new MenuPrincipal(colegio);
         vv.catchException(this);

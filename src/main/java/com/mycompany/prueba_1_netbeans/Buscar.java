@@ -8,17 +8,18 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 public class Buscar extends javax.swing.JFrame {
-
+    //Atributos de la clase para cambiar los datos de las colecciones orignales
     private Colegio colegio;
     private Curso curso;
     private boolean opcion;
-    //buscar curso
+
+    //Constructor buscar curso
     public Buscar(Colegio colegio) {
         this.colegio = colegio;
         initComponents();
         visual();
     }
-    //buscar estudiantes
+    //Constructor buscar estudiantes
     public Buscar(Colegio colegio,Curso curso,boolean opcion){
         this.colegio = colegio;
         this.curso = curso;
@@ -28,7 +29,7 @@ public class Buscar extends javax.swing.JFrame {
         this.remove(jTextFieldLetra);
         this.remove(jLabelLetra);
     }
-
+    //Tener todo a mano para poder cambiar las visuales
     private void visual(){
         this.getContentPane().setBackground(Color.gray);
         jButtonBuscar.setBackground(Color.lightGray);
@@ -39,7 +40,7 @@ public class Buscar extends javax.swing.JFrame {
         jTextFieldGradoOrRUT.setBackground(Color.lightGray);
         jTextFieldLetra.setBackground(Color.lightGray);
     }
-
+    //getters y setters del atributo opcion
     public boolean isOpcion() {
         return opcion;
     }
@@ -181,17 +182,21 @@ public class Buscar extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
+
+    //Cuando el constructor no pasa un objeto tipo Curso se pasa a este método, empieza a buscar el curso
     private void buscarCurso(){
         try{
             Curso c = new Curso(jTextFieldGradoOrRUT.getText(),jTextFieldLetra.getText());
             c = colegio.verificarCurso(c);
             if (c==null){
+                //Caso donde el curso no se encuentre
                 JOptionPane.showMessageDialog(this, "Curso no se encuentra en el sistema", "No existe", JOptionPane.INFORMATION_MESSAGE);
             }
             else{
-                //mostrarCurso
+                //Mostrar información de curso buscado
                 JOptionPane.showMessageDialog(this,(colegio.mostrarCurso(c)),"Encontrado", JOptionPane.INFORMATION_MESSAGE);
+                //Volver al menú cursos
                 MenuCursos vv = new MenuCursos(colegio);
                 vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 vv.setSize(this.getSize());
@@ -199,6 +204,7 @@ public class Buscar extends javax.swing.JFrame {
                 vv.setVisible(true);
                 this.dispose();
             }
+        //catchers de excepciones
         }catch (CursoNullPointerException e){
             JOptionPane.showMessageDialog(this, "Error al buscar el curso\nError: Algunos atributos del curso son nulos"+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
             jTextFieldGradoOrRUT.setText("");
@@ -209,7 +215,7 @@ public class Buscar extends javax.swing.JFrame {
             jTextFieldLetra.setText("");
         }
     }
-
+    //Método que se llama si el constructor de la clase tiene consigo un objeto de tipo Curso, con esto busca un estudiante
     private void buscarEstudiante(){
         try{
             Estudiante e = new Estudiante();
@@ -217,6 +223,7 @@ public class Buscar extends javax.swing.JFrame {
             e.setRut(jTextFieldGradoOrRUT.getText());
             if(curso.contieneEstudiante(jTextFieldGradoOrRUT.getText())){
                 e = curso.getEstudiante(jTextFieldGradoOrRUT.getText());
+                //Mostrar información del estudiante buscado
                 JOptionPane.showMessageDialog(this,"RUT: "+e.getRut()+"\nNombre: "+e.getNombre()+"\nApellido: "+e.getApellido()+"\nEstudiante Encontrado","Encontrado", JOptionPane.INFORMATION_MESSAGE);
                 if(isOpcion()){
                     MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
@@ -227,7 +234,7 @@ public class Buscar extends javax.swing.JFrame {
                     this.dispose();
                 }
                 else{
-                    //Ventana a modificar
+                    //Utilizando la clase Buscar, se utiliza antes para buscar la información del estudiante y mandarlo a la ventana modificar
                     Modificar vv = new  Modificar(colegio,curso,e);
                     vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     vv.setSize(this.getSize());
@@ -238,8 +245,10 @@ public class Buscar extends javax.swing.JFrame {
 
             }
             else{
+                //Caso donde no se encuentre
                 JOptionPane.showMessageDialog(this, "Estudiante no se encuentra en el sistema", "No existe", JOptionPane.INFORMATION_MESSAGE);
             }
+        //catchers de excepciones
         }catch (EstudianteNullPointerException e){
             JOptionPane.showMessageDialog(this, "Error al buscar el estudiante\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
             jTextFieldGradoOrRUT.setText("");
@@ -251,7 +260,7 @@ public class Buscar extends javax.swing.JFrame {
         }
     }
 
-
+    //Método general de la opción de buscar, se hacen verificaciones generales después se llaman a los otros métodos correspondientes
     private void opcionBuscar(){
         if (jTextFieldGradoOrRUT.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(this, "Debe de completar todas las casillas", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -271,13 +280,14 @@ public class Buscar extends javax.swing.JFrame {
             }   
         }
     }
-    
+
+    //Evento al presionar el botón "buscar"
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         if (evt.getSource()==jButtonBuscar){
             opcionBuscar();   
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
-
+    //Evento al presionar el botón "cancelar" se devuelve el menú de donde se llamó a la ventana Buscar, ya sea menú cursos o menú estudiantes
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         if(evt.getSource()==jButtonCancelar){
             if(curso==null){
@@ -300,20 +310,21 @@ public class Buscar extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
+    //Evento al presionar enter en uno de los textField
     private void jTextFieldGradoOrRUTKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldGradoOrRUTKeyPressed
         int keycode = evt.getKeyCode();
         if (keycode==10){
             opcionBuscar();
         }
     }//GEN-LAST:event_jTextFieldGradoOrRUTKeyPressed
-
+    //Evento al presionar enter
     private void jTextFieldLetraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLetraKeyPressed
         int keycode = evt.getKeyCode();
         if (keycode==10){
             opcionBuscar();
         }
     }//GEN-LAST:event_jTextFieldLetraKeyPressed
-
+    //Al cerrar la ventana con la x de la pestaña, se actualizan los CSV con los cambios hechos
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         MenuPrincipal vv = new MenuPrincipal(colegio);
         vv.catchException(this);
