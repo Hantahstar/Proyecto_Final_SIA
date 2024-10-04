@@ -347,7 +347,28 @@ public class Colegio {
         }
     }
 
-    //Actualiza el archivo CSV de asistencias
+   
+
+    //Carga cursos desde un archivo CSV
+    public void cargarCursosDesdeCSV(String path) throws Exception {
+        File file = new File(path);
+
+        LeerYEscribirCSV lectorCSV = new LeerYEscribirCSV();
+        List<String[]> datosCSV = lectorCSV.leerCSV(file);
+        if (datosCSV != null) {
+            for (String[] fila : datosCSV) {
+                if (fila.length >= 2) {
+                    String grado = fila[0];
+                    String letra = fila[1];
+
+                    Curso curso = new Curso(grado, letra);
+                    cursos.add(curso);
+                }
+            }
+        }
+    }
+    
+     //Actualiza el archivo CSV de asistencias
     public void actualizarCSVAsistencias(String path) throws IOException {
         File file = new File(path);
         try (CSVWriter csvWriter = new CSVWriter(new FileWriter(file, true))) {
@@ -370,23 +391,39 @@ public class Colegio {
             }
         }
     }
-
-    //Carga cursos desde un archivo CSV
-    public void cargarCursosDesdeCSV(String path) throws Exception {
-        File file = new File(path);
-
-        LeerYEscribirCSV lectorCSV = new LeerYEscribirCSV();
-        List<String[]> datosCSV = lectorCSV.leerCSV(file);
-        if (datosCSV != null) {
-            for (String[] fila : datosCSV) {
-                if (fila.length >= 2) {
-                    String grado = fila[0];
-                    String letra = fila[1];
-
-                    Curso curso = new Curso(grado, letra);
-                    cursos.add(curso);
-                }
+    
+    public void generarReporte(HashMap<String, Double> porcentajesAsistencia,Curso c)throws IOException
+    {
+        //String path = "src/main/java/"+c.getGrado()+c.getLetra()+".csv";
+        
+        //Mac OS
+        String rutaEscritorio = System.getProperty("user.home") + "/Desktop/";
+        String rutaArchivo = rutaEscritorio +c.getGrado()+c.getLetra()+".csv";
+        
+        //Windows
+        
+        /*
+        String rutaEscritorio = System.getProperty("user.home") + "\\Desktop\\";
+        String rutaArchivo = rutaEscritorio +c.getGrado()+c.getLetra()+".csv";
+        
+        */
+        
+        File file = new File(rutaArchivo);
+        
+        try (CSVWriter csvWriter = new CSVWriter(new FileWriter(file, false))) {
+            Estudiante e;
+            for (HashMap.Entry<String, Double> entry : porcentajesAsistencia.entrySet()) {
+               
+                e = c.getEstudiante(entry.getKey());
+                
+                double truncado = Math.floor(entry.getValue() * 10) / 10;
+                String[] fila = new String[3];
+                fila[0] = "Rut = " + e.getRut();
+                fila[1] = "Nombre = " + e.getNombre()+" "+ e.getApellido();
+                fila[2] = "Porcentaje de Asistencia = " + String.valueOf(truncado)+"%";
+                csvWriter.writeNext(fila);
             }
         }
+        
     }
 }

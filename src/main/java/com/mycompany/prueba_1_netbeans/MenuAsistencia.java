@@ -5,6 +5,10 @@
 package com.mycompany.prueba_1_netbeans;
 
 import java.awt.Color;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -249,8 +253,14 @@ public class MenuAsistencia extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "No hay asistencias disponibles", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
             else{
-                //Crear reportaje aqui
-                JOptionPane.showMessageDialog(this, "Reporte creado exitosamente!", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                try {
+                    //Crear reportaje aqui
+                    HashMap<String, Double> cursoRe = colegio.calcularPorcentaje(curso);
+                    colegio.generarReporte(cursoRe,curso);
+                    JOptionPane.showMessageDialog(this, "Reporte creado exitosamente!", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                } catch (IOException e){
+                    JOptionPane.showMessageDialog(this,"Error génerico\n"+colegio.shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);
+                }
             }
         }
     }//GEN-LAST:event_jButtonReporteActionPerformed
