@@ -51,3 +51,4 @@ El profesor seleccionará el nivel y la letra del curso. Esto abrirá un submen�
 4. **Regresar al menú principal**: Esta opción regresa al menú principal.
 
 ## Requisitos del Sistema
+- Java
