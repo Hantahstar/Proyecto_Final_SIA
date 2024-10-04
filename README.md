@@ -6,49 +6,50 @@ Este programa está centrado principalmente en el registro de los diferentes cas
 
 ## Instrucciones de Ejecución del Programa
 
-Al iniciar el programa, se mostrará un menú con varias opciones dirigidas tanto a los profesores como a los administradores. Los profesores podrán registrar la asistencia de cualquier curso previamente creado y que cuente con al menos un estudiante inscrito. Los administradores, por su parte, tendrán la posibilidad de crear nuevos cursos y registrar nuevos estudiantes. Para utilizar el sistema, solo es necesario ingresar el número correspondiente a la opción deseada.
+Al iniciar el programa, se mostrará un menú con varias opciones dirigidas a los usuarios, haciendo el programa los más intuitivo posible. Los usuarios podrán registrar la asistencia de cualquier curso previamente creado y que cuente con al menos un estudiante inscrito. Se tiene la posibilidad de crear nuevos cursos y registrar nuevos estudiantes,el programa tiene visto posibles errores y los reporta al usuario en pantalla. Para utilizar el sistema, solo es necesario presionar botones de la interfaz gráfica y escribir en las casillas necesarias.
 
-## Opciones
-
-### Administrador
+## Opciones desde el Menú Principal
 
 #### Menú de Cursos
 
-1. **Agregar curso**: El administrador deberá asignar el nivel y la letra del curso (paralelo) en el formato:
+1. **Agregar curso**: El usuario deberá asignar el nivel y la letra del curso (paralelo) en el formato:
     - Nivel (ej. "1ro Básico", "4to Medio")
     - Letra (ej. "A") en mayúscula.
 
-2. **Buscar curso**: El administrador deberá ingresar el nivel y la letra del curso que desea buscar. El programa indicará si el curso está registrado.
+2. **Buscar curso**: El usuario deberá ingresar el nivel y la letra del curso que desea buscar. El programa indicará si el curso está registrado.
 
-3. **Eliminar curso**: El administrador ingresará el nivel y la letra del curso que desea eliminar. El sistema confirmará si el curso fue eliminado con éxito o si no se encuentra en el registro.
+3. **Eliminar curso**: El usuario ingresará el nivel y la letra del curso que desea eliminar. El sistema confirmará si el curso fue eliminado con éxito o si no se encuentra en el registro.
 
 4. **Regresar al menú principal**: Esta opción regresa al menú principal.
 
 #### Menú de Estudiantes
 
-El administrador deberá seleccionar el nivel y la letra del curso (ej. "1ro Básico", "A") para realizar operaciones con los estudiantes de dicho curso.
+El usuario deberá seleccionar el nivel y la letra del curso (ej. "1ro Básico", "A") antes para realizar operaciones con los estudiantes de dicho curso.
 
-1. **Agregar estudiante**: Se solicitará al administrador ingresar el nombre, apellido paterno, apellido materno y el RUT del estudiante.
+1. **Agregar estudiante**: Se solicitará al usuario ingresar el nombre, apellido y el RUT del estudiante.
 
-2. **Buscar estudiante**: El administrador ingresará el RUT del estudiante a buscar. Si el estudiante está registrado en el curso, se mostrarán su nombre y RUT. Si no está registrado, se informará que no se encuentra.
+2. **Buscar estudiante**: El usuario ingresará el RUT del estudiante a buscar. Si el estudiante está registrado en el curso, se mostrarán su nombre y RUT. Si no está registrado, se informará que no se encuentra.
 
-3. **Eliminar estudiante**: El administrador ingresará el RUT del estudiante que desea eliminar. El sistema confirmará si fue eliminado con éxito o si no se encuentra registrado.
+3. **Modificar estudiante**: El usuario previamente tendré que buscar usando el RUT del estudiante, confirmando que esté registrado, una vez pasado esto, se podrá modificar el nombre completo del estudiante, pero no el RUT, dado que es su identificador.
 
-4. **Regresar al menú principal**: Esta opción regresa al menú principal.
+4. **Eliminar estudiante**: El usuario ingresará el RUT del estudiante que desea eliminar. El sistema confirmará si fue eliminado con éxito o si no se encuentra registrado.
 
-### Profesores
+5. **Regresar al menú principal**: Esta opción regresa al menú principal.
 
 #### Realizar Asistencia
 
-El profesor seleccionará el nivel y la letra del curso. Esto abrirá un submenú con las siguientes opciones:
+El usuario seleccionará el nivel y la letra del curso,el curso tiene que tener mínimo un estudiante para poder realizar una asistencia,en caso contrario, no dejará realizarla. Al ingresar un curso válido hará que se abra un submenú con las siguientes opciones:
 
-1. **Tomar asistencia**: El profesor ingresará la fecha (DD/MM/AAAA) y la hora (00:00), y luego deberá registrar la asistencia de cada estudiante, marcándolos como presente, ausente, falta extraordinaria o retiro anticipado. También tendrá la opción de cancelar la toma de asistencia.
+1. **Realizar asistencia**: El usuario ingresará la fecha (DD/MM/AAAA) y la hora (00:00),el sistema verificará que no se haya hecho ya una asistencia a esa misma hora y fecha en ese mismo curso,la verificación depende del curso principalmente, y luego deberá registrar la asistencia de cada estudiante, marcándolos como presente, ausente, falta extraordinaria o retiro anticipado. También tendrá la opción de cancelar la toma de asistencia.
 
-2. **Buscar asistencia**: El profesor ingresará la fecha y hora de una toma de asistencia previa, y el sistema mostrará el estado de los estudiantes y la cantidad de presentes.
+2. **Buscar asistencia**: El usuario ingresará la fecha y hora de una toma de asistencia previa, y el sistema mostrará la situación de los estudiantes y la cantidad de presentes de ese pase de asistencia en específico.
 
-3. **Eliminar asistencia**: El profesor ingresará la fecha y la hora, y el sistema confirmará si la asistencia fue eliminada correctamente o no.
+3. **Generar gráfico de porcentaje**: El usuario al presionar esta opción, se le generará un gráfico de barras mostrando los porcentajes de asistencia de cada estudiante registrado en el curso, en el caso donde no se haya registrado ninguna asistencia,el sistema no te permitirá
 
-4. **Regresar al menú principal**: Esta opción regresa al menú principal.
+4. **Eliminar asistencia**: El usuario ingresará la fecha y la hora, y el sistema confirmará si la asistencia fue eliminada correctamente o no.
+
+5. **Regresar al menú principal**: Esta opción regresa al menú principal.
 
 ## Requisitos del Sistema
 - Java
+- IDE de preferencia (Recomendados IntelliJ, NetBeans)
