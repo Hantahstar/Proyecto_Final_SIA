@@ -18,9 +18,11 @@ Al iniciar el programa, se mostrará un menú con varias opciones dirigidas a lo
 
 2. **Buscar curso**: El usuario deberá ingresar el nivel y la letra del curso que desea buscar. El programa indicará si el curso está registrado.
 
-3. **Eliminar curso**: El usuario ingresará el nivel y la letra del curso que desea eliminar. El sistema confirmará si el curso fue eliminado con éxito o si no se encuentra en el registro.
+3. **Mostrar cursos**: te muestra por pantalla todos los cursos registrados del sistema.
 
-4. **Regresar al menú principal**: Esta opción regresa al menú principal.
+4. **Eliminar curso**: El usuario ingresará el nivel y la letra del curso que desea eliminar. El sistema confirmará si el curso fue eliminado con éxito o si no se encuentra en el registro.
+
+5. **Regresar al menú principal**: Esta opción regresa al menú principal.
 
 #### Menú de Estudiantes
 
@@ -32,9 +34,11 @@ El usuario deberá seleccionar el nivel y la letra del curso (ej. "1ro Básico",
 
 3. **Modificar estudiante**: El usuario previamente tendré que buscar usando el RUT del estudiante, confirmando que esté registrado, una vez pasado esto, se podrá modificar el nombre completo del estudiante, pero no el RUT, dado que es su identificador.
 
-4. **Eliminar estudiante**: El usuario ingresará el RUT del estudiante que desea eliminar. El sistema confirmará si fue eliminado con éxito o si no se encuentra registrado.
+4. **Mostrar estudiantes**: Mostrará todos los estudiantes del curso elegido.
 
-5. **Regresar al menú principal**: Esta opción regresa al menú principal.
+5. **Eliminar estudiante**: El usuario ingresará el RUT del estudiante que desea eliminar. El sistema confirmará si fue eliminado con éxito o si no se encuentra registrado.
+
+6. **Regresar al menú principal**: Esta opción regresa al menú principal.
 
 #### Realizar Asistencia
 
@@ -46,9 +50,11 @@ El usuario seleccionará el nivel y la letra del curso,el curso tiene que tener 
 
 3. **Generar gráfico de porcentaje**: El usuario al presionar esta opción, se le generará un gráfico de barras mostrando los porcentajes de asistencia de cada estudiante registrado en el curso, en el caso donde no se haya registrado ninguna asistencia,el sistema no te permitirá
 
-4. **Eliminar asistencia**: El usuario ingresará la fecha y la hora, y el sistema confirmará si la asistencia fue eliminada correctamente o no.
+4. **Crear reportaje**: El usuario al elegir esta opción, se le generará un archivo estilo CSV donde se reporta los porcentaje de asistencia de los estudiantes.
 
-5. **Regresar al menú principal**: Esta opción regresa al menú principal.
+5. **Eliminar asistencia**: El usuario ingresará la fecha y la hora, y el sistema confirmará si la asistencia fue eliminada correctamente o no.
+
+6. **Regresar al menú principal**: Esta opción regresa al menú principal.
 
 ## Requisitos del Sistema
 - Java
