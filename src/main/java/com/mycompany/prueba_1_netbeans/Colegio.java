@@ -392,38 +392,34 @@ public class Colegio {
         }
     }
     
-    public void generarReporte(HashMap<String, Double> porcentajesAsistencia,Curso c)throws IOException
+    public void generarReporte(HashMap<String, Double> porcentajesAsistencia,Curso c,File file,JFrame panel)throws IOException
     {
-        //String path = "src/main/java/"+c.getGrado()+c.getLetra()+".csv";
-        
-        //Mac OS
-        String rutaEscritorio = System.getProperty("user.home") + "/Desktop/";
-        String rutaArchivo = rutaEscritorio +c.getGrado()+c.getLetra()+".csv";
-        
-        //Windows
-        
-        /*
-        String rutaEscritorio = System.getProperty("user.home") + "\\Desktop\\";
-        String rutaArchivo = rutaEscritorio +c.getGrado()+c.getLetra()+".csv";
-        
-        */
-        
-        File file = new File(rutaArchivo);
-        
-        try (CSVWriter csvWriter = new CSVWriter(new FileWriter(file, false))) {
-            Estudiante e;
-            for (HashMap.Entry<String, Double> entry : porcentajesAsistencia.entrySet()) {
-               
-                e = c.getEstudiante(entry.getKey());
-                
-                double truncado = Math.floor(entry.getValue() * 10) / 10;
-                String[] fila = new String[3];
-                fila[0] = "Rut = " + e.getRut();
-                fila[1] = "Nombre = " + e.getNombre()+" "+ e.getApellido();
-                fila[2] = "Porcentaje de Asistencia = " + String.valueOf(truncado)+"%";
-                csvWriter.writeNext(fila);
+        if (file == null){
+            JOptionPane.showMessageDialog(panel, "Reporte cancelado", "Cancelado", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            // Aseguramos que el archivo tenga la extensión .csv
+            if (!file.getName().toLowerCase().endsWith(".csv")) {
+                file = new File(file.getAbsolutePath() + ".csv");
+            }
+            try (CSVWriter csvWriter = new CSVWriter(new FileWriter(file, false))) {
+                Estudiante e;
+                for (HashMap.Entry<String, Double> entry : porcentajesAsistencia.entrySet()) {
+
+                    e = c.getEstudiante(entry.getKey());
+
+                    double truncado = Math.floor(entry.getValue() * 10) / 10;
+                    String[] fila = new String[3];
+                    fila[0] = "Rut = " + e.getRut();
+                    fila[1] = "Nombre = " + e.getNombre()+" "+ e.getApellido();
+                    fila[2] = "Porcentaje de Asistencia = " + String.valueOf(truncado)+"%";
+                    csvWriter.writeNext(fila);
+                }
+                JOptionPane.showMessageDialog(panel, "Reporte creado exitosamente!", "Exito", JOptionPane.INFORMATION_MESSAGE);
             }
         }
+        
+
         
     }
 }

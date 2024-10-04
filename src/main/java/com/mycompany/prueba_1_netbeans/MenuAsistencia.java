@@ -5,12 +5,10 @@
 package com.mycompany.prueba_1_netbeans;
 
 import java.awt.Color;
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 //Clase para mostrar el menú de asistencia
 public class MenuAsistencia extends javax.swing.JFrame {
@@ -247,6 +245,29 @@ public class MenuAsistencia extends javax.swing.JFrame {
             this.dispose();     
         }
     }//GEN-LAST:event_jButtonPorcentajeActionPerformed
+
+
+    // Método que maneja la lógica de descarga y guardado del archivo
+    private File descargarArchivo() {
+        // Usamos JFileChooser para permitir al usuario seleccionar dónde guardar el archivo
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Guardar archivo");
+        String nombreArchivo = curso.getGrado()+curso.getLetra()+".csv";
+        // Configuramos el JFileChooser en modo de guardado
+        fileChooser.setDialogType(JFileChooser.SAVE_DIALOG);
+        fileChooser.setSelectedFile(new File(nombreArchivo));
+        // Mostramos el cuadro de diálogo para guardar
+        int userSelection = fileChooser.showSaveDialog(this);
+
+        // Si el usuario selecciona una ubicación y confirma el guardado
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File archivo = fileChooser.getSelectedFile();
+            return archivo;
+        }
+        return null;
+    }
+
+
     //Método para generar un reportaje en un archivo externo
     private void jButtonReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReporteActionPerformed
         if (evt.getSource() == jButtonReporte){
@@ -257,9 +278,10 @@ public class MenuAsistencia extends javax.swing.JFrame {
                 try {
                     //Crear reportaje aqui
                     HashMap<String, Double> cursoRe = colegio.calcularPorcentaje(curso);
-                    colegio.generarReporte(cursoRe,curso);
-                    JOptionPane.showMessageDialog(this, "Reporte creado exitosamente!", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                    colegio.generarReporte(cursoRe,curso,descargarArchivo(),this);
                 } catch (IOException e){
+                    JOptionPane.showMessageDialog(this,"Error al crear reporte\n"+colegio.shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);
+                }catch (Exception e){
                     JOptionPane.showMessageDialog(this,"Error génerico\n"+colegio.shortStackTrace(e,10),"Error",JOptionPane.ERROR_MESSAGE);
                 }
             }
