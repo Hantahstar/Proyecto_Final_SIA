@@ -50,7 +50,6 @@ public class MenuAsistencia extends PadreColegio {
         jButtonReporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Colegio");
         setPreferredSize(new java.awt.Dimension(840, 460));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {

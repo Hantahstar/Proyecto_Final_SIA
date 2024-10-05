@@ -55,9 +55,9 @@ public class Buscar extends PadreColegio {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        String titulo,labelTextFieldGradoOrRUT;
         jButtonBuscar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
+        String titulo,labelTextFieldGradoOrRUT;
         jLabelGradoOrRUT = new javax.swing.JLabel();
         jLabelLetra = new javax.swing.JLabel();
         jTextFieldGradoOrRUT = new javax.swing.JTextField();
@@ -65,7 +65,6 @@ public class Buscar extends PadreColegio {
         jLabelTitulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Colegio");
         setPreferredSize(new java.awt.Dimension(840, 460));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {

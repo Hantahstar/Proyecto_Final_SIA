@@ -19,6 +19,8 @@ public class MenuPrincipal extends PadreColegio {
 
     //Método para visualizar la interfaz gráfica y configurarla al gusto
     private void visual(){
+        ImageIcon icon = new ImageIcon("src/images/icono.png");
+        this.setIconImage(icon.getImage());
         this.getContentPane().setBackground(Color.gray);
         jButtonAsistencias.setBackground(Color.lightGray);
         jButtonCursos.setBackground(Color.lightGray);
@@ -45,7 +47,6 @@ public class MenuPrincipal extends PadreColegio {
         jButtonSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Colegio");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setPreferredSize(new java.awt.Dimension(840, 460));
         addWindowListener(new java.awt.event.WindowAdapter() {

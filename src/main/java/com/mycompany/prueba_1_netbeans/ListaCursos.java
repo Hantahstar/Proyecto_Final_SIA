@@ -17,6 +17,7 @@ public class ListaCursos extends PadreColegio {
     //Constructor de la clase ListaCursos para poder elegir un curso
     public ListaCursos(Colegio colegio,int opcion) {
         super(colegio);
+        this.opcion = opcion;
         initComponents();
         //Rellenar los datos del Jtable
         String s = this.colegio.mostrarCurso();
@@ -94,9 +95,10 @@ public class ListaCursos extends PadreColegio {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        String titulo;
+
         jScrollPaneBarra = new javax.swing.JScrollPane();
         jTableLista = new javax.swing.JTable();
+        String titulo;
         jLabelTitulo = new javax.swing.JLabel();
         jButtonCerrar = new javax.swing.JButton();
         jTextFieldGrado = new javax.swing.JTextField();
@@ -106,7 +108,6 @@ public class ListaCursos extends PadreColegio {
         jButtonAceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Colegio");
         setName("Colegio"); // NOI18N
         setPreferredSize(new java.awt.Dimension(840, 460));
         addWindowListener(new java.awt.event.WindowAdapter() {
