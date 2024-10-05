@@ -9,16 +9,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 //Clase para modificar un estudiante
-public class Modificar extends javax.swing.JFrame {
-    //Atributos de instancia
-    private Colegio colegio;
-    private Curso curso;
-    private Estudiante estudiante;
+public class Modificar extends PadreColegio {
     //Constructor de la clase Modificar
     public Modificar(Colegio colegio,Curso curso,Estudiante estudiante) {
-        this.colegio = colegio;
-        this.curso = curso;
-        this.estudiante = estudiante;
+        super(colegio,curso,estudiante);
         initComponents();
         visual();
     }

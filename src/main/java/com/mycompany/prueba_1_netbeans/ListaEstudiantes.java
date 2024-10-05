@@ -9,14 +9,10 @@ import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 //Clase para mostrar la lista de estudiantes de un curso
-public class ListaEstudiantes extends javax.swing.JFrame {
-    //Atributos de instancia
-    private Colegio colegio;
-    private Curso curso;
+public class ListaEstudiantes extends PadreColegio {
     //Constructor de la clase ListaEstudiantes
     public ListaEstudiantes(Colegio colegio,Curso curso) {
-        this.colegio = colegio;
-        this.curso = curso;
+        super(colegio,curso);
         initComponents();
         //Mostrar la lista de estudiantes en la tabla
         int i;

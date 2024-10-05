@@ -9,14 +9,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 //Clase para el menú de estudiantes
-public class MenuEstudiantes extends javax.swing.JFrame {
-    //Atributos de instancia
-    private Colegio colegio;
-    private Curso curso;
+public class MenuEstudiantes extends PadreColegio {
     //Constructor de la clase MenuEstudiantes
     public MenuEstudiantes(Colegio colegio,Curso curso) {
-        this.colegio = colegio;
-        this.curso = curso;
+        super(colegio,curso);
         initComponents();
         visual();
     }
@@ -32,7 +28,6 @@ public class MenuEstudiantes extends javax.swing.JFrame {
         jLabelCurso.setBackground(Color.black);
         jLabelTitulo.setBackground(Color.black);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

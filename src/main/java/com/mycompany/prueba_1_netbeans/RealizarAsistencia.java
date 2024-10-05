@@ -8,13 +8,10 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 //Ventana para registrar asistencia
-public class RealizarAsistencia extends javax.swing.JFrame {
-    //Atributos necesarios para trabajar con la clase
-    private Colegio colegio;
-    private Curso curso;
+public class RealizarAsistencia extends PadreColegio {
+    //Atributo de instancia
     public RealizarAsistencia(Colegio colegio,Curso curso) {
-        this.colegio = colegio;
-        this.curso = curso;
+        super(colegio,curso);
         initComponents();
         visual();
     }

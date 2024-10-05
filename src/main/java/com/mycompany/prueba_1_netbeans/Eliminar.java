@@ -4,22 +4,17 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class Eliminar extends javax.swing.JFrame {
-
-    private Colegio colegio;
-    private Curso curso;
-
+public class Eliminar extends PadreColegio{
     //Constructor para eliminar cursos
     public Eliminar(Colegio colegio){
-        this.colegio = colegio;
+        super(colegio);
         initComponents();
         visual();
     }
 
     //Constructor para eliminar estudiantes
     public Eliminar(Colegio colegio, Curso curso){
-        this.colegio = colegio;
-        this.curso = curso;
+        super(colegio,curso);
         initComponents();
         visual();
         this.remove(jLabelLetra);

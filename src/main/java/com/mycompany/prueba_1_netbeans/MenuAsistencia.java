@@ -11,14 +11,10 @@ import java.util.HashMap;
 import javax.swing.*;
 
 //Clase para mostrar el menú de asistencia
-public class MenuAsistencia extends javax.swing.JFrame {
-    //Atributos de instancia
-    private Colegio colegio;
-    private Curso curso;
+public class MenuAsistencia extends PadreColegio {
     //Constructor de la clase MenuAsistencia
     public MenuAsistencia(Colegio colegio,Curso curso) {
-        this.colegio = colegio;
-        this.curso = curso;
+        super(colegio,curso);
         initComponents();
         visual();
     }

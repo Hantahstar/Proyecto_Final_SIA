@@ -10,15 +10,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 //Clase para mostrar la lista de asistencias
-public class ListaAsistencia extends javax.swing.JFrame {
-    //Atributos de instancia
-    private Colegio colegio;
-    private Curso curso;
+public class ListaAsistencia extends PadreColegio {
+    //Atributo de instancia
     private boolean opcion;
     //Constructor de la clase ListaAsistencia, con consideración de excepciones, el booleano opcion es para saber si se quiere eliminar o ver la asistencia
     public ListaAsistencia(Colegio colegio,Curso curso,boolean opcion) {
-        this.colegio = colegio;
-        this.curso = curso;
+        super(colegio,curso);
         this.opcion = opcion;
         initComponents();
         String s = this.colegio.mostrarAsistencia(this.curso);
@@ -32,6 +29,15 @@ public class ListaAsistencia extends javax.swing.JFrame {
         jTableLista.getTableHeader().setReorderingAllowed(false);
         visual();
     }
+
+    public boolean isOpcion() {
+        return opcion;
+    }
+
+    public void setOpcion(boolean opcion) {
+        this.opcion = opcion;
+    }
+
     //Método para visualizar la interfaz gráfica y configurarla al gusto
     private void visual(){
         //panel

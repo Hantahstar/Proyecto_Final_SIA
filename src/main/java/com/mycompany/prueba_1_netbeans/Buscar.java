@@ -7,28 +7,35 @@ package com.mycompany.prueba_1_netbeans;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
-public class Buscar extends javax.swing.JFrame {
-    //Atributos de la clase para cambiar los datos de las colecciones orignales
-    private Colegio colegio;
-    private Curso curso;
+public class Buscar extends PadreColegio {
+    //Atributo de instancia
     private boolean opcion;
-
     //Constructor buscar curso
     public Buscar(Colegio colegio) {
+        super(colegio);
         this.colegio = colegio;
         initComponents();
         visual();
     }
     //Constructor buscar estudiantes
     public Buscar(Colegio colegio,Curso curso,boolean opcion){
-        this.colegio = colegio;
-        this.curso = curso;
+        super(colegio,curso);
         this.opcion = opcion;
         initComponents();
         visual();
         this.remove(jTextFieldLetra);
         this.remove(jLabelLetra);
     }
+
+    //Getters y setters
+    public boolean isOpcion() {
+        return opcion;
+    }
+
+    public void setOpcion(boolean opcion) {
+        this.opcion = opcion;
+    }
+
     //Tener todo a mano para poder cambiar las visuales
     private void visual(){
         this.getContentPane().setBackground(Color.gray);
@@ -40,15 +47,6 @@ public class Buscar extends javax.swing.JFrame {
         jTextFieldGradoOrRUT.setBackground(Color.lightGray);
         jTextFieldLetra.setBackground(Color.lightGray);
     }
-    //getters y setters del atributo opcion
-    public boolean isOpcion() {
-        return opcion;
-    }
-
-    public void setOpcion(boolean opcion) {
-        this.opcion = opcion;
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

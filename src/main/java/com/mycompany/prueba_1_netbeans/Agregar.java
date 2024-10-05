@@ -9,14 +9,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 //Clase ventana Agregar, funciona para agregar cursos y estudiantes
-public class Agregar extends javax.swing.JFrame {
-    //Atributos necesarios para trabajar con la clase
-    private Colegio colegio;
-    private Curso curso;
-    private final Path ruta = new Path();
+public class Agregar extends PadreColegio {
     //Contructor para agregar curso
     public Agregar(Colegio colegio) {
-        this.colegio = colegio;
+        super(colegio);
         initComponents();
         visual();
         this.remove(jLabelApellido);
@@ -24,8 +20,7 @@ public class Agregar extends javax.swing.JFrame {
     }
     //Constructor para agregar estudiante
     public Agregar(Colegio colegio,Curso curso){
-        this.colegio = colegio;
-        this.curso = curso;
+        super(colegio,curso);
         initComponents();
         visual();
     }

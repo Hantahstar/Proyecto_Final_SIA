@@ -14,20 +14,32 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-public class GraficoAsistencia extends javax.swing.JFrame {
-    //Atributos de instancia
+public class GraficoAsistencia extends PadreColegio {
+    //Atributo de instancia
     private HashMap<String, Double> mapaPorcentaje;
-    private Colegio colegio;
-    private Curso curso;
     //Constructor de la clase GraficoAsistencia
     public GraficoAsistencia(HashMap<String, Double> mapaPorcentaje,Colegio colegio,Curso curso) {
+        super(colegio,curso);
         this.mapaPorcentaje = mapaPorcentaje;
-        this.colegio = colegio;
-        this.curso = curso;
         mostrarGraficoAsistencia(this.mapaPorcentaje);
         initComponents();
         visual();
     }
+    //Método para visualizar la interfaz gráfica y configurarla al gusto
+    private void visual(){
+        this.getContentPane().setBackground(Color.gray);
+        jButtonVolver.setBackground(Color.lightGray);
+        barChartGrafico.setBackgroundPaint(Color.gray);
+        barChartGrafico.getTitle().setBackgroundPaint(Color.gray);
+        plotGrafico.setBackgroundPaint(Color.darkGray);
+        plotGrafico.getDomainAxis().setLabelPaint(Color.BLACK);
+        plotGrafico.getRangeAxis().setLabelPaint(Color.BLACK);
+        plotGrafico.getRenderer().setSeriesPaint(0, Color.black);
+        rendererGrafico.setShadowVisible(false);
+        rendererGrafico.setDrawBarOutline(false);
+    }
+
+
     //Método para mostrar el gráfico de asistencia de los estudiantes
     private void mostrarGraficoAsistencia(HashMap<String, Double> porcentajesAsistencia) {
         // Crear el dataset con los datos de asistencia
@@ -54,19 +66,6 @@ public class GraficoAsistencia extends javax.swing.JFrame {
         this.setContentPane(chartPanelGrafico);
     }
 
-    //Método para visualizar la interfaz gráfica y configurarla al gusto
-    private void visual(){
-        this.getContentPane().setBackground(Color.gray);
-        jButtonVolver.setBackground(Color.lightGray);
-        barChartGrafico.setBackgroundPaint(Color.gray);
-        barChartGrafico.getTitle().setBackgroundPaint(Color.gray);
-        plotGrafico.setBackgroundPaint(Color.darkGray);
-        plotGrafico.getDomainAxis().setLabelPaint(Color.BLACK);
-        plotGrafico.getRangeAxis().setLabelPaint(Color.BLACK);
-        plotGrafico.getRenderer().setSeriesPaint(0, Color.black);
-        rendererGrafico.setShadowVisible(false);
-        rendererGrafico.setDrawBarOutline(false);
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

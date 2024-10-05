@@ -11,14 +11,12 @@ import javax.swing.table.DefaultTableModel;
 
 
 //Ventana para un listado de los cursos
-public class ListaCursos extends javax.swing.JFrame {
-    //Atributos de instancia
-    private Colegio colegio;
+public class ListaCursos extends PadreColegio {
+    //Atributo de instancia
     private int opcion;
     //Constructor de la clase ListaCursos para poder elegir un curso
     public ListaCursos(Colegio colegio,int opcion) {
-        this.colegio = colegio;
-        this.opcion = opcion;
+        super(colegio);
         initComponents();
         //Rellenar los datos del Jtable
         String s = this.colegio.mostrarCurso();
@@ -35,7 +33,7 @@ public class ListaCursos extends javax.swing.JFrame {
     }
     //Constructor de la clase ListaCursos para el caso de que se quiera mostrar solo los cursos
     public ListaCursos(Colegio colegio){
-        this.colegio = colegio;
+        super(colegio);
         this.opcion = 1;
         initComponents();
         String s = this.colegio.mostrarCurso();
@@ -55,6 +53,16 @@ public class ListaCursos extends javax.swing.JFrame {
         this.remove(jButtonAceptar);
         
     }
+
+    //Setters y getters
+    public int getOpcion() {
+        return opcion;
+    }
+
+    public void setOpcion(int opcion) {
+        this.opcion = opcion;
+    }
+
     //Método para visualizar la interfaz gráfica y configurarla al gusto
     private void visual(){
         //panel
@@ -77,6 +85,7 @@ public class ListaCursos extends javax.swing.JFrame {
         jTextFieldGrado.setBackground(Color.lightGray);
         jTextFieldLetra.setBackground(Color.lightGray);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

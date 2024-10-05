@@ -9,11 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 //Clase para el menú de cursos
-public class MenuCursos extends javax.swing.JFrame {
-    //Atributos de instancia
-    private Colegio colegio;
+public class MenuCursos extends PadreColegio {
     public MenuCursos(Colegio colegio) {
-        this.colegio = colegio;
+        super(colegio);
         initComponents();
         visual();
     }
@@ -27,7 +25,6 @@ public class MenuCursos extends javax.swing.JFrame {
         jButtonVolver.setBackground(Color.lightGray);
         jLabelTitulo.setBackground(Color.black);
     }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

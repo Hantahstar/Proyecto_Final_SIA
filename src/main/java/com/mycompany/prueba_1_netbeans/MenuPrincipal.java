@@ -9,16 +9,14 @@ import java.io.IOException;
 import javax.swing.*;
 
 //Clase para mostrar el menú principal
-public class MenuPrincipal extends javax.swing.JFrame {
-    //Atributos de instancia
-    private Colegio colegio;
-    private final Path ruta = new Path();
+public class MenuPrincipal extends PadreColegio {
     //Constructor de la clase MenuPrincipal
     public MenuPrincipal(Colegio colegio) {
-        this.colegio = colegio;
+        super(colegio);
         initComponents();
         visual();
     }
+
     //Método para visualizar la interfaz gráfica y configurarla al gusto
     private void visual(){
         this.getContentPane().setBackground(Color.gray);
