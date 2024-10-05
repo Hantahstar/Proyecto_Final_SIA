@@ -47,7 +47,7 @@ public class ListaEstudiantes extends VentanaPadre {
         jTableLista.setBackground(Color.lightGray);
         jTableLista.setForeground(Color.darkGray);
         jTableLista.getTableHeader().setBackground(Color.darkGray);
-        jTableLista.getTableHeader().setForeground(Color.white);
+        jTableLista.getTableHeader().setForeground(Color.black);
     }
 
     /**

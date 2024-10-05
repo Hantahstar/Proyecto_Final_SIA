@@ -23,6 +23,7 @@ public class Proyecto_Final_SIA {
                     colegio.cargarCursosDesdeCSV(ruta.getPathCursos());
                     colegio.cargarEstudiantesDesdeCSV(ruta.getPathEstudiantes());
                     colegio.cargarAsistenciaDesdeCSV(ruta.getPathAsistencia());
+                    UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
                 //Manejo de excepciones
                 }catch (EstudianteNullPointerException e){
                     JOptionPane.showMessageDialog(vv, "Error al cargar estudiante/s\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);

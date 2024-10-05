@@ -261,7 +261,7 @@ public class MenuAsistencia extends VentanaPadre {
         // Usamos JFileChooser para permitir al usuario seleccionar dónde guardar el archivo
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Guardar archivo");
-        String nombreArchivo = curso.getGrado()+curso.getLetra()+".csv";
+        String nombreArchivo = curso.getGrado()+curso.getLetra()+".txt";
         // Configuramos el JFileChooser en modo de guardado
         fileChooser.setDialogType(JFileChooser.SAVE_DIALOG);
         fileChooser.setSelectedFile(new File(nombreArchivo));

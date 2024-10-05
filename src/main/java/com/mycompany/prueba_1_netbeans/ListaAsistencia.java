@@ -61,7 +61,7 @@ public class ListaAsistencia extends VentanaPadre {
         jTableLista.setBackground(Color.lightGray);
         jTableLista.setForeground(Color.darkGray);
         jTableLista.getTableHeader().setBackground(Color.darkGray);
-        jTableLista.getTableHeader().setForeground(Color.white);
+        jTableLista.getTableHeader().setForeground(Color.black);
         //textField
         jTextFieldHora.setBackground(Color.lightGray);
         jTextFieldFecha.setBackground(Color.lightGray);

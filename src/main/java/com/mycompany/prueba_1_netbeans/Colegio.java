@@ -399,8 +399,8 @@ public class Colegio {
         }
         else{
             // Aseguramos que el archivo tenga la extensión .csv
-            if (!file.getName().toLowerCase().endsWith(".csv")) {
-                file = new File(file.getAbsolutePath() + ".csv");
+            if (!file.getName().toLowerCase().endsWith(".txt")) {
+                file = new File(file.getAbsolutePath() + ".txt");
             }
             try (CSVWriter csvWriter = new CSVWriter(new FileWriter(file, false))) {
                 Estudiante e;

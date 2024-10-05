@@ -65,8 +65,6 @@ public class ListaCursos extends VentanaPadre {
 
     //Método para visualizar la interfaz gráfica y configurarla al gusto
     private void visual(){
-        //panel
-        this.getContentPane().setBackground(Color.gray);
         //botones
         jButtonAceptar.setBackground(new Color(150,43,69));
         jButtonAceptar.setForeground(Color.white);
@@ -88,7 +86,7 @@ public class ListaCursos extends VentanaPadre {
         jTableLista.setBackground(Color.lightGray);
         jTableLista.setForeground(Color.darkGray);
         jTableLista.getTableHeader().setBackground(Color.darkGray);
-        jTableLista.getTableHeader().setForeground(Color.white);
+        jTableLista.getTableHeader().setForeground(Color.black);
         //textFields
         jTextFieldGrado.setBackground(Color.lightGray);
         jTextFieldLetra.setBackground(Color.lightGray);
