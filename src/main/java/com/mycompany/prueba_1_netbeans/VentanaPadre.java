@@ -4,26 +4,26 @@ import java.awt.BorderLayout;
 import java.awt.Graphics;
 import javax.swing.*;
 //Clase general para las ventanas de la aplicación
-public class PadreColegio extends javax.swing.JFrame{
+public class VentanaPadre extends javax.swing.JFrame{
     //Atributos de la clase
     Colegio colegio;
     Curso curso;
     Path ruta;
     Estudiante estudiante;
     //Constructores de la clase
-    public PadreColegio(Colegio colegio,Curso curso){
+    public VentanaPadre(Colegio colegio, Curso curso){
         this.colegio = colegio;
         this.curso = curso;
         ruta = new Path();
         setBasicVisual();
     }
-    public PadreColegio(Colegio colegio){
+    public VentanaPadre(Colegio colegio){
         this.colegio = colegio;
         this.curso = null;
         ruta = new Path();
         setBasicVisual();
     }
-    public PadreColegio(Colegio colegio,Curso curso,Estudiante estudiante){
+    public VentanaPadre(Colegio colegio, Curso curso, Estudiante estudiante){
         this.colegio = colegio;
         this.curso = curso;
         this.estudiante = estudiante;

@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 //Clase ventana Agregar, funciona para agregar cursos y estudiantes
-public class Agregar extends PadreColegio {
+public class Agregar extends VentanaPadre {
     //Contructor para agregar curso
     public Agregar(Colegio colegio) {
         super(colegio);

@@ -11,7 +11,7 @@ import java.util.HashMap;
 import javax.swing.*;
 
 //Clase para mostrar el menú de asistencia
-public class MenuAsistencia extends PadreColegio {
+public class MenuAsistencia extends VentanaPadre {
     //Constructor de la clase MenuAsistencia
     public MenuAsistencia(Colegio colegio,Curso curso) {
         super(colegio,curso);

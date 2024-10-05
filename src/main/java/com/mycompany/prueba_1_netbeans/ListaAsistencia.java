@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 //Clase para mostrar la lista de asistencias
-public class ListaAsistencia extends PadreColegio {
+public class ListaAsistencia extends VentanaPadre {
     //Atributo de instancia
     private boolean opcion;
     //Constructor de la clase ListaAsistencia, con consideración de excepciones, el booleano opcion es para saber si se quiere eliminar o ver la asistencia

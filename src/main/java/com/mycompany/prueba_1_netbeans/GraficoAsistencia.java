@@ -14,7 +14,7 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-public class GraficoAsistencia extends PadreColegio {
+public class GraficoAsistencia extends VentanaPadre {
     //Atributo de instancia
     private HashMap<String, Double> mapaPorcentaje;
     //Constructor de la clase GraficoAsistencia

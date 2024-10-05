@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 //Clase para el menú de cursos
-public class MenuCursos extends PadreColegio {
+public class MenuCursos extends VentanaPadre {
     public MenuCursos(Colegio colegio) {
         super(colegio);
         initComponents();

@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 
 //Ventana para un listado de los cursos
-public class ListaCursos extends PadreColegio {
+public class ListaCursos extends VentanaPadre {
     //Atributo de instancia
     private int opcion;
     //Constructor de la clase ListaCursos para poder elegir un curso

@@ -7,7 +7,7 @@ package com.mycompany.prueba_1_netbeans;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
-public class Buscar extends PadreColegio {
+public class Buscar extends VentanaPadre {
     //Atributo de instancia
     private boolean opcion;
     //Constructor buscar curso

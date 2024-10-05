@@ -8,7 +8,7 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 //Ventana para registrar asistencia
-public class RealizarAsistencia extends PadreColegio {
+public class RealizarAsistencia extends VentanaPadre {
     //Atributo de instancia
     public RealizarAsistencia(Colegio colegio,Curso curso) {
         super(colegio,curso);

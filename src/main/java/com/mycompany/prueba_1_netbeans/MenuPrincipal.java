@@ -9,7 +9,7 @@ import java.io.IOException;
 import javax.swing.*;
 
 //Clase para mostrar el menú principal
-public class MenuPrincipal extends PadreColegio {
+public class MenuPrincipal extends VentanaPadre {
     //Constructor de la clase MenuPrincipal
     public MenuPrincipal(Colegio colegio) {
         super(colegio);

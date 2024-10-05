@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 //Clase para mostrar la lista de estudiantes de un curso
-public class ListaEstudiantes extends PadreColegio {
+public class ListaEstudiantes extends VentanaPadre {
     //Constructor de la clase ListaEstudiantes
     public ListaEstudiantes(Colegio colegio,Curso curso) {
         super(colegio,curso);

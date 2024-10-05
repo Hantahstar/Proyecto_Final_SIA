@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 //Clase para modificar un estudiante
-public class Modificar extends PadreColegio {
+public class Modificar extends VentanaPadre {
     //Constructor de la clase Modificar
     public Modificar(Colegio colegio,Curso curso,Estudiante estudiante) {
         super(colegio,curso,estudiante);

@@ -4,7 +4,7 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class Eliminar extends PadreColegio{
+public class Eliminar extends VentanaPadre {
     //Constructor para eliminar cursos
     public Eliminar(Colegio colegio){
         super(colegio);
