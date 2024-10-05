@@ -23,12 +23,24 @@ public class Eliminar extends PadreColegio{
 
     //Método para configurar la apariencia de la ventana
     private void visual(){
-        this.getContentPane().setBackground(Color.gray);
-        jButtonCancelar.setBackground(Color.lightGray);
-        jButtonEliminar.setBackground(Color.lightGray);
-        jLabelGradoOrRUT.setBackground(Color.black);
-        jLabelLetra.setBackground(Color.black);
+        //Titulo de la ventana
         jLabelTitulo.setBackground(Color.black);
+        jLabelTitulo.setForeground(Color.white);
+
+        //Botón de cancelar
+        jButtonCancelar.setBackground(new Color(150,43,69));
+        jButtonCancelar.setForeground(Color.white);
+
+        //Botón de eliminar
+        jButtonEliminar.setBackground(new Color(150,43,69));
+        jButtonEliminar.setForeground(Color.white);
+        //Labels y textFields
+        jLabelGradoOrRUT.setBackground(Color.black);
+        jLabelGradoOrRUT.setForeground(Color.white);
+
+        jLabelLetra.setBackground(Color.black);
+        jLabelLetra.setForeground(Color.white);
+
         jTextFieldGradoOrRUT.setBackground(Color.lightGray);
         jTextFieldLetra.setBackground(Color.lightGray);
     }

@@ -19,14 +19,21 @@ public class MenuPrincipal extends PadreColegio {
 
     //Método para visualizar la interfaz gráfica y configurarla al gusto
     private void visual(){
-        ImageIcon icon = new ImageIcon("src/images/icono.png");
-        this.setIconImage(icon.getImage());
-        this.getContentPane().setBackground(Color.gray);
-        jButtonAsistencias.setBackground(Color.lightGray);
-        jButtonCursos.setBackground(Color.lightGray);
-        jButtonEstudiantes.setBackground(Color.lightGray);
-        jButtonSalir.setBackground(Color.lightGray);
+        //Titulo de la ventana
+        jLabelTitulo.setForeground(Color.white);
         jLabelTitulo.setBackground(Color.black);
+        //Botón menú de asistencias
+        jButtonAsistencias.setBackground(new Color(150,43,69));
+        jButtonAsistencias.setForeground(Color.white);
+        //Botón menú de cursos
+        jButtonCursos.setBackground(new Color(150,43,69));
+        jButtonCursos.setForeground(Color.white);
+        //Botón menú de estudiantes
+        jButtonEstudiantes.setBackground(new Color(150,43,69));
+        jButtonEstudiantes.setForeground(Color.white);
+        //Botón salir
+        jButtonSalir.setBackground(new Color(150,43,69));
+        jButtonSalir.setForeground(Color.white);
     }
     
     
@@ -57,7 +64,7 @@ public class MenuPrincipal extends PadreColegio {
 
         jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTitulo.setText("Menú principal");
+        jLabelTitulo.setText("Class Manager");
         jLabelTitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jButtonCursos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N

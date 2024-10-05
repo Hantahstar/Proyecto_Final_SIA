@@ -18,14 +18,28 @@ public class RealizarAsistencia extends PadreColegio {
 
     //Para tener a mano las configuraciones visuales de la ventana
     private void visual(){
-        this.getContentPane().setBackground(Color.gray);
-        jButtonAceptar.setBackground(Color.lightGray);
-        jButtonCancelar.setBackground(Color.lightGray);
+        //Botón de aceptar
+        jButtonAceptar.setBackground(new Color(150,43,69));
+        jButtonAceptar.setForeground(Color.white);
+        //Botón de cancelar
+        jButtonCancelar.setBackground(new Color(150,43,69));
+        jButtonCancelar.setForeground(Color.white);
+        //Labels
         jLabelFecha.setBackground(Color.black);
+        jLabelFecha.setForeground(Color.white);
+
         jLabelFormatoFecha.setBackground(Color.black);
+        jLabelFormatoFecha.setForeground(Color.white);
+
         jLabelFormatoHora.setBackground(Color.black);
+        jLabelFormatoHora.setForeground(Color.white);
+
         jLabelHora.setBackground(Color.black);
+        jLabelHora.setForeground(Color.white);
+
         jLabelTitulo.setBackground(Color.black);
+        jLabelTitulo.setForeground(Color.white);
+
         jTextFieldFecha.setBackground(Color.lightGray);
         jTextFieldHora.setBackground(Color.lightGray);
     }

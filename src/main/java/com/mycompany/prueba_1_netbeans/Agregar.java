@@ -26,13 +26,26 @@ public class Agregar extends PadreColegio {
     }
     //método para tener a mano las configuraciones de las visuales
     private void visual(){
-        this.getContentPane().setBackground(Color.gray);
-        jButtonAceptar.setBackground(Color.lightGray);
-        jButtonCancelar.setBackground(Color.lightGray);
-        jLabelApellido.setBackground(Color.black);
-        jLabelGradoOrRUT.setBackground(Color.black);
-        jLabelLetraOrNombre.setBackground(Color.black);
+        //Titulo
         jLabelTitulo.setBackground(Color.black);
+        jLabelTitulo.setForeground(Color.white);
+        //Botón aceptar
+        jButtonAceptar.setBackground(new Color(150,43,69));
+        jButtonAceptar.setForeground(Color.white);
+        //Botón cancelar
+        jButtonCancelar.setBackground(new Color(150,43,69));
+        jButtonCancelar.setForeground(Color.white);
+
+        //Labels y textFields
+        jLabelApellido.setBackground(Color.black);
+        jLabelApellido.setForeground(Color.white);
+
+        jLabelGradoOrRUT.setBackground(Color.black);
+        jLabelGradoOrRUT.setForeground(Color.white);
+
+        jLabelLetraOrNombre.setBackground(Color.black);
+        jLabelLetraOrNombre.setForeground(Color.white);
+
         jTextFieldApellido.setBackground(Color.lightGray);
         jTextFieldGradoOrRUT.setBackground(Color.lightGray);
         jTextFieldLetraOrNombre.setBackground(Color.lightGray);
@@ -46,6 +59,7 @@ public class Agregar extends PadreColegio {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
         String titulo,labelTextFieldGradoOrRut,labelTextFieldLetraOrNombre;
         jLabelGradoOrRUT = new javax.swing.JLabel();
         jLabelLetraOrNombre = new javax.swing.JLabel();

@@ -38,12 +38,24 @@ public class Buscar extends PadreColegio {
 
     //Tener todo a mano para poder cambiar las visuales
     private void visual(){
-        this.getContentPane().setBackground(Color.gray);
-        jButtonBuscar.setBackground(Color.lightGray);
-        jButtonCancelar.setBackground(Color.lightGray);
-        jLabelGradoOrRUT.setBackground(Color.black);
-        jLabelLetra.setBackground(Color.black);
+        //Titulo
         jLabelTitulo.setBackground(Color.black);
+        jLabelTitulo.setForeground(Color.white);
+        //Botón buscar
+        jButtonBuscar.setBackground(new Color(150,43,69));
+        jButtonBuscar.setForeground(Color.white);
+
+        //Botón cancelar
+        jButtonCancelar.setBackground(new Color(150,43,69));
+        jButtonCancelar.setForeground(Color.white);
+
+        //Labels y textFields
+        jLabelGradoOrRUT.setBackground(Color.black);
+        jLabelGradoOrRUT.setForeground(Color.white);
+
+        jLabelLetra.setBackground(Color.black);
+        jLabelLetra.setForeground(Color.white);
+
         jTextFieldGradoOrRUT.setBackground(Color.lightGray);
         jTextFieldLetra.setBackground(Color.lightGray);
     }
@@ -55,6 +67,7 @@ public class Buscar extends PadreColegio {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
         jButtonBuscar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         String titulo,labelTextFieldGradoOrRUT;

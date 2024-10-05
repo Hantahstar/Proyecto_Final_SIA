@@ -32,10 +32,15 @@ public class ListaEstudiantes extends PadreColegio {
         //panel
         this.getContentPane().setBackground(Color.gray);
         //boton
-        jButtonCerrar.setBackground(Color.lightGray);
+        jButtonCerrar.setBackground(new Color(150,43,69));
+        jButtonCerrar.setForeground(Color.white);
         //labels
         jLabelCurso.setBackground(Color.black);
+        jLabelCurso.setForeground(Color.white);
+
         jLabelTitulo.setBackground(Color.black);
+        jLabelTitulo.setForeground(Color.white);
+
         //scroll
         jScrollPaneBarra.getVerticalScrollBar().setBackground(Color.black);
         //listas

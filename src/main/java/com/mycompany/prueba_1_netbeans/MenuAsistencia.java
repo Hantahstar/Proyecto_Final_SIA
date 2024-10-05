@@ -20,15 +20,29 @@ public class MenuAsistencia extends PadreColegio {
     }
     //Método para visualizar la interfaz gráfica y configurarla al gusto
     private void visual(){
-        this.getContentPane().setBackground(Color.gray);
-        jButtonBuscar.setBackground(Color.lightGray);
-        jButtonEliminar.setBackground(Color.lightGray);
-        jButtonRealizar.setBackground(Color.lightGray);
-        jButtonReporte.setBackground(Color.lightGray);
-        jButtonPorcentaje.setBackground(Color.lightGray);
-        jButtonVolver.setBackground(Color.lightGray);
+        //Botón de buscar
+        jButtonBuscar.setBackground(new Color(150,43,69));
+        jButtonBuscar.setForeground(Color.white);
+        //Botón de eliminar
+        jButtonEliminar.setBackground(new Color(150,43,69));
+        jButtonEliminar.setForeground(Color.white);
+        //Botón de realizar
+        jButtonRealizar.setBackground(new Color(150,43,69));
+        jButtonRealizar.setForeground(Color.white);
+        //Botón de reporte
+        jButtonReporte.setBackground(new Color(150,43,69));
+        jButtonReporte.setForeground(Color.white);
+        //Botón de porcentaje
+        jButtonPorcentaje.setBackground(new Color(150,43,69));
+        jButtonPorcentaje.setForeground(Color.white);
+        //Botón de volver
+        jButtonVolver.setBackground(new Color(150,43,69));
+        jButtonVolver.setForeground(Color.white);
+
         jLabelCurso.setBackground(Color.black);
+        jLabelCurso.setForeground(Color.white);
         jLabelTitulo.setBackground(Color.black);
+        jLabelTitulo.setForeground(Color.white);
     }
 
     /**

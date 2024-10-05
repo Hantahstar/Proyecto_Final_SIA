@@ -27,8 +27,9 @@ public class GraficoAsistencia extends PadreColegio {
     }
     //Método para visualizar la interfaz gráfica y configurarla al gusto
     private void visual(){
-        this.getContentPane().setBackground(Color.gray);
-        jButtonVolver.setBackground(Color.lightGray);
+        //Botón volver
+        jButtonVolver.setBackground(new Color(150,43,69));
+        jButtonVolver.setForeground(Color.white);
         barChartGrafico.setBackgroundPaint(Color.gray);
         barChartGrafico.getTitle().setBackgroundPaint(Color.gray);
         plotGrafico.setBackgroundPaint(Color.darkGray);

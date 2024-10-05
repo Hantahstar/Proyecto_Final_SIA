@@ -17,13 +17,24 @@ public class MenuCursos extends PadreColegio {
     }
     //Método para visualizar la interfaz gráfica y configurarla al gusto
     private void visual(){
-        this.getContentPane().setBackground(Color.gray);
-        jButtonAgregar.setBackground(Color.lightGray);
-        jButtonBuscar.setBackground(Color.lightGray);
-        jButtonEliminar.setBackground(Color.lightGray);
-        jButtonMostrar.setBackground(Color.lightGray);
-        jButtonVolver.setBackground(Color.lightGray);
+        //Botón de agregar curso
+        jButtonAgregar.setBackground(new Color(150,43,69));
+        jButtonAgregar.setForeground(Color.white);
+        //Botón de buscar curso
+        jButtonBuscar.setBackground(new Color(150,43,69));
+        jButtonBuscar.setForeground(Color.white);
+        //Botón de eliminar curso
+        jButtonEliminar.setBackground(new Color(150,43,69));
+        jButtonEliminar.setForeground(Color.white);
+        //Botón de mostrar cursos
+        jButtonMostrar.setBackground(new Color(150,43,69));
+        jButtonMostrar.setForeground(Color.white);
+        //Botón de volver al menú principal
+        jButtonVolver.setBackground(new Color(150,43,69));
+        jButtonVolver.setForeground(Color.white);
+        //Título
         jLabelTitulo.setBackground(Color.black);
+        jLabelTitulo.setForeground(Color.white);
     }
     /**
      * This method is called from within the constructor to initialize the form.

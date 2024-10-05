@@ -18,15 +18,31 @@ public class Modificar extends PadreColegio {
     }
     //Método para visualizar la interfaz gráfica y configurarla al gusto
     private void visual(){
-        this.getContentPane().setBackground(Color.gray);
-        jButtonCancelar.setBackground(Color.lightGray);
-        jButtonModificar.setBackground(Color.lightGray);
+        //Botón de cancelar
+        jButtonCancelar.setBackground(new Color(150,43,69));
+        jButtonCancelar.setForeground(Color.white);
+        //Botón de modificar
+        jButtonModificar.setBackground(new Color(150,43,69));
+        jButtonModificar.setForeground(Color.white);
+        //Labels
         jLabelApellido.setBackground(Color.black);
+        jLabelApellido.setForeground(Color.white);
+
         jLabelApellidoOG.setBackground(Color.black);
+        jLabelApellidoOG.setForeground(Color.white);
+
         jLabelNombre.setBackground(Color.black);
+        jLabelNombre.setForeground(Color.white);
+
         jLabelNombreOG.setBackground(Color.black);
+        jLabelNombreOG.setForeground(Color.white);
+
         jLabelRUT.setBackground(Color.black);
+        jLabelRUT.setForeground(Color.white);
+
         jLabelTitulo.setBackground(Color.black);
+        jLabelTitulo.setForeground(Color.white);
+
         jTextFieldApellido.setBackground(Color.lightGray);
         jTextFieldNombre.setBackground(Color.lightGray);
     }

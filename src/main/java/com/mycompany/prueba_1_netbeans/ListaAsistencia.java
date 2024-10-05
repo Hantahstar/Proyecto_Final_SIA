@@ -40,15 +40,21 @@ public class ListaAsistencia extends PadreColegio {
 
     //Método para visualizar la interfaz gráfica y configurarla al gusto
     private void visual(){
-        //panel
-        this.getContentPane().setBackground(Color.gray);
         //botones
-        jButtonAceptar.setBackground(Color.lightGray);
-        jButtonCerrar.setBackground(Color.lightGray);
+        jButtonAceptar.setBackground(new Color(150,43,69));
+        jButtonAceptar.setForeground(Color.white);
+
+        jButtonCerrar.setBackground(new Color(150,43,69));
+        jButtonCerrar.setForeground(Color.white);
         //label
         jLabelHora.setBackground(Color.black);
+        jLabelHora.setForeground(Color.white);
+
         jLabelFecha.setBackground(Color.black);
+        jLabelFecha.setForeground(Color.white);
+
         jLabelTitulo.setBackground(Color.black);
+        jLabelTitulo.setForeground(Color.white);
         //scroll
         jScrollPaneBarra.getVerticalScrollBar().setBackground(Color.black);
         //listas

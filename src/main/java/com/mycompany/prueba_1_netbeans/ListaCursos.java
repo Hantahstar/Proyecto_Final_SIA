@@ -5,8 +5,7 @@
 package com.mycompany.prueba_1_netbeans;
 
 import java.awt.Color;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -69,12 +68,20 @@ public class ListaCursos extends PadreColegio {
         //panel
         this.getContentPane().setBackground(Color.gray);
         //botones
-        jButtonAceptar.setBackground(Color.lightGray);
-        jButtonCerrar.setBackground(Color.lightGray);
+        jButtonAceptar.setBackground(new Color(150,43,69));
+        jButtonAceptar.setForeground(Color.white);
+
+        jButtonCerrar.setBackground(new Color(150,43,69));
+        jButtonCerrar.setForeground(Color.white);
         //labels
         jLabelLetra.setBackground(Color.black);
+        jLabelLetra.setForeground(Color.white);
+
         jLabelGrado.setBackground(Color.black);
+        jLabelGrado.setForeground(Color.white);
+
         jLabelTitulo.setBackground(Color.black);
+        jLabelTitulo.setForeground(Color.white);
         //scroll
         jScrollPaneBarra.getVerticalScrollBar().setBackground(Color.black);
         //listas
