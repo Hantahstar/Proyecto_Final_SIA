@@ -59,6 +59,7 @@ El usuario seleccionará el nivel y la letra del curso,el curso tiene que tener 
 ## Requisitos del Sistema
 - Java
 - IDE de preferencia (Recomendados IntelliJ, NetBeans)
+- Programa para descrimir archivos tipo ZIP (Recomendado Winrar)
 
 ## Compatible con
 - Windows
