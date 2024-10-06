@@ -16,6 +16,7 @@ public class Proyecto_Final_SIA {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 MenuPrincipal vv = new MenuPrincipal(colegio);
+                vv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 try{
                     //Cargar los datos de los archivos CSV
                     colegio.cargarCursosDesdeCSV(ruta.getPathCursos());
@@ -23,7 +24,7 @@ public class Proyecto_Final_SIA {
                     colegio.cargarAsistenciaDesdeCSV(ruta.getPathAsistencia());
                     UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
                     vv = new MenuPrincipal(colegio);
-                    vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    vv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     vv.setVisible(true);
                 //Manejo de excepciones
                 }catch (EstudianteNullPointerException e){

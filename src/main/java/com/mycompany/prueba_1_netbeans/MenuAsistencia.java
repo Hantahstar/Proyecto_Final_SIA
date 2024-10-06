@@ -176,7 +176,7 @@ public class MenuAsistencia extends VentanaPadre {
     private void jButtonRealizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRealizarActionPerformed
         if (evt.getSource()==jButtonRealizar){
             RealizarAsistencia vv = new RealizarAsistencia(colegio,curso);
-            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            vv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             vv.setSize(this.getSize());
             vv.setLocation(this.getLocation());
             vv.setVisible(true);
@@ -193,7 +193,7 @@ public class MenuAsistencia extends VentanaPadre {
             else if(encontradoBuscar){
                 //true para buscar
                 ListaAsistencia vv = new ListaAsistencia(colegio,curso,true);
-                vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                vv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 vv.setSize(this.getSize());
                 vv.setLocation(this.getLocation());
                 vv.setVisible(true);
@@ -212,7 +212,7 @@ public class MenuAsistencia extends VentanaPadre {
             else if(encontradoEliminar){
                 //false para lo otro
                 ListaAsistencia vv = new ListaAsistencia(colegio,curso,false);
-                vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                vv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 vv.setSize(this.getSize());
                 vv.setLocation(this.getLocation());
                 vv.setVisible(true);
@@ -225,7 +225,7 @@ public class MenuAsistencia extends VentanaPadre {
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
         if(evt.getSource()==jButtonVolver){
             MenuPrincipal vv = new MenuPrincipal(colegio);
-            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            vv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             vv.setSize(this.getSize());
             vv.setLocation(this.getLocation());
             vv.setVisible(true);
@@ -236,6 +236,7 @@ public class MenuAsistencia extends VentanaPadre {
     //Para actualizar los CSV de los estudiantes, cursos y asistencias
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         MenuPrincipal vv = new MenuPrincipal(colegio);
+        vv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         vv.catchException(this);
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
@@ -247,7 +248,7 @@ public class MenuAsistencia extends VentanaPadre {
         }
         else{
             GraficoAsistencia vv = new GraficoAsistencia(colegio.calcularPorcentaje(curso),colegio,curso);
-            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            vv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             vv.setSize(this.getSize());
             vv.setLocation(this.getLocation());
             vv.setVisible(true);

@@ -222,7 +222,7 @@ public class ListaAsistencia extends VentanaPadre {
     private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed
         if (evt.getSource()==jButtonCerrar){
             MenuAsistencia vv = new MenuAsistencia(colegio,curso);
-            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            vv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             vv.setSize(this.getSize());
             vv.setLocation(this.getLocation());
             vv.setVisible(true);
@@ -249,7 +249,7 @@ public class ListaAsistencia extends VentanaPadre {
                         if(asist!=null){
                             colegio.mostrarAsistencia(asist,this);
                             MenuAsistencia vv = new MenuAsistencia(colegio,curso);
-                            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            vv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                             vv.setSize(this.getSize());
                             vv.setLocation(this.getLocation());
                             vv.setVisible(true);
@@ -279,7 +279,7 @@ public class ListaAsistencia extends VentanaPadre {
                             colegio.removerAsistencia(asist);
                             JOptionPane.showMessageDialog(this, "Asistencia de fecha: "+asist.getFecha()+"\nhora: "+asist.getHora(), "Eliminado", JOptionPane.INFORMATION_MESSAGE);
                             MenuAsistencia vv = new MenuAsistencia(colegio,curso);
-                            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            vv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                             vv.setSize(this.getSize());
                             vv.setLocation(this.getLocation());
                             vv.setVisible(true);
@@ -338,6 +338,7 @@ public class ListaAsistencia extends VentanaPadre {
     //Al cerrar la pestaña se actualiza el CSV de asistencias, estudiantes y cursos
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         MenuPrincipal vv = new MenuPrincipal(colegio);
+        vv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         vv.catchException(this);
         this.dispose();
     }//GEN-LAST:event_formWindowClosing

@@ -117,7 +117,7 @@ public class GraficoAsistencia extends VentanaPadre {
     private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
         if (evt.getSource()==jButtonVolver){
             MenuAsistencia vv = new MenuAsistencia(colegio,curso);
-            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            vv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             vv.setSize(this.getSize());
             vv.setLocation(this.getLocation());
             vv.setVisible(true);
@@ -127,6 +127,7 @@ public class GraficoAsistencia extends VentanaPadre {
     //Para actualizar los CSV de los estudiantes, cursos y asistencias
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         MenuPrincipal vv = new MenuPrincipal(colegio);
+        vv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         vv.catchException(this);
         this.dispose();
     }//GEN-LAST:event_formWindowClosing

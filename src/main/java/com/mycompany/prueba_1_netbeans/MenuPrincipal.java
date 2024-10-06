@@ -146,7 +146,7 @@ public class MenuPrincipal extends VentanaPadre {
     private void jButtonCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCursosActionPerformed
         if (evt.getSource()==jButtonCursos){
             MenuCursos vv = new MenuCursos(this.colegio);
-            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            vv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             vv.setSize(this.getSize());
             vv.setLocation(this.getLocation());
             vv.setVisible(true);
@@ -163,7 +163,7 @@ public class MenuPrincipal extends VentanaPadre {
             else{
                 //se pone 3 como parametro para que vaya al menu de asistencias
                 ListaCursos vv = new ListaCursos(colegio,3);
-                vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                vv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 vv.setSize(this.getSize());
                 vv.setLocation(this.getLocation());
                 vv.setVisible(true);
@@ -177,7 +177,7 @@ public class MenuPrincipal extends VentanaPadre {
             if(!colegio.cursoEstaVacio()){
                 //se pone 2 como parametro para que vaya al menu de estudiantes
                 ListaCursos vv = new ListaCursos(colegio,2);
-                vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                vv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 vv.setSize(this.getSize());
                 vv.setLocation(this.getLocation());
                 vv.setVisible(true);

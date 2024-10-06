@@ -206,7 +206,7 @@ public class Modificar extends VentanaPadre {
 
                 JOptionPane.showMessageDialog(this, "Estudiante modificado\nDatos cambiados:\nNombre: "+estudiante.getNombre()+"\nApellido: "+estudiante.getApellido(), "Modificado", JOptionPane.INFORMATION_MESSAGE);
                 MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
-                vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                vv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 vv.setSize(this.getSize());
                 vv.setLocation(this.getLocation());
                 vv.setVisible(true);
@@ -235,7 +235,7 @@ public class Modificar extends VentanaPadre {
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         if(evt.getSource()==jButtonCancelar){
             MenuEstudiantes vv = new MenuEstudiantes(colegio,curso);
-            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            vv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             vv.setSize(this.getSize());
             vv.setLocation(this.getLocation());
             vv.setVisible(true);
@@ -259,6 +259,7 @@ public class Modificar extends VentanaPadre {
     //Actualiza los CSV de los estudiantes, cursos y asistencias
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         MenuPrincipal vv = new MenuPrincipal(colegio);
+        vv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         vv.catchException(this);
         this.dispose();
     }//GEN-LAST:event_formWindowClosing

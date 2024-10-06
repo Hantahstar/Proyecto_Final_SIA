@@ -266,7 +266,7 @@ public class ListaCursos extends VentanaPadre {
         if (evt.getSource()==jButtonCerrar){
             if(opcion==1){
                 MenuCursos vv = new MenuCursos(colegio);
-                vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                vv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 vv.setSize(this.getSize());
                 vv.setLocation(this.getLocation());
                 vv.setVisible(true);
@@ -275,7 +275,7 @@ public class ListaCursos extends VentanaPadre {
             }
             else{
                 MenuPrincipal vv = new MenuPrincipal(colegio);
-                vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                vv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 vv.setSize(this.getSize());
                 vv.setLocation(this.getLocation());
                 vv.setVisible(true);
@@ -299,7 +299,7 @@ public class ListaCursos extends VentanaPadre {
                         //Dependiendo de la opción se abrirá una ventana u otra con el curso seleccionado
                         if(opcion==2){
                             MenuEstudiantes vv = new MenuEstudiantes(colegio,colegio.verificarCurso(c));
-                            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            vv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                             vv.setSize(this.getSize());
                             vv.setLocation(this.getLocation());
                             vv.setVisible(true);
@@ -309,7 +309,7 @@ public class ListaCursos extends VentanaPadre {
                             if(colegio.verificarCurso(c).sizeCurso()!=0){
                                 //Si el curso tiene estudiantes se abrirá la ventana de asistencia
                                 MenuAsistencia vv = new MenuAsistencia(colegio,colegio.verificarCurso(c));
-                                vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                                vv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                                 vv.setSize(this.getSize());
                                 vv.setLocation(this.getLocation());
                                 vv.setVisible(true);
@@ -321,7 +321,7 @@ public class ListaCursos extends VentanaPadre {
                         }
                         else{
                             MenuCursos vv = new MenuCursos(colegio);
-                            vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            vv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                             vv.setSize(this.getSize());
                             vv.setLocation(this.getLocation());
                             vv.setVisible(true);
@@ -378,6 +378,7 @@ public class ListaCursos extends VentanaPadre {
     //Al cerrar la ventana se actualizarán todos los CSV
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         MenuPrincipal vv = new MenuPrincipal(colegio);
+        vv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         vv.catchException(this);
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
