@@ -195,6 +195,7 @@ public class MenuPrincipal extends VentanaPadre {
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
         if(evt.getSource()==jButtonSalir){
             catchException(this);
+            System.exit(0);
         }
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
@@ -225,6 +226,7 @@ public class MenuPrincipal extends VentanaPadre {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         catchException(this);
         this.dispose();
+        System.exit(0);
     }//GEN-LAST:event_formWindowClosing
 
 
