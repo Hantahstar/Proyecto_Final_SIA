@@ -17,8 +17,7 @@ public class MenuEstudiantes extends VentanaPadre {
         visual();
     }
     //Método para visualizar la interfaz gráfica y configurarla al gusto
-    @Override
-    public void visual(){
+    private void visual(){
         //Botón de agregar
         jButtonAgregar.setBackground(new Color(150,43,69));
         jButtonAgregar.setForeground(Color.white);

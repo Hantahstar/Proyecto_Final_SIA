@@ -25,8 +25,7 @@ public class Agregar extends VentanaPadre {
         visual();
     }
     //método para tener a mano las configuraciones de las visuales
-    @Override
-    public void visual(){
+    private void visual(){
         //Titulo
         jLabelTitulo.setBackground(Color.black);
         jLabelTitulo.setForeground(Color.white);

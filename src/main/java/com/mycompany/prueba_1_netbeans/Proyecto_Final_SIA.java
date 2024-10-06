@@ -16,14 +16,15 @@ public class Proyecto_Final_SIA {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 MenuPrincipal vv = new MenuPrincipal(colegio);
-                vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                vv.setVisible(true);
                 try{
                     //Cargar los datos de los archivos CSV
                     colegio.cargarCursosDesdeCSV(ruta.getPathCursos());
                     colegio.cargarEstudiantesDesdeCSV(ruta.getPathEstudiantes());
                     colegio.cargarAsistenciaDesdeCSV(ruta.getPathAsistencia());
                     UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+                    vv = new MenuPrincipal(colegio);
+                    vv.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    vv.setVisible(true);
                 //Manejo de excepciones
                 }catch (EstudianteNullPointerException e){
                     JOptionPane.showMessageDialog(vv, "Error al cargar estudiante/s\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);

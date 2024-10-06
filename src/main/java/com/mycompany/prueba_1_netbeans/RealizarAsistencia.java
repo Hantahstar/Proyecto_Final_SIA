@@ -17,8 +17,7 @@ public class RealizarAsistencia extends VentanaPadre {
     }
 
     //Para tener a mano las configuraciones visuales de la ventana
-    @Override
-    public void visual(){
+    private void visual(){
         //Botón de aceptar
         jButtonAceptar.setBackground(new Color(150,43,69));
         jButtonAceptar.setForeground(Color.white);

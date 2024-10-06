@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 import java.io.File;
 import java.util.*;
 
-public class Curso{
+public class Curso extends EscolarPadre{
     //Atributos de instancia
     private String grado;
     private String letra;
@@ -17,6 +17,7 @@ public class Curso{
 
     //Constructor que inicializa los atributos de la clase
     public Curso(String grado,String letra)throws CursoNullPointerException {
+        super();
         if(grado==null&&letra==null){
             throw new CursoNullPointerException("Grado y letra tienen valor nulo");
         }
@@ -33,7 +34,6 @@ public class Curso{
             this.mapaEstudiante=new HashMap<>();
         }
     }
-
     //Constructor que crea una copia del curso
     public Curso(Curso otroCurso){
         int i;
@@ -139,7 +139,7 @@ public class Curso{
         String ret="";
         int i;
         for(i=0;listCurso.size()>i;i++){
-            ret+=listCurso.get(i).toString();
+            ret+=listCurso.get(i).guardarCadena();
         }
         return ret;
     }
@@ -236,9 +236,8 @@ public class Curso{
         return rut;
     }
 
-    //Método sobreescrito de Object toString()
-    @Override
-    public String toString(){
+    //Método sobreescrito de EscolarPadre guardarCadena()
+    public String guardarCadena(){
         return(grado+","+letra+","+Long.toString(sizeCurso())+"\n");
     }
 

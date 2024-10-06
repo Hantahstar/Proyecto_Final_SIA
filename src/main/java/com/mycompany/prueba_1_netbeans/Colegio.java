@@ -80,7 +80,7 @@ public class Colegio {
         int i;
         String ret = "";
         for (i = 0; cursos.size() > i; i++) {
-            ret += cursos.get(i).toString();
+            ret += cursos.get(i).guardarCadena();
         }
         return ret;
     }
@@ -138,7 +138,7 @@ public class Colegio {
         String ret = "";
         for (i = 0; asistencias.size() > i; i++) {
             if (asistencias.get(i).getCurso().getGrado().equals(c.getGrado()) && asistencias.get(i).getCurso().getLetra().equals(c.getLetra())) {
-                ret += asistencias.get(i).toString();
+                ret += asistencias.get(i).guardarCadena();
             }
         }
         return ret;

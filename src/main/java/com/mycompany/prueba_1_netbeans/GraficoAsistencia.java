@@ -26,8 +26,7 @@ public class GraficoAsistencia extends VentanaPadre {
         visual();
     }
     //Método para visualizar la interfaz gráfica y configurarla al gusto
-    @Override
-    public void visual(){
+    private void visual(){
         //Botón volver
         jButtonVolver.setBackground(new Color(150,43,69));
         jButtonVolver.setForeground(Color.white);

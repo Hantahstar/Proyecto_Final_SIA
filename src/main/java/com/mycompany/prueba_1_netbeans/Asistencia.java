@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-public class Asistencia{
+public class Asistencia extends EscolarPadre{
     //Atributos de instancia
     private String fecha;
     private String hora;
@@ -17,6 +17,7 @@ public class Asistencia{
     private int cantidadPresentes;
     //Método constructor con consideración de excepciones
     public Asistencia(String fecha,String hora,Curso curso)throws AsistenciaNullPointerException {
+        super();
         if (fecha == null && hora == null){
             throw new AsistenciaNullPointerException("Fecha y hora tiene valor nulo");
         }
@@ -74,7 +75,6 @@ public class Asistencia{
         else{
             this.cantidadPresentes = cantidadPresentes;
         }
-
     }
     public Estudiante getEstudiante(int i){
         return curso.getEstudiante(i);
@@ -126,9 +126,9 @@ public class Asistencia{
         asist.setCantidadPresentes(contador);
         return true;
     }
-    //Método sobreescrito de Object toString()
+    //Método sobreescrito de EscolarPadre guardarCadena()
     @Override
-    public String toString(){
+    public String guardarCadena(){
         return fecha+","+hora+","+Integer.toString(cantidadPresentes)+"/"+Long.toString(curso.sizeCurso())+"\n";
     }
 }

@@ -19,8 +19,7 @@ public class MenuAsistencia extends VentanaPadre {
         visual();
     }
     //Método para visualizar la interfaz gráfica y configurarla al gusto
-    @Override
-    public void visual(){
+    private void visual(){
         //Botón de buscar
         jButtonBuscar.setBackground(new Color(150,43,69));
         jButtonBuscar.setForeground(Color.white);

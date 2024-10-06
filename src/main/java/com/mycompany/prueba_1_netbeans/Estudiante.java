@@ -1,13 +1,13 @@
 package com.mycompany.prueba_1_netbeans;
 
-public class Estudiante {
+public class Estudiante extends EscolarPadre{
     private String nombre;
     private String apellido;
     private String rut;
     private int estado;
-
     // Constructor que inicializa los atributos del estudiante
     public Estudiante(String nombre, String apellido, String rut) throws EstudianteNullPointerException {
+        super();
         if (nombre == null && apellido == null && rut == null) {
             throw new EstudianteNullPointerException("Nombre, apellido y RUT son nulos");
         } else if (nombre == null && apellido == null) {
@@ -129,9 +129,9 @@ public class Estudiante {
         return true;
     }
 
-    // Método sobreescrito de Object toString()
+    // Método sobreescrito de EscolarPade guardarCadena
     @Override
-    public String toString() {
+    public String guardarCadena() {
         return (rut + "," + nombre + "," + apellido + "\n");
     }
 }

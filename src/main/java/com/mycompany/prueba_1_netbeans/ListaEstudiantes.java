@@ -28,8 +28,7 @@ public class ListaEstudiantes extends VentanaPadre {
         visual();
     }
     //Método para visualizar la interfaz gráfica y configurarla al gusto
-    @Override
-    public void visual(){
+    private void visual(){
         //panel
         this.getContentPane().setBackground(Color.gray);
         //boton
