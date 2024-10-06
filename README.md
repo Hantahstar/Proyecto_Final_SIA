@@ -59,3 +59,7 @@ El usuario seleccionará el nivel y la letra del curso,el curso tiene que tener 
 ## Requisitos del Sistema
 - Java
 - IDE de preferencia (Recomendados IntelliJ, NetBeans)
+
+## Compatible con
+- Windows
+- Mac
