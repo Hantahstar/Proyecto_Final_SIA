@@ -33,6 +33,7 @@ public class GraficoAsistencia extends VentanaPadre {
         barChartGrafico.setBackgroundPaint(Color.gray);
         barChartGrafico.getTitle().setBackgroundPaint(Color.gray);
         plotGrafico.setBackgroundPaint(Color.darkGray);
+
         plotGrafico.getDomainAxis().setLabelPaint(Color.BLACK);
         plotGrafico.getRangeAxis().setLabelPaint(Color.BLACK);
         plotGrafico.getRenderer().setSeriesPaint(0, Color.black);
