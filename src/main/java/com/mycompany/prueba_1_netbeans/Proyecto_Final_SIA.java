@@ -29,17 +29,18 @@ public class Proyecto_Final_SIA {
                 //Manejo de excepciones
                 }catch (EstudianteNullPointerException e){
                     JOptionPane.showMessageDialog(vv, "Error al cargar estudiante/s\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
-
+                    System.exit(0);
                 }catch (CursoNullPointerException e){
                     JOptionPane.showMessageDialog(vv, "Error al cargar curso/s\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
-
+                    System.exit(0);
                 }catch (AsistenciaNullPointerException e){
                     JOptionPane.showMessageDialog(vv, "Error al cargar asistencia/s\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
-
+                    System.exit(0);
                 }catch(IOException e){
                     JOptionPane.showMessageDialog(vv, "Error con el CSV\nError: "+e.getMessage()+"\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(vv, "Error génerico\n"+colegio.shortStackTrace(e,10), "Error", JOptionPane.ERROR_MESSAGE);
+                    System.exit(0);
                 }
 
             }
