@@ -37,7 +37,8 @@ public class Buscar extends VentanaPadre {
     }
 
     //Tener todo a mano para poder cambiar las visuales
-    private void visual(){
+    @Override
+    public void visual(){
         //Titulo
         jLabelTitulo.setBackground(Color.black);
         jLabelTitulo.setForeground(Color.white);

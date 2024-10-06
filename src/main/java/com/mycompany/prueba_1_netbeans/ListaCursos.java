@@ -64,7 +64,8 @@ public class ListaCursos extends VentanaPadre {
     }
 
     //Método para visualizar la interfaz gráfica y configurarla al gusto
-    private void visual(){
+    @Override
+    public void visual(){
         //botones
         jButtonAceptar.setBackground(new Color(150,43,69));
         jButtonAceptar.setForeground(Color.white);

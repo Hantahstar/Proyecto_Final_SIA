@@ -18,7 +18,8 @@ public class MenuPrincipal extends VentanaPadre {
     }
 
     //Método para visualizar la interfaz gráfica y configurarla al gusto
-    private void visual(){
+    @Override
+    public void visual(){
         //Titulo de la ventana
         jLabelTitulo.setForeground(Color.white);
         jLabelTitulo.setBackground(Color.black);

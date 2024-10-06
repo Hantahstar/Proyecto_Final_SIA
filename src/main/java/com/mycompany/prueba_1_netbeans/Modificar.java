@@ -17,7 +17,8 @@ public class Modificar extends VentanaPadre {
         visual();
     }
     //Método para visualizar la interfaz gráfica y configurarla al gusto
-    private void visual(){
+    @Override
+    public void visual(){
         //Botón de cancelar
         jButtonCancelar.setBackground(new Color(150,43,69));
         jButtonCancelar.setForeground(Color.white);

@@ -22,7 +22,8 @@ public class Eliminar extends VentanaPadre {
     }
 
     //Método para configurar la apariencia de la ventana
-    private void visual(){
+    @Override
+    public void visual(){
         //Titulo de la ventana
         jLabelTitulo.setBackground(Color.black);
         jLabelTitulo.setForeground(Color.white);

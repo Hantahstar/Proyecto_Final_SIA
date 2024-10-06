@@ -73,7 +73,12 @@ public class VentanaPadre extends javax.swing.JFrame{
         };
         panelConFondo.setLayout(new BorderLayout());
         this.setContentPane(panelConFondo);
+    }
 
-
+    //Método para visualizar la interfaz gráfica y configurarla al gusto
+    public void visual(){
+        this.getContentPane().setBackground(new java.awt.Color(0, 0, 0));
+        this.setIconImage(new ImageIcon("src/images/icono.png").getImage());
+        this.setTitle("Class Manager");
     }
 }
